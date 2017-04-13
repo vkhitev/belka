@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "keywords": [],
   "author": "Vlad Khitev <vkhitev@gmail.com>",
@@ -14,7 +15,9 @@
     "cookie-parser": "^1.4.3",
     "debug": "^2.6.3",
     "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "morgan": "^1.8.1",
     "request": "^2.81.0",
     "serve-favicon": "^2.4.2"
   },
