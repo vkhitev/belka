@@ -1,12 +1,10 @@
 const { Router } = require('express')
 
+const mainController = require('../controllers/main-controller')
+
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.render('index', {
-    message: 'Main page'
-  })
-})
+router.get('/', mainController.getPage)
 
 router.get('/admin', (req, res) => {
   res.render('admin', {

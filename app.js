@@ -12,8 +12,12 @@ const routes = require('./app_server/routes')
 
 const app = express()
 
+// app.engine('ejs', require('ejs-locals'))
+app.engine('handlebars', require('express-handlebars')({
+  defaultLayout: 'layout'
+}))
 app.set('views', path.join(__dirname, 'app_server', 'views'))
-app.set('view engine', 'ejs')
+app.set('view engine', 'handlebars')
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
