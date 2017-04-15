@@ -18,10 +18,11 @@ const posts = [{
 
 function getPage (req, res) {
   // res.render('index', { posts })
-  res.render('index', {
-    title: 'Belka',
-    body: 'Wow'
-  })
+  // res.render('index', {
+  //   title: 'Belka',
+  //   body: 'Wow'
+  // })
+  res.render('index')
 }
 
 exports.getPage = getPage

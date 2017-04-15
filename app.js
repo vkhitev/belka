@@ -1,57 +1,11 @@
 require('dotenv').config()
 
-const path = require('path')
-
 const express = require('express')
-const favicon = require('serve-favicon')
-const logger = require('morgan')
-const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-
-const routes = require('./app_server/routes')
-const apiRoutes = require('./app_api/routes')
 
 const app = express()
 
-// app.engine('ejs', require('ejs-locals'))
-app.engine('handlebars', require('express-handlebars')({
-  defaultLayout: 'layout'
-}))
-app.set('views', path.join(__dirname, 'app_server', 'views'))
-app.set('view engine', 'handlebars')
-
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.use('/', routes)
-app.use('/api', apiRoutes)
-
-app.use((req, res, next) => {
-  const err = new Error('Not found')
-  err.status = 404
-  next(err)
-})
-
-if (app.get('env') === 'development') {
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500)
-    res.render('error', {
-      message: err.message,
-      error: err
-    })
-  })
-}
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500)
-  res.render('error', {
-    message: err.message,
-    error: {}
-  })
-})
+require('./app_config/views')(app)
+require('./app_config/middleware')(app)
+require('./app_config/routes')(app)
 
 module.exports = app
