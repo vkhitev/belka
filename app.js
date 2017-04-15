@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const routes = require('./app_server/routes')
+const apiRoutes = require('./app_api/routes')
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)
+app.use('/api', apiRoutes)
 
 app.use((req, res, next) => {
   const err = new Error('Not found')

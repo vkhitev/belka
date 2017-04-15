@@ -39,3 +39,4 @@ jspm_packages
 # Custom
 docs
 .env
+public/content
