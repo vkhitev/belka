@@ -1,6 +1,10 @@
 const { Router } = require('express')
 
+// const ctrl = require('../controllers/main-controller')
+
 const router = Router()
+
+// router.get('/posts', ctrl)
 
 router.get('/posts', (req, res) => {
   res.send('СКАЖИ МЯУ')
