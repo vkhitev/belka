@@ -41,3 +41,4 @@ docs
 .env
 public/content
 .vscode
+**/.DS_Store
