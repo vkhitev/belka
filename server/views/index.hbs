@@ -1,6 +1,24 @@
-{{#each posts}}
-  <div>
-    <h2>{{name}}</h2>
-    {{date}}
-  </div>
-{{/each}}
+<div class="col-xs-6 col-sm-8 col-md-10">
+  {{#each posts}}
+    <div class="card my-2">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card-block">
+            <h4 class="card-title">{{name}}</h4>
+            {{!--<i class="fa fa-tags fa-flip-horizontal" aria-hidden="true"></i>--}}
+            <p class="card-text">
+              <small class="text-muted">
+                {{eventDate}} | 
+              </small>
+            </p>
+            <p class="card-text">{{brief}}</p>
+            <a href="/posts/{{id}}" class="btn btn-primary">Перейти</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img class="card-img-bottom" src= {{previewUrl}} alt= {{previewUrl}}>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

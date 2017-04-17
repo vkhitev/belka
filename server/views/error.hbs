@@ -1,5 +1,36 @@
-<div class="entry">
-  <div class="body">
-    {{message}} {{error}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Belka | Error 404</title>
+  <style>
+    .container {
+      padding-top: 50px;
+      text-align: center;
+    }
+    
+    img {
+      width: 400px;
+    }
+    
+    @media (max-width: 500px) {
+      img {
+        width: 200px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="img/404.svg" alt="sad belka">
+    <h2>{{message}}</h2>
+    <h3>{{error}}</h3>
   </div>
-</div>
+</body>
+
+</html>

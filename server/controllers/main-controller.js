@@ -10,10 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   renderBriefPosts (req, res) {
-    console.log(`${apiOptions.server}/api/posts`)
-    rp(`${apiOptions.server}/api/posts`, { json: true })
+    rp(`${apiOptions.server}/api/posts?sort=-eventDate`, { json: true })
       .then(posts => {
-        console.log(posts)
         res.render('index', {
           layout: 'main',
           title: 'Belka | Лента',
