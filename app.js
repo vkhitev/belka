@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const app = require('express')()
 
 require('./config/views')(app)

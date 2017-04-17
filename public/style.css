@@ -2,13 +2,17 @@ html, body{
  height: 100%;
 }
 
+body {
+  padding-top: 50px;
+}
+
 .bg-orange {
   background-color: #ec691b;
 }
 
-.sidebar {
+/*.sidebar {
   position: fixed;
-}
+}*/
 
 .navbar-inverse .nav-link {
     color: rgba(255,255,255,.5);
@@ -48,24 +52,20 @@ footer {
   background-color: #fff;
 }
 
-.semilist {
+/*.semilist {
   max-height: 35vh; 
-  overflow: scroll;
-}
+  overflow: auto;
+}*/
 
-.collapse {
+/*.collapse {
   max-height: 12.5vh !important; 
+  overflow: auto;
+}*/
+
+.media {
+  height: 25vh;
 }
 
-.navbar-brand img {
-  position: relative;
-  top: -2px;
-}
-
-.card-img-bottom {
-  height: 100px;
-}
-
-.fa-tags {
-  color: #444;
+.media img {
+  height: inherit !important;
 }

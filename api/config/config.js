@@ -1,9 +1,9 @@
 module.exports = {
   development: {
-    database: 'belka',
     dialect: 'mysql',
-    username: 'vkhitev',
-    password: 'admin',
+    database: process.env.SQL_DB,
+    username: process.env.SQL_USR,
+    password: process.env.SQL_PASS,
     port: 3306,
     define: {
       timestamps: false,

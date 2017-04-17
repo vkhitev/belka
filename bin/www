@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('dotenv').config()
 const debug = require('debug')('express')
 const models = require('../api/models')
 const app = require('../app')
