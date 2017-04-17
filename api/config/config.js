@@ -4,7 +4,12 @@ module.exports = {
     dialect: 'mysql',
     username: 'vkhitev',
     password: 'admin',
-    port: 3306
+    port: 3306,
+    define: {
+      timestamps: false,
+      underscored: true,
+      freezeTableName: true
+    }
   },
   production: {
     url: process.env.DATABASE_URL,
