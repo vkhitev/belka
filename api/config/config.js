@@ -1,10 +1,11 @@
 module.exports = {
   development: {
-    dialect: 'mysql',
-    database: process.env.SQL_DB,
-    username: process.env.SQL_USR,
-    password: process.env.SQL_PASS,
-    port: 3306,
+    dialect: process.env.SQL_DIALECT,
+    username: process.env.SQL_USERNAME,
+    password: process.env.SQL_PASSWORD,
+    host: process.env.SQL_HOST,
+    port: process.env.SQL_PORT,
+    database: process.env.SQL_DATABASE,
     define: {
       timestamps: false,
       underscored: true,
