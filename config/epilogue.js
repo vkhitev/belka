@@ -17,4 +17,6 @@ module.exports = function (app) {
     model: db.Podcast,
     endpoints: ['/podcasts', '/podcasts/:id']
   })
+
+  return app
 }

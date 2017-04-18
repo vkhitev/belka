@@ -28,4 +28,6 @@ module.exports = function (app) {
       error: {}
     })
   })
+
+  return app
 }

@@ -11,4 +11,6 @@ module.exports = function (app) {
   }))
   app.set('views', viewsPath)
   app.set('view engine', '.hbs')
+
+  return app
 }
