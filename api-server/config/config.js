@@ -10,18 +10,16 @@ module.exports = {
       timestamps: false,
       underscored: true,
       freezeTableName: true
-    }
+    },
+    migrationStorage: 'sequelize ',
+    migrationStorageTableName: 'sequelize_meta',
+    seederStorage: 'sequelize',
+    seederStorageTableName: 'sequelize_data'
   },
   production: {
-    url: process.env.DATABASE_URL,
-    dialect: 'mysql'
   },
   staging: {
-    url: process.env.DATABASE_URL,
-    dialect: 'mysql'
   },
   test: {
-    url: process.env.DATABASE_URL || '',
-    dialect: 'mysql'
   }
 }

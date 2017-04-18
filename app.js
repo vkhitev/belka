@@ -5,8 +5,9 @@ const app = express()
 const middleware = pipe(
   require('./config/views'),
   require('./config/middleware'),
-  require('./config/epilogue'),
-  require('./config/routes')
+  require('./config/routes'),
+  require('./api-server/routes/epilogue'),
+  require('./config/error-routes')
 )
 
 module.exports = middleware(app)

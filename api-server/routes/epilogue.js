@@ -1,5 +1,5 @@
 const epilogue = require('epilogue')
-const db = require('../api/models')
+const db = require('../models')
 
 module.exports = function (app) {
   epilogue.initialize({

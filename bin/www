@@ -1,26 +1,30 @@
 #!/usr/bin/env node
 require('dotenv').config()
 const debug = require('debug')('express')
-const models = require('../api/models')
+const models = require('../api-server/models')
 const app = require('../app')
+const testDbConnection = require('./test-db-connection')
 
 const port = normalizePort(process.env.PORT || 3000)
 app.set('port', port)
 
-models.sequelize.sync()
+testDbConnection(models.sequelize)
+  .then(sequelize => sequelize.sync())
   .then(() => {
-    const server = app.listen(app.get('port'), () => {
-      debug('Express server listening on port ' + server.address().port)
-    })
+    const server = app.listen(app.get('port'))
+    server.on('listening', onListening(server))
     server.on('error', onError)
-    server.on('listening', () => {
-      const addr = server.address()
-      const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port
-      debug('Listening on ' + bind)
-    })
   })
+
+function onListening (server) {
+  return function () {
+    const addr = server.address()
+    const bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port
+    debug('Listening on ' + bind)
+  }
+}
 
 function onError (error) {
   if (error.syscall !== 'listen') {
