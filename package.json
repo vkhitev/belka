@@ -1,11 +1,16 @@
 {
   "name": "belka",
   "version": "1.0.0",
-  "description": "",
+  "description": "Blog with interacrive podcasts for Belka workspace",
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "db:create": "node scripts/db-create",
+    "db:drop": "node scripts/db-drop",
+    "db:fill": "node scripts/db-fill",
+    "db:test": "node scripts/db-test",
+    "db:recreate": "npm run db:drop && npm run db:create && npm run db:fill"
   },
   "keywords": [],
   "author": "Vlad Khitev <vkhitev@gmail.com>",
@@ -15,12 +20,15 @@
     "cookie-parser": "^1.4.3",
     "debug": "^2.6.3",
     "dotenv": "^4.0.0",
-    "ejs": "^2.5.6",
-    "ejs-locals": "^1.0.2",
+    "epilogue": "^0.7.1",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
+    "moment": "^2.18.1",
     "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "ramda": "^0.23.0",
     "request": "^2.81.0",
+    "request-promise": "^4.2.0",
     "sequelize": "^3.30.4",
     "serve-favicon": "^2.4.2"
   },

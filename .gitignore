@@ -39,3 +39,7 @@ jspm_packages
 # Custom
 docs
 .env
+.vscode
+**/.DS_Store
+web-server/public/content
+api-server/data

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Belka</title>
+  <meta charset="utf-8">
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<body class="bg-faded">
+
+  <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-orange">
+    <div class="container mx-0 mx-sm-auto">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="">
+        <img src="logo-orange.svg" width="30" height="30" alt=""> Belka
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="">Подкасти</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 d-flex">
+          <input class="form-control mr-sm-2" type="text" id="navtext" placeholder="Назва, автор, тег">
+          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Пошук <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5" id="main">
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-4 col-md-2 p-2">
+
+        <nav class="nav flex-column sidebar">
+          <div class="semilist py-2">
+            <h5>Категорії</h5>
+            <form>
+              <fieldset class="py-1">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Розробка ігор
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Веб-розробка
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    3D Моделювання
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Теорія алгоритмів
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Розробка ігор
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Веб-розробка
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    3D Моделювання
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input">
+                    Теорія алгоритмів
+                  </label>
+                </div>
+              </fieldset>
+
+              <button type="reset" class="btn btn-secondary">Онулити фільтри</button>
+            </form>
+          </div>
+          <div class="dropdown-divider my-2"></div>
+          <div class="semilist py-2">
+            <h5>Архів</h5>
+            <a class="nav-link active" href="#">Всі</a>
+            <a class="nav-link" data-toggle="collapse" href="#posts2017" aria-expanded="false" aria-controls="posts2017">2017 <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+            <div class="collapse pl-3" id="posts2017">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Подкаст</a>
+              </li>
+            </div>
+            <a class="nav-link" data-toggle="collapse" href="#posts2016" aria-expanded="false" aria-controls="posts2016">2016 <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+            <div class="collapse pl-3" id="posts2016">
+
+            </div>
+          </div>
+
+        </nav>
+      </div>
+      <div class="col-xs-6 col-sm-8 col-md-10">
+
+        <div class="card my-4">
+          <div class="card-block p-1">
+            <div class="media ">
+              <img class="d-flex align-self-center mr-3" src="2.jpg" alt="Generic placeholder image">
+              <div class="media-body align-self-center p-1">
+                <h4 class="card-title">Назва подкасту</h4>
+                <p class="card-text">Опис</p>
+                <a href="#" class="btn btn-primary">Перейти</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <div class="card-block p-1">
+            <div class="media ">
+              <img class="d-flex align-self-center mr-3" src="2.jpg" height="150" alt="Generic placeholder image">
+              <div class="media-body align-self-center p-1">
+                <h4 class="card-title">Назва подкасту</h4>
+                <p class="card-text">Опис</p>
+                <a href="#" class="btn btn-primary">Перейти</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <div class="card-block p-1">
+            <div class="media ">
+              <img class="d-flex align-self-center mr-3" src="2.jpg" height="150" alt="Generic placeholder image">
+              <div class="media-body align-self-center p-1">
+                <h4 class="card-title">Назва подкасту</h4>
+                <p class="card-text">Опис</p>
+                <a href="#" class="btn btn-primary">Перейти</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <div class="card-block p-1">
+            <div class="media ">
+              <img class="d-flex align-self-center mr-3" src="2.jpg" height="150" alt="Generic placeholder image">
+              <div class="media-body align-self-center p-1">
+                <h4 class="card-title">Назва подкасту</h4>
+                <p class="card-text">Опис</p>
+                <a href="#" class="btn btn-primary">Перейти</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <div class="card-block p-1">
+            <div class="media ">
+              <img class="d-flex align-self-center mr-3" src="2.jpg" height="150" alt="Generic placeholder image">
+              <div class="media-body align-self-center p-1">
+                <h4 class="card-title">Назва подкасту</h4>
+                <p class="card-text">Опис</p>
+                <a href="#" class="btn btn-primary">Перейти</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="px-5 py-3">
+    <div class="container">
+      <p class="mb-0 text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> 2017 Created by @vkhitev and @irmchk. Special for Belka Space.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/c1b6b73f13.js"></script>
+  <script type="text/javascript" src="scripts.js"></script>
+
+</body>
+
+</html>

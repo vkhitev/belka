@@ -1,0 +1,16 @@
+<div class="col-xs-6 col-sm-8 col-md-10">
+  {{#each posts}}
+    <div class="card my-4">
+      <div class="card-block p-1">
+        <div class="media ">
+          <div class="media-body align-self-center p-1">
+            <h4 class="card-title">{{name}}</h4>
+            <p class="card-text">{{brief}}</p>
+            <a href="#" class="btn btn-primary">Перейти</a>
+          </div>
+          <img class="d-flex align-self-center mr-3" src= {{previewUrl}} alt= {{previewUrl}}>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

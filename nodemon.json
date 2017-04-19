@@ -1,4 +1,6 @@
 {
-  // "verbose": true,
-  // "ignore": []
+  "verbose": true,
+  "ignore": [
+    "public"
+  ]
 }
