@@ -1,14 +1,25 @@
-<div class="col-xs-6 col-sm-8 col-md-10">
+<div class="col-xs-12 col-md-9 col-xl-10 flex-first flex-md-unordered pl-md-5">
   {{#each posts}}
     <div class="card my-4">
       <div class="card-block p-1">
-        <div class="media ">
-          <div class="media-body align-self-center p-1">
-            <h4 class="card-title">{{name}}</h4>
-            <p class="card-text">{{brief}}</p>
-            <a href="#" class="btn btn-primary">Перейти</a>
+        <div class="media my-auto">
+          <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
+            <div class="py-2">
+              <h4 class="card-title mb-0">{{name}}</h4>
+              <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
+                <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{organizerLink}}>{{organizerName}}</a></p>
+            </div>
+            <div class="py-2">
+              <img class="hidden-lg-up mb-3" src= {{previewUrl}} alt="Зображення події">
+              <p class="card-text">
+                {{brief}}
+              </p>
+            </div>
+            <div class="py-2">
+              <a href="#" class="btn btn-primary">Перейти</a>
+            </div>
           </div>
-          <img class="d-flex align-self-center mr-3" src= {{previewUrl}} alt= {{previewUrl}}>
+          <img class="d-flex align-self-center hidden-md-down ml-3" src= {{previewUrl}} alt="Зображення події">
         </div>
       </div>
     </div>

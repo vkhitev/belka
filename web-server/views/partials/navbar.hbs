@@ -4,24 +4,20 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    <a class="navbar-brand" href="/posts">
-      <img src="img/logo.svg" height="30" alt="Logo">
-      <span>Belka</span>
+    <a class="navbar-brand" href="">
+      <img src="/img/logo.svg" lt="logo" class="belka-logo"> Belka
     </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/posts">Подкасты</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <form class="form-inline my-2 my-lg-0 d-flex">
+            <input class="form-control mr-sm-2" type="text" id="navtext" placeholder="Назва, автор, тег">
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Пошук <i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+          </form>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0 d-flex">
-        <input class="form-control mr-sm-2" type="text" id="navtext">
-        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
-          Поиск
-          <i class="fa fa-search fa-lg" aria-hidden="true"></i>
-        </button>
-      </form>
+
     </div>
   </div>
 </nav>
