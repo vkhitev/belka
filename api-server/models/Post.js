@@ -9,10 +9,20 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       allowNull: false
     },
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        max: 255
+      }
+    },
     eventDate: {
       type: DataTypes.DATEONLY,
-      field: 'event_date',
+      allowNull: false,
+      validate: {
+        isDate: true
+      },
       get () {
         const date = moment.utc(this.getDataValue('eventDate'))
         if (date.year() === moment().year()) {
@@ -24,19 +34,29 @@ module.exports = function (sequelize, DataTypes) {
     },
     previewUrl: {
       type: DataTypes.STRING,
-      field: 'preview_url'
+      allowNull: true,
+      defaultValue: 'content/preview/default.svg'
     },
     organizerName: {
       type: DataTypes.STRING,
-      field: 'organizer_name'
+      allowNull: false
     },
+    // 사랑해 <3))
     organizerLink: {
       type: DataTypes.STRING,
-      field: 'organizer_link'
+      allowNull: true,
+      validate: {
+        isUrl: true
+      }
     },
-    brief: DataTypes.STRING
+    brief: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: true
+      }
+    }
   }, {
-    tableName: 'post',
     classMethods: {
       associate (models) {
         Post.hasMany(models.Podcast)

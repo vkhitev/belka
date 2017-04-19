@@ -3,17 +3,20 @@ require('dotenv').config()
 const debug = require('debug')('express')
 const models = require('../api-server/models')
 const app = require('../app')
-const testDbConnection = require('./test-db-connection')
 
 const port = normalizePort(process.env.PORT || 3000)
 app.set('port', port)
 
-testDbConnection(models.sequelize)
-  .then(sequelize => sequelize.sync())
+models.sequelize
+  .sync()
   .then(() => {
     const server = app.listen(app.get('port'))
     server.on('listening', onListening(server))
     server.on('error', onError)
+  })
+  .catch(err => {
+    console.log('Can not sync database')
+    console.error(err.message)
   })
 
 function onListening (server) {

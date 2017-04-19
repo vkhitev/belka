@@ -1,7 +1,7 @@
 const path = require('path')
 
 const env = process.env.NODE_ENV || 'development'
-const config = require('./api/config/config')[env]
+const config = require('./api-server/config/config')[env]
 
 module.exports = {
   'config': path.join('api', 'config', 'config.asd'),

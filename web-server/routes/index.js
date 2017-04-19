@@ -4,7 +4,8 @@ const ctrl = require('../controllers/main-controller')
 
 const router = Router()
 
-router.get('/posts', ctrl.renderBriefPosts)
+router.get('/', ctrl.renderHomepage)
+router.get('/posts', ctrl.renderPosts)
 router.get('/post/:postid', ctrl.renderPost)
 router.get('/admin', ctrl.renderAdmin)
 

@@ -8,16 +8,13 @@ module.exports = function (sequelize, DataTypes) {
     },
     name: DataTypes.STRING,
     audioUrl: {
-      type: DataTypes.STRING,
-      field: 'audio_url'
+      type: DataTypes.STRING
     },
     slidesUrl: {
-      type: DataTypes.STRING,
-      field: 'slides_url'
+      type: DataTypes.STRING
     },
     speaker: DataTypes.STRING
   }, {
-    tableName: 'podcast',
     classMethods: {
       associate (models) {
         Podcast.belongsTo(models.Post, {
