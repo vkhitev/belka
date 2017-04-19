@@ -1,35 +1,19 @@
 module.exports = function (sequelize, DataTypes) {
-  const Podcast = sequelize.define('Podcast', {
+  const PostImage = sequelize.define('PostImage', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        max: 255
-      }
-    },
-    audioUrl: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    slidesUrl: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    speaker: {
+    url: {
       type: DataTypes.STRING,
       allowNull: false
     }
   }, {
     classMethods: {
       associate (models) {
-        Podcast.belongsTo(models.Post, {
+        PostImage.belongsTo(models.Post, {
           onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false
@@ -38,5 +22,5 @@ module.exports = function (sequelize, DataTypes) {
       }
     }
   })
-  return Podcast
+  return PostImage
 }

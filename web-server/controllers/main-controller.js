@@ -46,17 +46,22 @@ module.exports = {
   },
 
   renderPost (req, res) {
-    rp(`${apiOptions.server}/api/podcasts/`, { json: true })
-      .then(podcasts => {
-        res.render('post', {
-          layout: 'main',
-          title: 'Belka | Пост',
-          post: req.params.postid
-        })
+    const postid = req.params.postid
+    Promise.all([
+      rp(`${apiOptions.server}/api/posts/${postid}`, { json: true }),
+      rp(`${apiOptions.server}/api/podcasts/?PostId=${postid}`, { json: true }),
+      rp(`${apiOptions.server}/api/post_images/?PostId=${postid}`, { json: true })
+    ]).then(([post, podcasts, images]) => {
+      res.render('post', {
+        layout: 'main',
+        title: 'Belka | ' + post.name,
+        podcasts,
+        post,
+        images
       })
-      .catch(err => {
-        showError(req, res, err.status)
-      })
+    }).catch(err => {
+      showError(req, res, err.status)
+    })
   },
 
   renderAdmin (req, res) {
