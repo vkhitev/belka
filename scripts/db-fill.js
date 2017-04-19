@@ -9,9 +9,11 @@ models.sequelize
     models.Post.bulkCreate(posts)
       .then(() => {
         console.log('Inserted')
+        process.exit(0)
       })
       .catch(err => {
         console.log('Not inserted')
         console.log(err.message)
+        process.exit(1)
       })
   })
