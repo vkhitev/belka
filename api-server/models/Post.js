@@ -5,9 +5,9 @@ module.exports = function (sequelize, DataTypes) {
   const Post = sequelize.define('Post', {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING,
@@ -60,6 +60,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate (models) {
         Post.hasMany(models.Podcast)
+        Post.hasMany(models.PostImage)
       }
     }
   })

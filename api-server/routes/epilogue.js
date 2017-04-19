@@ -18,5 +18,10 @@ module.exports = function (app) {
     endpoints: ['/podcasts', '/podcasts/:id']
   })
 
+  epilogue.resource({
+    model: db.PostImage,
+    endpoints: ['/post_images', '/post_images/:id']
+  })
+
   return app
 }

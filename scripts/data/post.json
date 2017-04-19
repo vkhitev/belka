@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Drupal Global Training Day",
     "eventDate": "2017-03-18",
-    "previewUrl": "content/preview/drupal.png",
+    "previewUrl": "/content/preview/drupal.png",
     "brief": "У нас прошёл Drupal Global Training Day, который состоял из лекционной и практической части.",
     "organizerName": "Drupal Ukraine Community",
     "organizerLink": "https://www.drupal.org/drupal-ukraine-community"
@@ -12,7 +12,7 @@
     "id": 2,
     "name": "Профессия: автоматизатор тестирования",
     "eventDate": "2017-03-20",
-    "previewUrl": "content/preview/automated_testing.png",
+    "previewUrl": "/content/preview/automated_testing.png",
     "brief": "Ребята из StartIT рассказали, кто такие тестировщики, автоматизаторы тестирования и что делать, чтобы ими стать.",
     "organizerName": "StartIT training center",
     "organizerLink": "https://vk.com/qastartit"
@@ -21,7 +21,7 @@
     "id": 3,
     "name": "Как изменение технологий создает новый рынок?",
     "eventDate": "2017-03-24",
-    "previewUrl": "content/preview/technology.png",
+    "previewUrl": "/content/preview/technology.png",
     "brief": "Мероприятие прошло в рамках проекта #LudwigErhardHub при поддержке Союза выпускников КПИ и ассоциации \"Национальный резерв\".",
     "organizerName": "LudwigErhardHub",
     "organizerLink": "https://vk.com/feed?section=search&q=%23LudwigErhardHub"
@@ -30,7 +30,7 @@
     "id": 4,
     "name": "Google Summer of Code",
     "eventDate": "2017-03-27",
-    "previewUrl": "content/preview/google_summer.jpg",
+    "previewUrl": "/content/preview/google_summer.jpg",
     "brief": "27 марта в BelkaSpace Александр Дудинский презентовал проект Google Summer of Code.",
     "organizerName": "IT КПІ",
     "organizerLink": "https://vk.com/itkpi"
