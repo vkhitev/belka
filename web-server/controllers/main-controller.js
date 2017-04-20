@@ -7,6 +7,13 @@ if (process.env.NODE_ENV === 'production') {
   apiOptions.server = 'https://belka.kpi.ua'
 }
 
+function jsonRequest (url) {
+  if (url.startsWith('/')) {
+    url = url.slice(1)
+  }
+  return rp(`${apiOptions.server}/${url}`, { json: true })
+}
+
 function showError (req, res, status) {
   let title, content
   if (status === 404) {
@@ -32,7 +39,7 @@ module.exports = {
   },
 
   renderPosts (req, res) {
-    rp(`${apiOptions.server}/api/posts?sort=-eventDate`, { json: true })
+    jsonRequest('/api/posts?sort=-eventDate')
       .then(posts => {
         res.render('index', {
           layout: 'main',
@@ -48,9 +55,9 @@ module.exports = {
   renderPost (req, res) {
     const postid = req.params.postid
     Promise.all([
-      rp(`${apiOptions.server}/api/posts/${postid}`, { json: true }),
-      rp(`${apiOptions.server}/api/podcasts/?PostId=${postid}`, { json: true }),
-      rp(`${apiOptions.server}/api/post_images/?PostId=${postid}`, { json: true })
+      jsonRequest(`/api/posts/${postid}`),
+      jsonRequest(`/api/podcasts/?PostId=${postid}`),
+      jsonRequest(`/api/post_images/?PostId=${postid}`)
     ]).then(([post, podcasts, images]) => {
       res.render('post', {
         layout: 'main',

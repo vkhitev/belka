@@ -7,6 +7,7 @@ module.exports = {
     port: process.env.SQL_PORT,
     database: process.env.SQL_DATABASE,
     define: {
+      timestamps: false,
       freezeTableName: true
     },
     migrationStorage: 'sequelize ',
