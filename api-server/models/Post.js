@@ -59,8 +59,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate (models) {
-        Post.hasMany(models.Podcast)
-        Post.hasMany(models.PostImage)
+        Post.belongsToMany(models.Category, { through: 'post_category' })
       }
     }
   })

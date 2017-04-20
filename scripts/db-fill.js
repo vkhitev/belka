@@ -1,14 +1,12 @@
 require('dotenv').config()
 const models = require('../api-server/models')
-const posts = require('./data/post.json')
-const podcasts = require('./data/podcast.json')
-const postImages = require('./data/postImage.json')
+const initialData = require('./data')
 
 models.sequelize
   .sync()
-  .then(() => models.Post.bulkCreate(posts))
-  .then(() => models.Podcast.bulkCreate(podcasts))
-  .then(() => models.PostImage.bulkCreate(postImages))
+  .then(() => Promise.all(
+    initialData.map(({ model, data }) => models[model].bulkCreate(data))
+  ))
   .then(() => {
     console.log('Inserted')
     process.exit(0)
