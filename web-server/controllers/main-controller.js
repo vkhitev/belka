@@ -71,7 +71,26 @@ module.exports = {
     })
   },
 
+  renderLogin (req, res) {
+    res.render('login')
+  },
+
+  postLogin (req, res) {
+    if (!req.query.username || !req.query.password) {
+      res.send('login failed')
+    } else if (req.query.username === 'admin' && req.query.password === 'admin') {
+      req.session.user = 'admin'
+      req.session.admin = true
+      res.send('login success!')
+    }
+  },
+
+  logout (req, res) {
+    req.session.destroy()
+    res.send('Logout success.')
+  },
+
   renderAdmin (req, res) {
-    res.render('admin')
+    res.send("You can only see this after you've logged in.")
   }
 }
