@@ -10,6 +10,9 @@ module.exports = {
       timestamps: false,
       freezeTableName: true
     },
+    dialectOptions: {
+      charset: 'utf8mb4'
+    },
     migrationStorage: 'sequelize ',
     migrationStorageTableName: 'sequelize_meta',
     seederStorage: 'sequelize',
