@@ -76,12 +76,16 @@ module.exports = {
   },
 
   postLogin (req, res) {
-    if (!req.query.username || !req.query.password) {
+    if (!req.body.username || !req.body.password) {
+      res.statusCode(401)
       res.send('login failed')
-    } else if (req.query.username === 'admin' && req.query.password === 'admin') {
-      req.session.user = 'admin'
+    } else if (req.body.username === process.env.ADMIN_USERNAME &&
+               req.body.password === process.env.ADMIN_PASSWORD) {
       req.session.admin = true
       res.send('login success!')
+    } else {
+      res.statusCode(401)
+      res.send('login failed')
     }
   },
 

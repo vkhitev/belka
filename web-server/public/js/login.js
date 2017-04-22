@@ -20,21 +20,33 @@
 
   // Form Submission
   $('#login-form').submit(function () {
-    removeLoading($(this))
+    const form = $(this)
+    removeLoading(form)
 
     if (options['useAJAX'] === true) {
-      // Dummy AJAX request (Replace this with your AJAX code)
-      // If you don't want to use AJAX, remove this
-      // dummy_submit_form($(this))
-
-      // Cancel the normal submission.
-      // If you don't want to use AJAX, remove this
+      formLoading(form)
+      $.ajax({
+        url: '/login',
+        type: 'POST',
+        data: {
+          username: $('#lg_username').val(),
+          password: $('#lg_password').val()
+        },
+        success (data) {
+          formSuccess(form)
+          setTimeout(function () {
+            window.location.href = '/admin'
+          }, 1000)
+        },
+        error () {
+          removeLoading(form)
+          formFailed(form)
+        }
+      })
       return false
     }
   })
 
-  // Loading
-  // ----------------------------------------------
   function removeLoading ($form) {
     $form.find('[type=submit]').removeClass('error success')
     $form.find('.login-form-main-message').removeClass('show error success').html('')
@@ -53,14 +65,4 @@
     $form.find('[type=submit]').addClass('error').html(options['btn-error'])
     $form.find('.login-form-main-message').addClass('show error').html(options['msg-error'])
   }
-
-  // function dummy_submit_form ($form) {
-  //   if ($form.valid()) {
-  //     form_loading($form)
-
-  //     setTimeout(function () {
-  //       form_success($form)
-  //     }, 2000)
-  //   }
-  // }
 })(jQuery)
