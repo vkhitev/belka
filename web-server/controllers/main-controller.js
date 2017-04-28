@@ -77,7 +77,7 @@ module.exports = {
 
   postLogin (req, res) {
     if (!req.body.username || !req.body.password) {
-      res.statusCode(401)
+      res.statusCode(403)
       res.send('login failed')
     } else if (req.body.username === process.env.ADMIN_USERNAME &&
                req.body.password === process.env.ADMIN_PASSWORD) {
