@@ -1,6 +1,3 @@
-const moment = require('moment')
-moment.locale('ru')
-
 module.exports = function (sequelize, DataTypes) {
   const Post = sequelize.define('Post', {
     id: {
@@ -22,14 +19,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         isDate: true
-      },
-      get () {
-        const date = moment.utc(this.getDataValue('eventDate'))
-        if (date.year() === moment().year()) {
-          return date.format('LL').slice(0, -8)
-        } else {
-          return date.format('LL')
-        }
       }
     },
     previewUrl: {

@@ -6,7 +6,14 @@
   const postsContainer = $('#posts-container')
 
   function searchPosts () {
-    $.get(`/api/posts?q=${input.val()}&sort=-eventDate`)
+    const query = input.val()
+
+    if (document.location.pathname !== '/posts') {
+      // TODO: render search on server. Pass query to request body.
+      document.location.href = `/posts`
+    }
+
+    $.get(`/api/posts?q=${query}&sort=-eventDate`)
       .then(posts => {
         if (posts.length > 0) {
           postsContainer.html(Handlebars.templates.posts({ posts }))
@@ -21,8 +28,8 @@
   }
 
   button.click(searchPosts)
-  input.keyup((e) => {
-    if (e.keyCode === 13) {
+  input.keyup(event => {
+    if (event.keyCode === 13) {
       searchPosts()
     }
   })

@@ -1,4 +1,7 @@
 const rp = require('request-promise')
+const R = require('ramda')
+const moment = require('moment')
+moment.locale('ru')
 
 const apiOptions = {
   server: 'http://127.0.0.1:3000'
@@ -33,6 +36,24 @@ function showError (req, res, status) {
   })
 }
 
+function postsToAnnual (posts) {
+  const grouped = R.groupBy(post => new Date(post.eventDate).getFullYear(), posts)
+  return Object.entries(grouped).map(([year, posts], id) => ({
+    id, year, posts: R.project(['id', 'name'], posts)
+  }))
+}
+
+function prettyDate (simpleDate) {
+  const date = moment.utc(simpleDate)
+  if (date.year() === moment().year()) {
+    return date.format('LL').slice(0, -8)
+  } else {
+    return date.format('LL')
+  }
+}
+
+const formattedPost = R.evolve({ eventDate: prettyDate })
+
 module.exports = {
   renderHomepage (req, res) {
     res.redirect('/posts')
@@ -44,10 +65,10 @@ module.exports = {
         res.render('index', {
           layout: 'main',
           title: 'Belka | Лента',
-          posts
+          posts: R.map(formattedPost, posts),
+          annual: postsToAnnual(posts)
         })
-      })
-      .catch(err => {
+      }).catch(err => {
         showError(req, res, err.status)
       })
   },
@@ -56,15 +77,17 @@ module.exports = {
     const postid = req.params.postid
     Promise.all([
       jsonRequest(`/api/posts/${postid}`),
+      jsonRequest(`/api/posts/`),
       jsonRequest(`/api/podcasts/?PostId=${postid}`),
       jsonRequest(`/api/post_images/?PostId=${postid}`)
-    ]).then(([post, podcasts, images]) => {
+    ]).then(([post, posts, podcasts, images]) => {
       res.render('post', {
         layout: 'main',
         title: 'Belka | ' + post.name,
+        post: formattedPost(post),
         podcasts,
-        post,
-        images
+        images,
+        annual: postsToAnnual(posts)
       })
     }).catch(err => {
       showError(req, res, err.status)
