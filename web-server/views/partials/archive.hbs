@@ -1,0 +1,19 @@
+<div class="semilist py-2">
+  <h5>Архів</h5>
+
+  <a class="nav-link" href="#">Всі</a>
+
+  {{#each annual}}
+    <a class="nav-link" data-toggle="collapse" href="#posts-{{id}}" aria-expanded="false" aria-controls="posts2017">
+      {{ year }}
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </a>
+    <div class="collapse pl-3" id="posts-{{id}}">
+      {{#each posts}}
+        <li class="nav-item">
+          <a class="nav-link" href="/post/{{id}}">{{name}}</a>
+        </li>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>
