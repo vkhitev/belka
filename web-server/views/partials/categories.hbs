@@ -4,36 +4,14 @@
     <div class="row">
       <div class="col-xs-3 hidden-sm-up"></div>
       <fieldset class="py-1 col-xs-6 col-sm-5 offset-sm-4 col-md-12 text-center text-sm-left ml-md-0">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Розробка ігор
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Веб-розробка
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            3D Моделювання
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Теорія алгоритмів
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Розробка ігор
-          </label>
-        </div>
+        {{#each categories}}
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input">
+              <a href="/category/{{slugLink}}">{{name}}</a>
+            </label>
+          </div>
+        {{/each}}
       </fieldset>
     </div>
 

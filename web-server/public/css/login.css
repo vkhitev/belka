@@ -272,3 +272,18 @@ label:hover:before {
   font-size: 30px;
   line-height: 25px;
 }
+
+.logo {
+  padding: 15px 0;
+  font-size: 25px;
+  color: #ccc;
+  font-weight: bold;
+}
+
+.belka-title {
+  color: #ec691b;
+}
+
+.unselectable {
+  outline: 0 !important;
+}

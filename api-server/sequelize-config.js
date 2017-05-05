@@ -11,10 +11,11 @@ module.exports = {
       freezeTableName: true
     },
     charset: 'utf8mb4',
-    migrationStorage: 'sequelize ',
+    migrationStorage: 'sequelize',
     migrationStorageTableName: 'sequelize_meta',
     seederStorage: 'sequelize',
-    seederStorageTableName: 'sequelize_data'
+    seederStorageTableName: 'sequelize_data',
+    logging: false
   },
   production: {
   },
