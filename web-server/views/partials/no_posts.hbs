@@ -1,4 +1,4 @@
-<div class="card my-4">
+{{!--<div class="card my-4">
   <div class="card-block p-1">
     <div class="media my-auto">
       <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
@@ -8,4 +8,11 @@
       </div>
     </div>
   </div>
+</div>--}}
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Ничего не найдено!</h4>
+  <p>По вашему запросу <strong>"{{searchQuery}}"</strong> не было найдено ни единой записи. Пожалуйста, проверьте правильность
+    введенного параметра поиска (название, автор, категория).</p>
+  <p class="mb-0">Также вы можете вернуться на <a class="alert-link" href="/">главную</a> страницу</p>
 </div>
