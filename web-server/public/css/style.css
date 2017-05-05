@@ -43,8 +43,8 @@ body {
   text-transform: uppercase;
 }
 
-.main-container {
-  min-height: 100vh;
+.container#main {
+  min-height: 87%;
   max-width: 100%;
 }
 
@@ -87,5 +87,9 @@ img.card-img-top {
 .belka-logo {
   position: relative;
   top: -2px;
-  height: 30px;
+  height: 35px;
+}
+
+.navbar-brand {
+  font-size: 1.30rem;
 }
