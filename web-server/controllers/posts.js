@@ -113,7 +113,6 @@ module.exports = {
       apiRequest('annual'),
       apiRequest('categories')
     ]).then(([posts, annual, categories]) => {
-      console.log(posts)
       res.render('index', {
         layout: 'main',
         title: 'Belka | Лента',
