@@ -33,6 +33,17 @@ module.exports = function (app) {
     epilogue.resource({
       model: db.PostImage,
       endpoints: ['/post_images', '/post_images/:id']
+    }),
+
+    epilogue.resource({
+      model: db.Category,
+      endpoints: ['/categories', '/categories/:id']
+    }),
+
+    epilogue.resource({
+      model: db.Category,
+      endpoints: ['/category_posts', '/category_posts/:id'],
+      include: [db.Post]
     })
   ]
 

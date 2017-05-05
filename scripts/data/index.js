@@ -3,7 +3,8 @@ const path = require('path')
 const sequence = [
   'Post',
   'Podcast',
-  'PostImage'
+  'PostImage',
+  'Category'
 ]
 
 const data = sequence.map(file => ({

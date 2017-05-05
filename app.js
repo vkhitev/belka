@@ -10,17 +10,15 @@ const session = require('express-session')
 const hbs = require('./handlebars')
 const routes = require('./web-server/routes')
 const apiRoutes = require('./api-server/routes')
-const restApi = require('./api-server/routes/epilogue')
+const registerRestApi = require('./api-server/routes/epilogue')
 const config = require('./config')
 
 const app = express()
 
-// View engine
 app.engine('.hbs', hbs.engine)
 app.set('views', config.viewsPath)
 app.set('view engine', '.hbs')
 
-// Middleware
 app.enable('view cache')
 app.use(favicon(path.join(config.publicPath, 'favicon.svg')))
 app.use(logger('dev'))
@@ -34,10 +32,9 @@ app.use(session({
   saveUninitialized: true
 }))
 
-// Routes
 app.use('/', routes)
 app.use('/api', apiRoutes)
-restApi(app)
+registerRestApi(app)
 
 app.use((req, res, next) => {
   const err = new Error('Not found')

@@ -1,0 +1,30 @@
+[
+  {
+    "post": 1,
+    "categories": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "post": 2,
+    "categories": [
+      4
+    ]
+  },
+  {
+    "post": 3,
+    "categories": [
+      4
+    ]
+  },
+  {
+    "post": 4,
+    "categories": [
+      2,
+      3,
+      4
+    ]
+  }
+]

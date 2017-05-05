@@ -1,20 +1,24 @@
 const { Router } = require('express')
 
-const ctrl = require('../controllers/main-controller')
+const postsController = require('../controllers/posts')
+const adminController = require('../controllers/admin')
 
-const exposeTemplates = require('../middleware/expose-templates')
 const auth = require('../middleware/auth')
 
 const router = Router()
 
-router.get('/', exposeTemplates, ctrl.renderHomepage)
-router.get('/posts', exposeTemplates, ctrl.renderPosts)
-router.get('/post/:postid', exposeTemplates, ctrl.renderPost)
+router.get('/', postsController.renderHomepage)
+router.get('/posts', postsController.renderPosts)
+router.get('/post/:postid', postsController.renderPost)
 
-router.get('/login', ctrl.renderLogin)
-router.get('/admin', auth, ctrl.renderAdmin)
+router.get('/search', postsController.renderSearch)
 
-router.post('/login', ctrl.postLogin)
-router.get('/logout', ctrl.logout)
+router.get('/category/:categoryid', postsController.renderCategoryPosts)
+
+router.get('/login', adminController.renderLogin)
+router.get('/admin', auth, adminController.renderAdmin)
+
+router.post('/login', adminController.postLogin)
+router.get('/logout', adminController.logout)
 
 module.exports = router
