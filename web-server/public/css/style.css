@@ -43,8 +43,8 @@ body {
   text-transform: uppercase;
 }
 
-.container#main {
-  min-height: 87%;
+.main-container {
+  min-height: 91%;
   max-width: 100%;
 }
 
@@ -90,6 +90,19 @@ img.card-img-top {
   height: 35px;
 }
 
+.navbar-toggler {
+  top: -3px;
+}
+
 .navbar-brand {
   font-size: 1.30rem;
+}
+
+
+.btn-circle {
+  border-radius: 50%;
+}
+
+textarea {
+  resize: none;
 }
