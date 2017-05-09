@@ -1,0 +1,54 @@
+html, body{
+ height: 100%;
+}
+
+body {
+  padding-top: 50px;
+}
+
+.bg-orange {
+  background-color: #ec691b;
+}
+
+.navbar-inverse .nav-link {
+    color: rgba(255,255,255,.5);
+}
+
+.navbar-inverse .nav-link:focus, .navbar-inverse .nav-link:hover {
+    color: rgba(255,255,255,.75);
+}
+
+.navbar-inverse .active>.nav-link, .navbar-inverse .nav-link.active, .navbar-inverse .nav-link.open, .navbar-inverse .open>.nav-link {
+    color: #fff;
+}
+
+.main-container {
+  min-height: 91%;
+  max-width: 100%;
+}
+
+footer {
+  background-color: #fff;
+}
+
+.btn-circle {
+  border-radius: 50%;
+}
+
+.belka-logo {
+  position: relative;
+  top: -2px;
+  height: 35px;
+}
+
+.navbar-brand {
+  font-size: 1.30rem;
+}
+
+.btn-circle {
+  border-radius: 50%;
+}
+
+textarea {
+  resize: none;
+}

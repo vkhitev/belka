@@ -40,8 +40,10 @@
       <div class="media my-auto">
         <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
           <div class="py-2">
-            <h1 class="card-title py-3">{{post.name}}</h1>
+            <h2 class="card-title py-3">{{post.name}}</h2>
+
             <div class="clearfix">
+
               <div class="float-left">
                 <p class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{post.eventDate}}</p>
                 <p class="text-muted"><i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{post.organizerLink}}>{{post.organizerName}}</a></p>
@@ -51,6 +53,10 @@
                 <p class="text-muted"><i class="fa fa-rss" aria-hidden="true"></i> Использовать <a href="#">RSS</a></p>
               </div>
             </div>
+
+            <p class="text-muted"><i class="fa fa-tags" aria-hidden="true"></i> Категории: <span class="badge badge-default">Категория 1</span>
+              <span class="badge badge-default">Категория 2</span></p>
+
             <div class="card-text py-2">
 
               <p class="about-text">
