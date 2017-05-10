@@ -22,7 +22,8 @@ module.exports = function (app) {
   const resources = [
     epilogue.resource({
       model: db.Post,
-      endpoints: ['/posts', '/posts/:id']
+      endpoints: ['/posts', '/posts/:id'],
+      include: [db.Category]
     }),
 
     epilogue.resource({

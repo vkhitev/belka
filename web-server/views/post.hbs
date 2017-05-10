@@ -54,8 +54,13 @@
               </div>
             </div>
 
-            <p class="text-muted"><i class="fa fa-tags" aria-hidden="true"></i> Категории: <span class="badge badge-default">Категория 1</span>
-              <span class="badge badge-default">Категория 2</span></p>
+            <p class="text-muted"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+              {{#each post.Categories}}
+                <a class="badge-link" href="/category/{{slugLink}}">
+                  <span class="badge badge-default badge-category">{{name}}</span>
+                </a>
+              {{/each}}
+            </p>
 
             <div class="card-text py-2">
 
