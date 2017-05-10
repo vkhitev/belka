@@ -19,7 +19,9 @@ app.engine('.hbs', hbs.engine)
 app.set('views', config.viewsPath)
 app.set('view engine', '.hbs')
 
-// app.enable('view cache')
+if (process.env.NODE_ENV === 'production') {
+  app.enable('view cache')
+}
 app.use(favicon(path.join(config.publicPath, 'favicon.svg')))
 app.use(logger('dev'))
 app.use(bodyParser.json())

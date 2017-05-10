@@ -6,13 +6,15 @@
           <div class="py-2">
             <h4 class="card-title mb-1">{{name}}</h4>
             <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
-              <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{organizerLink}}>{{organizerName}}</a> |
-              <i class="fa fa-tags" aria-hidden="true"></i> Категории: <span class="badge badge-default">Категория 1</span>
-              <span class="badge badge-default">Категория 2</span>
+              <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{organizerLink}}>{{organizerName}}</a>
             </p>
-            {{!--<p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории: <span class="badge badge-default">Категория 1</span>
-              <span class="badge badge-default">Default</span>
-            </p>--}}
+            <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+              {{#each Categories}}
+                <a class="badge-link" href="/category/{{slugLink}}">
+                  <span class="badge badge-default badge-category">{{name}}</span>
+                </a>
+              {{/each}}
+            </p>
           </div>
           <div class="py-2">
             <img class="hidden-lg-up mb-3" src= {{previewUrl}} alt="Зображення події">

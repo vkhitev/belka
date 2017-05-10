@@ -27,18 +27,19 @@ function unslugify (path) {
   return Number(path.match(/\d+$/)[0])
 }
 
+const formatCategory = slugify('id', 'name', 'slugLink')
+
 const formatPost = R.pipe(
-  R.evolve({ eventDate: prettyDate }),
+  R.evolve({
+    eventDate: prettyDate,
+    Categories: R.compose(R.sortBy(R.prop('name')), R.map(formatCategory))
+  }),
   slugify('id', 'name', 'slugLink')
 )
 
-const formatCategory = slugify('id', 'name', 'slugLink')
-
-const formatAnnual = function (annual) {
-  return Object.assign({}, annual, {
-    posts: R.map(slugify('id', 'name', 'slugLink'), annual.posts)
-  })
-}
+const formatAnnual = R.evolve({
+  posts: R.map(slugify('id', 'name', 'slugLink'))
+})
 
 module.exports = {
   renderHomepage (req, res) {
@@ -112,14 +113,18 @@ module.exports = {
       apiRequest(`category_posts/${categoryid}`),
       apiRequest('annual'),
       apiRequest('categories')
-    ]).then(([posts, annual, categories]) => {
-      res.render('index', {
-        layout: 'main',
-        title: 'Belka | Лента',
-        posts: R.map(formatPost, posts.Posts),
-        annual: R.map(formatAnnual, annual),
-        categories: R.map(formatCategory, categories)
-      })
+    ]).then(([catPosts, annual, categories]) => {
+      const postIds = catPosts.Posts.map(p => p.id).join(',')
+      apiRequest(`posts?id=[${postIds}]`)
+        .then(posts => {
+          res.render('index', {
+            layout: 'main',
+            title: 'Belka | Лента',
+            posts: R.map(formatPost, posts),
+            annual: R.map(formatAnnual, annual),
+            categories: R.map(formatCategory, categories)
+          })
+        })
     }).catch(err => {
       showError(req, res, err.status)
     })
