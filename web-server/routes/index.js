@@ -16,7 +16,9 @@ router.get('/search', postsController.renderSearch)
 router.get('/category/:categoryid', postsController.renderCategoryPosts)
 
 router.get('/login', adminController.renderLogin)
-router.get('/admin', auth, adminController.renderAdmin)
+router.get('/admin', adminController.renderAdmin)
+router.get('/admin/add_post', adminController.renderAddPost)
+// router.get('/admin', auth, adminController.renderAdmin)
 
 router.post('/login', adminController.postLogin)
 router.get('/logout', adminController.logout)

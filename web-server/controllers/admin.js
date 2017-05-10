@@ -1,3 +1,10 @@
+const R = require('ramda')
+const {
+  apiRequest,
+  formatCategory,
+  formatAdminPost
+} = require('./common')
+
 module.exports = {
   renderLogin (req, res) {
     res.render('login')
@@ -23,6 +30,23 @@ module.exports = {
   },
 
   renderAdmin (req, res) {
-    res.send("You can only see this after you've logged in.")
+    apiRequest('posts')
+      .then(posts => {
+        res.render('admin/index', {
+          posts: R.map(formatAdminPost, posts)
+        })
+      })
+  },
+
+  renderAddPost (req, res) {
+    Promise.all([
+      apiRequest('posts/1'),
+      apiRequest('categories')
+    ]).then(([post, categories]) => {
+      res.render('admin/modify-post', {
+        post: formatAdminPost(post),
+        categories: R.map(formatCategory, categories)
+      })
+    })
   }
 }

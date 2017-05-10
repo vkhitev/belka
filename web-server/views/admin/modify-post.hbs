@@ -5,11 +5,10 @@
   <title>{Название} | Admin Belka</title>
   <meta charset="utf-8">
 
-  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
 
 </head>
 
@@ -22,7 +21,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand p-0" href="#">
-        <img src="logo-orange.svg" lt="logo" class="belka-logo"> Belka Admin
+        <img src="/img/logo.svg" lt="logo" class="belka-logo"> Belka Admin
       </a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,52 +46,51 @@
         <div class="media my-auto">
           <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
             <div class="py-2">
-              <h2 class="card-title py-3">Редактирование поста | {Название}</h2>
+              <h2 class="card-title py-3">Редактирование поста | {{post.name}}</h2>
 
               <div class="card-text pb-2">
 
                 <form>
 
                   <div class="form-group">
-                    <label for="inputPostName">Название поста</label>
-                    <input type="text" class="form-control" id="inputPostName" aria-describedby="emailHelp" placeholder="Название поста" value="{Название}">
+                    <label for="inputPostName">Название</label>
+                    <input type="text" class="form-control" id="inputPostName" aria-describedby="emailHelp" placeholder="Название поста" value="{{post.name}}">
                     <small id="postNameHelp" class="form-text text-muted">Введите название для поста с событием</small>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputAuthorName">Имя автора</label>
-                    <input type="text" class="form-control" id="inputAuthorName" aria-describedby="emailHelp" placeholder="Имя автора (Хитев. В)"
-                      value="{Имя автора}">
+                    <label for="inputAuthorName">Имя организатора</label>
+                    <input type="text" class="form-control" id="inputAuthorName" aria-describedby="emailHelp" placeholder="Имя организатора"
+                      value="{{post.organizerName}}">
                     <small id="authorNameHelp" class="form-text text-muted">Введите ФИО, имя или никнейм автора для поста с событием</small>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputAuthorUrl">Ссылка на автора</label>
-                    <input type="text" class="form-control" id="inputAuthorUrl" aria-describedby="emailHelp" placeholder="Ссылка на автора" value="{Ссылка на автора}">
-                    <small id="authorUrlHelp" class="form-text text-muted">Введите ссылку на блог, страницу автора в одной из соц. сетей</small>
+                    <label for="inputAuthorUrl">Ссылка на организатора</label>
+                    <input type="text" class="form-control" id="inputAuthorUrl" aria-describedby="emailHelp" placeholder="Ссылка на организатора"
+                      value="{{organizerLink}}">
+                    <small id="authorUrlHelp" class="form-text text-muted">Введите ссылку на блог, страницуорганизатора в одной из соц. сетей</small>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputDate">Ссылка на автора</label>
-                    <input type="text" class="form-control" id="inputDate" aria-describedby="emailHelp" placeholder="Дата публикации (01 января)"
-                      value="{Дата публикации}">
-                    <small id="dateHelp" class="form-text text-muted">Введите дату публикации. Формат: число месяц (01 января)</small>
+                    <label for="inputDate">Дата публикации</label>
+                    <input type="date" class="form-control" id="inputDate" aria-describedby="emailHelp" placeholder="Дата публикации (01 января)"
+                      value="{{post.eventDate}}">
+                    <small id="dateHelp" class="form-text text-muted">Введите дату публикации.</small>
                   </div>
 
                   <div class="form-group">
                     <label for="textareaAbout">Описание</label>
-                    <textarea class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{Описание события}</textarea>
-                    <small id="aboutHelp" class="form-text text-muted">Введите несколько предложений, которые будут в качестве описания для события</small>
+                    <textarea class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{{post.brief}}</textarea>
+                    <small id="aboutHelp" class="form-text text-muted">Введите несколько предложений, которые будут представлены в качестве описания для события</small>
                   </div>
 
                   <div class="form-group">
                     <label for="selectCat">Категории</label>
                     <select multiple class="form-control" id="selectCat">
-                      <option selected>Категория 1</option>
-                      <option>Категория 2</option>
-                      <option>Категория 3</option>
-                      <option>Категория 4</option>
-                      <option>Категория 5</option>
+                      {{#each categories}}
+                        <option value="{{name}}">{{name}}</option>
+                      {{/each}}
                     </select>
                     <small id="catHelp" class="form-text text-muted">Выберите одну или несколько категорий, к которым относится пост</small>
                   </div>
@@ -140,7 +138,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
     crossorigin="anonymous"></script>
-  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="/js/admin.js"></script>
 
 </body>
 

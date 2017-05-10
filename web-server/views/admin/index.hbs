@@ -5,11 +5,11 @@
   <title>Главная | Admin Belka</title>
   <meta charset="utf-8">
 
-  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
 
 </head>
 
@@ -22,7 +22,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand p-0" href="#">
-        <img src="logo-orange.svg" lt="logo" class="belka-logo"> Belka Admin
+        <img src="/img/logo.svg" lt="logo" class="belka-logo"> Belka Admin
       </a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,35 +43,39 @@
 
     <div class="d-flex flex-row-reverse">
       <div class="mt-2">
-        <a class="btn btn-success btn-circle btn-lg px-3" href="#" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
+        <a class="btn btn-success btn-circle btn-lg px-3" href="admin/add_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
       </div>
     </div>
 
-    <div class="card my-4">
-      <div class="card-block p-1">
-        <div class="media my-auto">
-          <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
-            <div class="py-2">
-              <h4 class="card-title mb-0">Название</h4>
-              <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: 17.04.17 |
-                <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href="#">Хитев В.</a> |
-                <i class="fa fa-tags" aria-hidden="true"></i> Категории: <span class="badge badge-default">Категория 1</span>
-                <span class="badge badge-default">Категория 2</span>
-              </p>
-            </div>
-            <div class="py-2">
-              <p class="card-text">Описание</p>
-            </div>
-            <div class="py-2">
-              <a href="#" class="btn btn-primary">Редактировать пост</a>
+    {{#each posts}}
+      <div class="card my-4">
+        <div class="card-block p-1">
+          <div class="media my-auto">
+            <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
+              <div class="pt-2">
+                <h4 class="card-title mb-0">{{name}}</h4>
+                <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
+                  <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href="{{organizerLink}}">{{organizerName}}</a>
+                  <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+                    {{#each Categories}}
+                      <a class="badge-link" href="/category/{{slugLink}}">
+                        <span class="badge badge-default badge-category">{{name}}</span>
+                      </a>
+                    {{/each}}
+                  </p>
+                </p>
+              </div>
+              <div class="py-2">
+                <p class="card-text">{{brief}}</p>
+              </div>
+              <div class="py-2">
+                <a href="admin/modify_post/{{slugLink}}" class="btn btn-primary">Редактировать пост</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-
-
+    {{/each}}
   </div>
 
   <footer class="px-5 py-3">
@@ -85,7 +89,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
     crossorigin="anonymous"></script>
-  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="/js/admin.js"></script>
 
 </body>
 
