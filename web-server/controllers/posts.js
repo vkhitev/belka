@@ -1,45 +1,13 @@
 const R = require('ramda')
-const moment = require('moment')
-const slug = require('slug')
-
-const { apiRequest } = require('./util')
 const showError = require('./error')
 
-moment.locale('ru')
-
-function prettyDate (simpleDate) {
-  const date = moment.utc(simpleDate)
-  const currentYear = moment().year()
-  if (date.year() === currentYear) {
-    return date.format('LL').slice(0, -8)
-  } else {
-    return date.format('LL')
-  }
-}
-
-const slugify = R.curry((id, source, destination, obj) => {
-  return Object.assign({}, obj, {
-    [destination]: slug(obj[source], { lower: true }) + '-' + obj[id]
-  })
-})
-
-function unslugify (path) {
-  return Number(path.match(/\d+$/)[0])
-}
-
-const formatCategory = slugify('id', 'name', 'slugLink')
-
-const formatPost = R.pipe(
-  R.evolve({
-    eventDate: prettyDate,
-    Categories: R.compose(R.sortBy(R.prop('name')), R.map(formatCategory))
-  }),
-  slugify('id', 'name', 'slugLink')
-)
-
-const formatAnnual = R.evolve({
-  posts: R.map(slugify('id', 'name', 'slugLink'))
-})
+const {
+  formatPost,
+  formatCategory,
+  formatAnnual,
+  unslugify,
+  apiRequest
+} = require('./common')
 
 module.exports = {
   renderHomepage (req, res) {
