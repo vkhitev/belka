@@ -10,7 +10,7 @@
             </p>
             <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
               {{#each Categories}}
-                <a class="badge-link" href="/category/{{slugLink}}">
+                <a class="badge-link" href="/categories/{{id}}/{{slugLink}}">
                   <span class="badge badge-default badge-category">{{name}}</span>
                 </a>
               {{/each}}
@@ -23,7 +23,7 @@
             </p>
           </div>
           <div class="py-2">
-            <a href="/post/{{slugLink}}" class="btn btn-primary">Перейти</a>
+            <a href="/posts/{{id}}/{{slugLink}}" class="btn btn-primary">Перейти</a>
           </div>
         </div>
         <img class="d-flex align-self-center hidden-md-down ml-3" src= {{previewUrl}} alt="Зображення події">
