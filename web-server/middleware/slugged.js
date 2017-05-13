@@ -1,8 +1,8 @@
+const R = require('ramda')
 const fetchData = require('../controllers/fetch-data')
 const fmt = require('../controllers/formatters')
 
-// Todo: middleware between route and handler
-function slugged (action, route, handler) {
+function slugged (action, route, ...handlers) {
   function addSlug (path, id, handler) {
     return function (req, res) {
       fetchData({
@@ -22,7 +22,10 @@ function slugged (action, route, handler) {
   }
   const path = route.match(/\/(.+)\//)[1]
   const id = route.match(/:(.+)/)[1]
-  action([route, route + '/:slug'], addSlug(path, id, handler))
+  action(
+    [route, route + '/:slug'],
+    ...R.init(handlers),
+    addSlug(path, id, R.last(handlers)))
 }
 
 module.exports = slugged

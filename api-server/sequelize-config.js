@@ -8,7 +8,8 @@ module.exports = {
     database: process.env.SQL_DATABASE,
     define: {
       timestamps: false,
-      freezeTableName: true
+      freezeTableName: true,
+      underscored: false
     },
     charset: 'utf8mb4',
     migrationStorage: 'sequelize',

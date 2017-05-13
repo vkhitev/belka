@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Podcast = sequelize.define('Podcast', {
+  const Podcast = sequelize.define('podcast', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate (models) {
-        Podcast.belongsTo(models.Post, {
+        Podcast.belongsTo(models.post, {
           onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false

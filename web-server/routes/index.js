@@ -11,11 +11,9 @@ router.get = router.get.bind(router)
 
 router.get('/', ctrl.user.homepage)
 router.get('/posts', userLayout, ctrl.user.posts)
-
-slugged(router.get, '/posts/:postid', ctrl.user.post)
-// slugged(router.get, '/categories/:categoryid', postsController.renderCategoryPost)
-
-// router.get('/search', postsController.renderSearch)
+router.get('/search', userLayout, ctrl.user.search)
+slugged(router.get, '/posts/:postid', userLayout, ctrl.user.post)
+slugged(router.get, '/categories/:categoryid', userLayout, ctrl.user.categoryPosts)
 
 // router.get('/login', adminController.renderLogin)
 // router.get('/admin', adminController.renderAdmin)

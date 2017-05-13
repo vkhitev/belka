@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const PostImage = sequelize.define('PostImage', {
+  const PostImage = sequelize.define('postImage', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate (models) {
-        PostImage.belongsTo(models.Post, {
+        PostImage.belongsTo(models.post, {
           onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false
