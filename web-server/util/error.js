@@ -1,10 +1,8 @@
-const { apiServer } = require('../config')[process.env.NODE_ENV]
-
-function showError (req, res, status) {
+module.exports = function error (req, res, status) {
   let title, content
   if (status === 404) {
     title = '404, page not found'
-    content = 'Перейдите на главную страницу: ' + apiServer
+    content = 'Перейдите на главную страницу'
   } else if (status === 500) {
     title = '500, internal server error'
     content = 'Проблема на сервере, попробуйте зайти позже.'
@@ -18,5 +16,3 @@ function showError (req, res, status) {
     message: content
   })
 }
-
-module.exports = showError

@@ -1,6 +1,4 @@
-const R = require('ramda')
-const fetchData = require('../controllers/fetch-data')
-const format = require('../controllers/formatters')
+const { R, fetchData, format, error } = require('../util')
 
 function sluggedBy (attr, action, route, ...handlers) {
   function addSlug (path, id, handler) {

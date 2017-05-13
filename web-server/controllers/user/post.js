@@ -1,6 +1,4 @@
-const R = require('ramda')
-const fetchData = require('../fetch-data')
-const format = require('../formatters')
+const { R, fetchData, format, error } = require('../../util')
 
 module.exports = async function post (req, res) {
   const postid = req.params.postid

@@ -24,15 +24,18 @@ const applyTransform = R.curry(({
   return R.pair(name, R.ifElse(
     R.isArrayLike,
     R.pipe(
-      // R.when(
-
-      // ),
-      R.project(attributes),
+      R.when(
+        () => !R.isEmpty(attributes),
+        R.project(attributes)
+      ),
       R.map(R.evolve(transform)),
       transformSelf
     ),
     R.pipe(
-      R.pick(attributes),
+      R.when(
+        () => !R.isEmpty(attributes),
+        R.pick(attributes)
+      ),
       R.evolve(transform)
     )
   )(data))
