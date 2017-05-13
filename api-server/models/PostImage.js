@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate (models) {
-        PostImage.belongsTo(models.post, {
+        PostImage.belongsTo(models.Post, {
           onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false

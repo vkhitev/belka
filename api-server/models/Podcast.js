@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate (models) {
-        Podcast.belongsTo(models.post, {
+        Podcast.belongsTo(models.Post, {
           onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false
