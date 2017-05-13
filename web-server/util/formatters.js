@@ -19,19 +19,24 @@ const addSlugOf = R.curry((prop, obj) => {
   return R.assoc(`${prop}Slug`, slugged, obj)
 })
 
-function slugifyOne (str) {
-  return slug(str, { lower: true })
-}
-
 const categoriesOfPost = R.pipe(
   R.project(['id', 'name']),
   R.map(addSlugOf('name')),
   R.sortBy(R.prop('name'))
 )
 
+function dateOnly (simpleDate) {
+  return moment.utc(simpleDate).format('YYYY-MM-DD')
+}
+
+function slugifyOne (str) {
+  return slug(str, { lower: true })
+}
+
 module.exports = {
   prettyDate,
   categoriesOfPost,
   addSlugOf,
+  dateOnly,
   slugifyOne
 }

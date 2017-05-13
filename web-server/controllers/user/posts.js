@@ -1,6 +1,4 @@
-const R = require('ramda')
-const fetchData = require('../fetch-data')
-const format = require('../formatters')
+const { R, fetchData, format, error } = require('../../util')
 
 module.exports = async function posts (req, res) {
   try {
@@ -23,6 +21,6 @@ module.exports = async function posts (req, res) {
       title: 'Belka | Лента'
     }))
   } catch (err) {
-    console.error(err)
+    error(req, res, err)
   }
 }
