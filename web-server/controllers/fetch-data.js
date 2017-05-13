@@ -12,23 +12,27 @@ function apiRequest (url, isJson = true) {
   return rp(`${apiServer}/api/${normalizeUrl(url)}`, { json: isJson })
 }
 
+const toCamelCase = R.replace(/[-_]([a-z])/g, x => x[1].toUpperCase())
+
 const applyTransform = R.curry(({
+  url,
+  name = toCamelCase(url.replace(/\?.+/, '')),
   attributes = [],
   transform = R.identity,
-  transformAll = R.identity
+  transformSelf = R.identity
 }, data) => {
-  return R.ifElse(
+  return R.pair(name, R.ifElse(
     R.isArrayLike,
     R.pipe(
       R.project(attributes),
       R.map(R.evolve(transform)),
-      transformAll
+      transformSelf
     ),
     R.pipe(
       R.pick(attributes),
       R.evolve(transform)
     )
-  )(data)
+  )(data))
 })
 
 const request = R.compose(
@@ -40,9 +44,11 @@ const fetchData = R.ifElse(
   R.isArrayLike,
   (arr) => Promise.all(R.map(request, arr))
     .then(R.zip(arr))
-    .then(R.map(R.apply(applyTransform))),
+    .then(R.map(R.apply(applyTransform)))
+    .then(R.fromPairs),
   (obj) => request(obj)
     .then(applyTransform(obj))
+    .then(R.nth(1))
 )
 
 module.exports = fetchData
