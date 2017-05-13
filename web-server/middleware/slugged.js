@@ -1,21 +1,21 @@
 const R = require('ramda')
 const fetchData = require('../controllers/fetch-data')
-const fmt = require('../controllers/formatters')
+const format = require('../controllers/formatters')
 
-function slugged (action, route, ...handlers) {
+function sluggedBy (attr, action, route, ...handlers) {
   function addSlug (path, id, handler) {
     return function (req, res) {
       fetchData({
         url: `${path}/${req.params[id]}`,
-        attributes: ['name'],
+        attributes: [attr],
         transform: {
-          name: fmt.slugifyOne
+          [attr]: format.slugifyOne
         }
       }).then(slug => {
-        if (req.params.slug === slug.name) {
+        if (req.params.slug === slug[attr]) {
           handler(req, res)
         } else {
-          res.redirect(`/${path}/${req.params[id]}/${slug.name}`)
+          res.redirect(`/${path}/${req.params[id]}/${slug[attr]}`)
         }
       })
     }
@@ -28,4 +28,4 @@ function slugged (action, route, ...handlers) {
     addSlug(path, id, R.last(handlers)))
 }
 
-module.exports = slugged
+module.exports = sluggedBy
