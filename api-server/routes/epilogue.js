@@ -1,5 +1,6 @@
 const epilogue = require('epilogue')
 const db = require('../models')
+const models = db.models
 
 const ForbiddenError = require('epilogue').Errors.ForbiddenError
 
@@ -21,30 +22,33 @@ module.exports = function (app) {
 
   const resources = [
     epilogue.resource({
-      model: db.Post,
+      model: models.post,
       endpoints: ['/posts', '/posts/:id'],
-      include: [db.Category]
+      include: [models.category]
     }),
 
     epilogue.resource({
-      model: db.Podcast,
+      model: models.podcast,
       endpoints: ['/podcasts', '/podcasts/:id']
     }),
 
     epilogue.resource({
-      model: db.PostImage,
+      model: models.postImage,
       endpoints: ['/post_images', '/post_images/:id']
     }),
 
     epilogue.resource({
-      model: db.Category,
+      model: models.category,
       endpoints: ['/categories', '/categories/:id']
     }),
 
     epilogue.resource({
-      model: db.Category,
+      model: models.category,
       endpoints: ['/category_posts', '/category_posts/:id'],
-      include: [db.Post]
+      include: [{
+        model: models.post,
+        include: [models.category]
+      }]
     })
   ]
 

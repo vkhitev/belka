@@ -5,11 +5,17 @@ const { folders, exclude = [] } = require('./config')
 
 const absPath = R.partial(path.join, [__dirname])
 
+const toCamelCase = R.replace(/[-_]([a-z])/g, x => x[1].toUpperCase())
+const getBasename = file => path.basename(file)
+
+const extractFilename = R.pipe(
+  getBasename,
+  R.replace(/.js$/, ''),
+  toCamelCase
+)
+
 const controllers = {}
 const ignore = R.map(absPath, exclude)
-const extractFilename = file => (
-  path.basename(file).replace(/.js$/, '')
-)
 
 folders.forEach(folder => {
   controllers[folder] = {}

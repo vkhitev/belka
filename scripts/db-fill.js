@@ -1,17 +1,19 @@
 require('dotenv').config()
-const models = require('../api-server/models')
+const db = require('../api-server/models')
 const initialData = require('./data')
-const PostCategory = require('./data/PostCategory.json')
+const postCategory = require('./data/post-category.json')
 
-models.sequelize
+const models = db.models
+
+db.sequelize
   .sync()
   .then(() => Promise.all(
     initialData.map(({ model, data }) => models[model].bulkCreate(data))
   ))
-  .then(() => models.Post.findAll())
+  .then(() => models.post.findAll())
   .then(posts => {
     return Promise.all(posts.map(post => {
-      const ids = PostCategory.find(item => item.post === post.id).categories
+      const ids = postCategory.find(item => item.post === post.id).categories
       return post.setCategories(ids)
     }))
   }).then(() => {

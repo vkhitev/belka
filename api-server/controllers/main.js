@@ -1,5 +1,5 @@
 const R = require('ramda')
-const db = require('../models')
+const { models } = require('../models')
 
 function groupByYear (posts) {
   const groupedByYear = R.groupBy(post => new Date(post.eventDate).getFullYear(), posts)
@@ -10,7 +10,7 @@ function groupByYear (posts) {
 
 module.exports = {
   annual (req, res) {
-    db.Post.findAll({
+    models.post.findAll({
       attributes: ['id', 'name', 'eventDate']
     }).then(posts => {
       res.send(groupByYear(posts))

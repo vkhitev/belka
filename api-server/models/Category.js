@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Category = sequelize.define('Category', {
+  const Category = sequelize.define('category', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       associate (models) {
-        Category.belongsToMany(models.Post, { through: 'PostCategory' })
+        Category.belongsToMany(models.post, { through: 'postCategory' })
       }
     }
   })

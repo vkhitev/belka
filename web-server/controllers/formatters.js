@@ -16,7 +16,7 @@ function prettyDate (simpleDate) {
 
 const addSlugOf = R.curry((prop, obj) => {
   const slugged = slug(obj[prop], { lower: true })
-  return R.assoc(`${prop}-slug`, slugged, obj)
+  return R.assoc(`${prop}Slug`, slugged, obj)
 })
 
 function slugifyOne (str) {

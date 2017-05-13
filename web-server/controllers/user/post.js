@@ -11,16 +11,16 @@ module.exports = async function post (req, res) {
       attributes: [
         'id', 'name', 'eventDate',
         'previewUrl', 'organizerName',
-        'organizerLink', 'brief', 'Categories'
+        'organizerLink', 'brief', 'categories'
       ],
       transform: {
-        Categories: format.categoriesOfPost
+        categories: format.categoriesOfPost
       }
     }, {
-      url: `post_images?PostId=${postid}`,
+      url: `post_images?postId=${postid}`,
       attributes: ['id', 'url']
     }, {
-      url: `podcasts?PostId=${postid}`,
+      url: `podcasts?postId=${postid}`,
       attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
     }])
     res.send(R.mergeAll([req.layout, data, {

@@ -3,7 +3,7 @@
   const input = $('#search-input')
 
   function searchPosts () {
-    document.location.href = '/search?query=' + input.val()
+    document.location.href = '/search?q=' + input.val()
   }
 
   button.click(searchPosts)
