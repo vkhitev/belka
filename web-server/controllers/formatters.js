@@ -4,31 +4,34 @@ const slug = require('slug')
 const moment = require('moment')
 moment.locale('ru')
 
-const addSlugLink = R.curry((source, obj) => {
-  const slugLink = slug(obj[source], { lower: true })
-  return R.assoc('slugLink', slugLink, obj)
+function prettyDate (simpleDate) {
+  const date = moment.utc(simpleDate)
+  const currentYear = moment().year()
+  if (date.year() === currentYear) {
+    return date.format('LL').slice(0, -8)
+  } else {
+    return date.format('LL')
+  }
+}
+
+const addSlugOf = R.curry((prop, obj) => {
+  const slugged = slug(obj[prop], { lower: true })
+  return R.assoc(`${prop}-slug`, slugged, obj)
 })
 
+function slugifyOne (str) {
+  return slug(str, { lower: true })
+}
+
+const categoriesOfPost = R.pipe(
+  R.project(['id', 'name']),
+  R.map(addSlugOf('name')),
+  R.sortBy(R.prop('name'))
+)
+
 module.exports = {
-  prettyDate (simpleDate) {
-    const date = moment.utc(simpleDate)
-    const currentYear = moment().year()
-    if (date.year() === currentYear) {
-      return date.format('LL').slice(0, -8)
-    } else {
-      return date.format('LL')
-    }
-  },
-
-  categories: R.pipe(
-    R.project(['id', 'name']),
-    R.map(addSlugLink('name')),
-    R.sortBy(R.prop('name'))
-  ),
-
-  slugify: R.map(addSlugLink('name')),
-
-  slugifyOne (str) {
-    return slug(str, { lower: true })
-  }
+  prettyDate,
+  categoriesOfPost,
+  addSlugOf,
+  slugifyOne
 }

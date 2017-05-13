@@ -25,12 +25,4 @@ function slugged (action, route, handler) {
   action([route, route + '/:slug'], addSlug(path, id, handler))
 }
 
-// renderPost (req, res) {
-//     foo(req, res, 'posts', 'postid', renderPostSlug)
-//   },
-
-//   renderCategoryPosts (req, res) {
-//     foo(req, res, 'categories', 'categoryid', renderCategoryPostsSlug)
-//   },
-
 module.exports = slugged
