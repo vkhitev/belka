@@ -15,7 +15,7 @@ module.exports = async function posts (req, res) {
       },
       transformSelf: R.map(format.addSlugOf('name'))
     })
-    res.send(R.merge(req.layout, {
+    res.render('index', R.merge(req.layout, {
       posts,
       layout: 'main',
       title: 'Belka | Лента'

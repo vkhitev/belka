@@ -19,29 +19,29 @@ module.exports = function (app) {
     base: '/api'
   })
 
-  const resources = [
-    epilogue.resource({
+  const resources = {
+    Post: epilogue.resource({
       model: db.Post,
       endpoints: ['/posts', '/posts/:id'],
       include: [db.Category]
     }),
 
-    epilogue.resource({
+    Podcast: epilogue.resource({
       model: db.Podcast,
       endpoints: ['/podcasts', '/podcasts/:id']
     }),
 
-    epilogue.resource({
+    PostImage: epilogue.resource({
       model: db.PostImage,
       endpoints: ['/post_images', '/post_images/:id']
     }),
 
-    epilogue.resource({
+    Category: epilogue.resource({
       model: db.Category,
       endpoints: ['/categories', '/categories/:id']
     }),
 
-    epilogue.resource({
+    CategoryPost: epilogue.resource({
       model: db.Category,
       endpoints: ['/category_posts', '/category_posts/:id'],
       include: [{
@@ -49,7 +49,18 @@ module.exports = function (app) {
         include: [db.Category]
       }]
     })
-  ]
+  }
+
+  resources.Post.use({
+    list: {
+      fetch: {
+        before: function (req, res, context) {
+          console.log(Object.keys(req))
+          return context.continue
+        }
+      }
+    }
+  })
 
   // resources.forEach(resource => {
   //   resource.list.auth(auth)

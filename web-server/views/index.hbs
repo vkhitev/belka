@@ -2,6 +2,10 @@
   {{#if posts}}
     {{> posts}}
   {{else}}
-    {{> no-posts}}
+    {{#if searchQuery}}
+      {{> no-search-posts}}
+    {{else}}
+      {{> no-posts}}
+    {{/if}}
   {{/if}}
 </div>

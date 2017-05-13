@@ -21,12 +21,12 @@ module.exports = async function categoryPosts (req, res) {
       }
     })
 
-    res.send(R.merge(req.layout, {
-      categoryPosts,
+    res.render('index', R.merge(req.layout, {
+      posts: categoryPosts.posts,
       layout: 'main',
       title: 'Belka | ' + categoryPosts.name
     }))
   } catch (err) {
-    console.error(err)
+    error(req, res, err)
   }
 }

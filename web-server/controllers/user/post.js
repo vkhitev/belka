@@ -12,7 +12,8 @@ module.exports = async function post (req, res) {
         'organizerLink', 'brief', 'categories'
       ],
       transform: {
-        categories: format.categoriesOfPost
+        categories: format.categoriesOfPost,
+        eventDate: format.prettyDate
       }
     }, {
       url: `post_images?postId=${postid}`,
@@ -21,11 +22,11 @@ module.exports = async function post (req, res) {
       url: `podcasts?postId=${postid}`,
       attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
     }])
-    res.send(R.mergeAll([req.layout, data, {
+    res.render('post', R.mergeAll([req.layout, data, {
       layout: 'main',
       title: 'Belka | ' + data.post.name
     }]))
   } catch (err) {
-    console.error(err)
+    error(req, res, err)
   }
 }
