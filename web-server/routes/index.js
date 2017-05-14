@@ -4,16 +4,19 @@ const ctrl = require('../controllers')
 
 // const auth = require('../middleware/auth')
 const sluggedBy = require('../middleware/slugged')
-const userLayout = require('../middleware/user-layout')
+const blogLayout = require('../middleware/blog-layout')
 
 const router = Router()
 router.get = router.get.bind(router)
 
-router.get('/', ctrl.user.homepage)
-router.get('/posts', userLayout, ctrl.user.posts)
-router.get('/search', userLayout, ctrl.user.search)
-sluggedBy('name', router.get, '/posts/:postid', userLayout, ctrl.user.post)
-sluggedBy('name', router.get, '/categories/:categoryid', userLayout, ctrl.user.categoryPosts)
+router.get('/', ctrl.blog.homepage)
+router.get('/posts', blogLayout, ctrl.blog.posts)
+router.get('/search', blogLayout, ctrl.blog.search)
+sluggedBy('name', router.get, '/posts/:postid', blogLayout, ctrl.blog.post)
+sluggedBy('name', router.get, '/categories/:categoryid', blogLayout, ctrl.blog.categoryPosts)
+
+router.get('/login', ctrl.admin.login.get)
+router.post('/login', ctrl.admin.login.post)
 
 // router.get('/login', adminController.renderLogin)
 // router.get('/admin', adminController.renderAdmin)

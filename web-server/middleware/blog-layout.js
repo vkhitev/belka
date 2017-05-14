@@ -18,7 +18,7 @@ async function addLayout (req, res, next) {
   try {
     req.layout = await fetchLayoutData()
   } catch (err) {
-    console.log(err) // TODO
+    error(req, res, err)
   }
   next()
 }

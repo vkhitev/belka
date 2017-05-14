@@ -12,18 +12,15 @@ module.exports = async function categoryPosts (req, res) {
           R.dissoc('postCategory'),
           R.evolve({
             eventDate: format.prettyDate,
-            categories: R.map(R.pipe(
-              format.addSlugOf('name'),
-              R.dissoc('postCategory')
-            ))
+            categories: format.categoriesOfPost
           })
         ))
       }
     })
 
-    res.render('index', R.merge(req.layout, {
+    res.render('blog/posts', R.merge(req.layout, {
       posts: categoryPosts.posts,
-      layout: 'main',
+      layout: 'blog',
       title: 'Belka | ' + categoryPosts.name
     }))
   } catch (err) {

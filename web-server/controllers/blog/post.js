@@ -22,8 +22,8 @@ module.exports = async function post (req, res) {
       url: `podcasts?postId=${postid}`,
       attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
     }])
-    res.render('post', R.mergeAll([req.layout, data, {
-      layout: 'main',
+    res.render('blog/post', R.mergeAll([req.layout, data, {
+      layout: 'blog',
       title: 'Belka | ' + data.post.name
     }]))
   } catch (err) {
