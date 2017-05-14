@@ -44,7 +44,7 @@ body {
 }
 
 .main-container {
-  min-height: 91%;
+  min-height: 100vh;
   max-width: 100%;
 }
 
