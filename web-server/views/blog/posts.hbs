@@ -1,11 +1,11 @@
 <div class="col-xs-12 col-md-9 col-xl-10 flex-first flex-md-unordered pl-md-5" id="posts-container">
   {{#if posts}}
-    {{> posts}}
+    {{>blog/posts}}
   {{else}}
     {{#if searchQuery}}
-      {{> no-search-posts}}
+      {{>blog/no-search-posts}}
     {{else}}
-      {{> no-posts}}
+      {{>blog/no-posts}}
     {{/if}}
   {{/if}}
 </div>
