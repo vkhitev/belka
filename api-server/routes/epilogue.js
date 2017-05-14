@@ -1,3 +1,4 @@
+const R = require('ramda')
 const epilogue = require('epilogue')
 const db = require('../models')
 
@@ -23,7 +24,9 @@ module.exports = function (app) {
     Post: epilogue.resource({
       model: db.Post,
       endpoints: ['/posts', '/posts/:id'],
-      include: [db.Category]
+      include: [{
+        model: db.Category
+      }]
     }),
 
     Podcast: epilogue.resource({
@@ -50,21 +53,6 @@ module.exports = function (app) {
       }]
     })
   }
-
-  resources.Post.use({
-    list: {
-      fetch: {
-        before: function (req, res, context) {
-          console.log(Object.keys(req))
-          return context.continue
-        }
-      }
-    }
-  })
-
-  // resources.forEach(resource => {
-  //   resource.list.auth(auth)
-  // })
 
   return app
 }

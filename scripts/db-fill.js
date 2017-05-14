@@ -3,14 +3,12 @@ const db = require('../api-server/models')
 const initialData = require('./data')
 const PostCategory = require('./data/PostCategory.json')
 
-const models = db.models
-
 db.sequelize
   .sync()
   .then(() => Promise.all(
-    initialData.map(({ model, data }) => models[model].bulkCreate(data))
+    initialData.map(({ model, data }) => db[model].bulkCreate(data))
   ))
-  .then(() => models.Post.findAll())
+  .then(() => db.Post.findAll())
   .then(posts => {
     return Promise.all(posts.map(post => {
       const ids = PostCategory.find(item => item.post === post.id).categories
