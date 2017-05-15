@@ -8,7 +8,9 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 
 const hbs = require('./handlebars')
-const routes = require('./web-server/routes')
+const blogRoutes = require('./web-server/routes/blog')
+const adminRoutes = require('./web-server/routes/admin')
+const feedRoutes = require('./web-server/routes/feed')
 const apiRoutes = require('./api-server/routes')
 const registerRestApi = require('./api-server/routes/epilogue')
 const config = require('./config')
@@ -34,7 +36,9 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.use('/', routes)
+app.use('/', blogRoutes)
+app.use('/admin', adminRoutes)
+app.use('/feed', feedRoutes)
 app.use('/api', apiRoutes)
 registerRestApi(app)
 
