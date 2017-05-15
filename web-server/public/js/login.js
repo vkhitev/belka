@@ -20,13 +20,18 @@
 
   // Form Submission
   $('#login-form').submit(function () {
-    const form = $(this)
+    var form = $(this)
+
+    if (!form.valid()) {
+      return
+    }
+
     removeLoading(form)
 
     if (options['useAJAX'] === true) {
       formLoading(form)
       $.ajax({
-        url: '/login',
+        url: '/admin/login',
         type: 'POST',
         data: {
           username: $('#lg_username').val(),
@@ -36,7 +41,7 @@
           formSuccess(form)
           setTimeout(function () {
             window.location.href = '/admin'
-          }, 1000)
+          }, 800)
         },
         error () {
           removeLoading(form)

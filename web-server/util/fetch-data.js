@@ -1,6 +1,5 @@
 const R = require('ramda')
 const rp = require('request-promise')
-const Promise = require('bluebird')
 
 const { apiServer } = require('../config')[process.env.NODE_ENV]
 

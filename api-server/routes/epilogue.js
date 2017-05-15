@@ -51,6 +51,12 @@ module.exports = function (app) {
         model: db.Post,
         include: [db.Category]
       }]
+    }),
+
+    User: epilogue.resource({
+      model: db.User,
+      endpoints: ['/user_hash/:username'],
+      attributes: ['hash']
     })
   }
 
