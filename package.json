@@ -19,6 +19,8 @@
   "author": "Vlad Khitev <vkhitev@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "acl": "^0.4.10",
+    "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",

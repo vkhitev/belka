@@ -3,7 +3,7 @@ function auth (req, res, next) {
       req.session.admin) {
     return next()
   } else {
-    res.redirect('/login')
+    res.redirect('/admin/login')
   }
 }
 
