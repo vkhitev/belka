@@ -14,12 +14,14 @@ body {
   position: fixed;
 }*/
 
-.navbar-inverse .nav-link {
-    color: rgba(255,255,255,.5);
+.navbar-inverse .navbar-brand, .navbar-inverse .nav-link, .navbar-inverse .navbar-nav .nav-link {
+    color: rgba(255,255,255,1);
+    border-bottom: 1px solid rgba(0,0,0,0);
 }
 
-.navbar-inverse .nav-link:focus, .navbar-inverse .nav-link:hover {
-    color: rgba(255,255,255,.75);
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .nav-link:focus, .navbar-inverse .nav-link:hover:not(.disabled) {
+    color: rgba(255,255,255,.8);
+    border-bottom: 1px solid rgba(255,255,255,.8);
 }
 
 .navbar-inverse .active>.nav-link, .navbar-inverse .nav-link.active, .navbar-inverse .nav-link.open, .navbar-inverse .open>.nav-link {
@@ -80,8 +82,8 @@ img.card-img-top {
 
 .media img.hidden-lg-up {
   width: calc(100% - 0.01vw);
-  height: auto;
-  object-fit: cover;
+  height: 30vh;
+  object-fit: contain;
 }
 
 .belka-logo {
@@ -96,15 +98,6 @@ img.card-img-top {
 
 .navbar-brand {
   font-size: 1.30rem;
-}
-
-
-.btn-circle {
-  border-radius: 50%;
-}
-
-textarea {
-  resize: none;
 }
 
 .badge-link:hover {

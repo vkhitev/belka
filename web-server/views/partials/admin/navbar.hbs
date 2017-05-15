@@ -9,12 +9,33 @@
       </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+      <a class="nav-link" href="/" title="Главная страница">На главную</a>
+      <ul class="navbar-nav mx-auto">
+
         <li class="nav-item">
-          <a class="nav-link" href="#" title="Управление постами">Упр. постами</a>
+          <div class="form-inline my-2 my-lg-0 d-flex">
+            <form action="/search" method="GET">
+              <input class="form-control mr-sm-2" type="text" name="q" placeholder="Название, автор" value="{{searchQuery}}" id="search-input">
+              <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" id="search-button">
+                Поиск 
+                <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+              </button>
+            </form>
+
+          </div>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin" title="Управление постами">Упр. постами</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" title="Статистика">Статистика</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout" title="Выход из админ-панели">Выйти</a>
         </li>
       </ul>
 

@@ -1,9 +1,9 @@
 <div class="container main-container py-3">
-  <div class="d-flex flex-row-reverse">
-    <div class="mt-2">
-      <a class="btn btn-success btn-circle btn-lg px-3" href="/admin/create_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
-    </div>
+  {{!--<div class="d-flex flex-row-reverse">--}}
+  <div class="mt-2">
+    <a class="btn btn-success btn-circle btn-lg px-3" href="/admin/create_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
   </div>
+  {{!--</div>--}}
 
   {{#each posts}}
     <div class="card my-4">
@@ -13,23 +13,27 @@
             <div class="pt-2">
               <h4 class="card-title mb-0">{{name}}</h4>
               <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
-                <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href="{{organizerLink}}">{{organizerName}}</a>
-                <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
-                  {{#each categories}}
-                    <a class="badge-link" href="/categories/{{id}}/{{nameSlug}}">
-                    <span class="badge badge-default badge-category">{{name}}</span>
-                  </a>
-                  {{/each}}
-                </p>
+                <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{organizerLink}}>{{organizerName}}</a>
+              </p>
+              <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+                {{#each categories}}
+                  <a class="badge-link" href="/categories/{{id}}/{{nameSlug}}">
+                  <span class="badge badge-default badge-category">{{name}}</span>
+                </a>
+                {{/each}}
               </p>
             </div>
             <div class="py-2">
-              <p class="card-text">{{brief}}</p>
+              <img class="hidden-lg-up mb-3" src= {{previewUrl}} alt="Изображение события">
+              <p class="card-text">
+                {{brief}}
+              </p>
             </div>
             <div class="py-2">
               <a href="/admin/edit_post/{{id}}/{{nameSlug}}" class="btn btn-primary">Редактировать пост</a>
             </div>
           </div>
+          <img class="d-flex align-self-center hidden-md-down ml-3" src= {{previewUrl}} alt="Изображение события">
         </div>
       </div>
     </div>

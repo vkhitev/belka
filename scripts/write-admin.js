@@ -23,3 +23,5 @@ async function compareUser (username, password) {
   console.log(eq)
   await db.sequelize.close()
 }
+
+insertUser('admin', '15052017')
