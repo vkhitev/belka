@@ -2,29 +2,29 @@
   {
     "post": 1,
     "categories": [
+      1,
       2,
-      3,
-      4
+      3
     ]
   },
   {
     "post": 2,
     "categories": [
-      4
+      3
     ]
   },
   {
     "post": 3,
     "categories": [
-      4
+      3
     ]
   },
   {
     "post": 4,
     "categories": [
+      1,
       2,
-      3,
-      4
+      3
     ]
   }
 ]

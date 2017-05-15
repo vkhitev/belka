@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Blog with interacrive podcasts for Belka workspace",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/vkhitev/belka/"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
@@ -32,6 +35,7 @@
     "ramda": "^0.23.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.0",
+    "rss": "^1.2.2",
     "sequelize": "^3.30.4",
     "serve-favicon": "^2.4.2",
     "slug": "^0.9.1"
