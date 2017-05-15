@@ -1,10 +1,10 @@
-const { R, fetchData, format, error } = require('../util')
+const { R, fetchData, format } = require('../util')
 
-function sluggedBy (attr, action, route, ...handlers) {
+function sluggedBy (attr, apiUrl, action, route, ...handlers) {
   function addSlug (path, id, handler) {
     return function (req, res) {
       fetchData({
-        url: `${path}/${req.params[id]}`,
+        url: `${apiUrl}/${req.params[id]}`,
         attributes: [attr],
         transform: {
           [attr]: format.slugifyOne
