@@ -3,7 +3,7 @@
     <div class="card-img-top">
       <div id="carousel-indicators" class="carousel slide bg-inverse" data-ride="carousel">
         <ol class="carousel-indicators">
-          {{#each images}}
+          {{#each postImages}}
             {{#if @first}}
               <li data-target="#carousel-indicators" data-slide-to="0" class="active"></li>
             {{else}}
@@ -14,7 +14,7 @@
 
 
         <div class="carousel-inner" role="listbox">
-          {{#each images}}
+          {{#each postImages}}
             {{#if @first}}
               <div class="carousel-item active">
                 <img class="d-block card-img-top mx-auto" src= {{url}} alt="First slide">

@@ -15,8 +15,8 @@ module.exports = {
     migrationStorage: 'sequelize',
     migrationStorageTableName: 'sequelize_meta',
     seederStorage: 'sequelize',
-    seederStorageTableName: 'sequelize_data'
-    // logging: false
+    seederStorageTableName: 'sequelize_data',
+    logging: false
   },
   production: {
   },

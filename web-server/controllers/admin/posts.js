@@ -1,52 +1,26 @@
-// const R = require('ramda')
-// const {
-//   apiRequest,
-//   formatCategory,
-//   formatAdminPost
-// } = require('./common')
+const { R, fetchData, format, error } = require('../../util')
 
-// module.exports = {
-//   renderLogin (req, res) {
-//     res.render('login')
-//   },
-
-//   postLogin (req, res) {
-//     if (!req.body.username || !req.body.password) {
-//       res.statusCode(403)
-//       res.send('login failed')
-//     } else if (req.body.username === process.env.ADMIN_USERNAME &&
-//                req.body.password === process.env.ADMIN_PASSWORD) {
-//       req.session.admin = true
-//       res.send('login success!')
-//     } else {
-//       res.statusCode(401)
-//       res.send('login failed')
-//     }
-//   },
-
-//   logout (req, res) {
-//     req.session.destroy()
-//     res.send('Logout success.')
-//   },
-
-//   renderAdmin (req, res) {
-//     apiRequest('posts')
-//       .then(posts => {
-//         res.render('admin/index', {
-//           posts: R.map(formatAdminPost, posts)
-//         })
-//       })
-//   },
-
-//   renderAddPost (req, res) {
-//     Promise.all([
-//       apiRequest('posts/1'),
-//       apiRequest('categories')
-//     ]).then(([post, categories]) => {
-//       res.render('admin/modify-post', {
-//         post: formatAdminPost(post),
-//         categories: R.map(formatCategory, categories)
-//       })
-//     })
-//   }
-// }
+module.exports = async function posts (req, res) {
+  try {
+    const posts = await fetchData({
+      url: 'posts?sort=-eventDate',
+      attributes: [
+        'id', 'name', 'eventDate',
+        'previewUrl', 'organizerName',
+        'organizerLink', 'brief', 'categories'
+      ],
+      transform: {
+        eventDate: format.prettyDate,
+        categories: format.categoriesOfPost
+      },
+      transformSelf: R.map(format.addSlugOf('name'))
+    })
+    res.render('admin/posts', {
+      posts,
+      layout: 'admin',
+      title: 'Belka | Admin'
+    })
+  } catch (err) {
+    error(req, res, err)
+  }
+}

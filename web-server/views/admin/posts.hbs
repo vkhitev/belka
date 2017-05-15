@@ -1,96 +1,37 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Главная | Admin Belka</title>
-  <meta charset="utf-8">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link rel="stylesheet" type="text/css" href="/css/admin.css">
-
-</head>
-
-<body class="bg-faded">
-
-  <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-orange">
-    <div class="container mx-0 mx-sm-auto">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand p-0" href="#">
-        <img src="/img/logo.svg" lt="logo" class="belka-logo"> Belka Admin
-      </a>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#" title="Управление постами">Упр. постами</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" title="Статистика">Статистика</a>
-          </li>
-        </ul>
-
-      </div>
+<div class="container main-container py-3">
+  <div class="d-flex flex-row-reverse">
+    <div class="mt-2">
+      <a class="btn btn-success btn-circle btn-lg px-3" href="/admin/create_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
     </div>
-  </nav>
+  </div>
 
-  <div class="container main-container py-3">
-
-    <div class="d-flex flex-row-reverse">
-      <div class="mt-2">
-        <a class="btn btn-success btn-circle btn-lg px-3" href="admin/add_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
-      </div>
-    </div>
-
-    {{#each posts}}
-      <div class="card my-4">
-        <div class="card-block p-1">
-          <div class="media my-auto">
-            <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
-              <div class="pt-2">
-                <h4 class="card-title mb-0">{{name}}</h4>
-                <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
-                  <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href="{{organizerLink}}">{{organizerName}}</a>
-                  <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
-                    {{#each Categories}}
-                      <a class="badge-link" href="/category/{{slugLink}}">
-                        <span class="badge badge-default badge-category">{{name}}</span>
-                      </a>
-                    {{/each}}
-                  </p>
+  {{#each posts}}
+    <div class="card my-4">
+      <div class="card-block p-1">
+        <div class="media my-auto">
+          <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
+            <div class="pt-2">
+              <h4 class="card-title mb-0">{{name}}</h4>
+              <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
+                <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href="{{organizerLink}}">{{organizerName}}</a>
+                <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+                  {{#each categories}}
+                    <a class="badge-link" href="/categories/{{id}}/{{nameSlug}}">
+                    <span class="badge badge-default badge-category">{{name}}</span>
+                  </a>
+                  {{/each}}
                 </p>
-              </div>
-              <div class="py-2">
-                <p class="card-text">{{brief}}</p>
-              </div>
-              <div class="py-2">
-                <a href="admin/modify_post/{{slugLink}}" class="btn btn-primary">Редактировать пост</a>
-              </div>
+              </p>
+            </div>
+            <div class="py-2">
+              <p class="card-text">{{brief}}</p>
+            </div>
+            <div class="py-2">
+              <a href="/admin/edit_post/{{id}}/{{nameSlug}}" class="btn btn-primary">Редактировать пост</a>
             </div>
           </div>
         </div>
       </div>
-    {{/each}}
-  </div>
-
-  <footer class="px-5 py-3">
-    <div class="container">
-      <p class="mb-0 text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> 2017 Created by @vkhitev and @irmchk. Special for Belka Space.</p>
     </div>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/js/admin.js"></script>
-
-</body>
-
-</html>
+  {{/each}}
+</div>
