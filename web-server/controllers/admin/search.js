@@ -16,12 +16,13 @@ module.exports = async function search (req, res) {
       },
       transformSelf: R.map(format.addSlugOf('name'))
     })
-    res.render('blog/posts', R.merge(req.layout, {
+
+    res.render('admin/posts', {
       posts,
-      layout: 'blog',
+      layout: 'admin',
       title: 'Belka | Лента',
       searchQuery
-    }))
+    })
   } catch (err) {
     error(req, res, err)
   }

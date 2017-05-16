@@ -14,6 +14,8 @@ router.get('/logout', admin.logout)
 
 router.get('/', auth, admin.posts)
 router.get('/create_post', auth, admin.createPost)
+router.get('/search', auth, admin.search)
 sluggedBy('name', 'posts', router.get, '/edit_post/:postid', auth, admin.editPost)
+sluggedBy('name', 'categories', router.get, '/categories/:categoryid', auth, admin.categoryPosts)
 
 module.exports = router
