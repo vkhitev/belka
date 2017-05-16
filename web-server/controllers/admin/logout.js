@@ -1,4 +1,4 @@
 module.exports = async function logout (req, res) {
   req.session.destroy()
-  res.send('Logout success.')
+  res.redirect('/admin/login')
 }

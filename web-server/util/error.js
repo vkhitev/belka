@@ -1,8 +1,9 @@
-module.exports = function error (req, res, status) {
+module.exports = function error (req, res, err) {
+  const status = err.statusCode
   let title, content
   if (status === 404) {
     title = '404, page not found'
-    content = 'Перейдите на главную страницу'
+    content = 'Страница не найдена'
   } else if (status === 500) {
     title = '500, internal server error'
     content = 'Проблема на сервере, попробуйте зайти позже.'
