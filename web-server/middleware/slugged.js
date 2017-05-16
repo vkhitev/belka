@@ -1,21 +1,24 @@
-const { R, fetchData, format } = require('../util')
+const { R, fetchData, format, error } = require('../util')
 
-function sluggedBy (attr, apiUrl, action, route, ...handlers) {
+function sluggedBy (attr, apiUrl, action, prefix, route, ...handlers) {
   function addSlug (path, id, handler) {
-    return function (req, res) {
-      fetchData({
-        url: `${apiUrl}/${req.params[id]}`,
-        attributes: [attr],
-        transform: {
-          [attr]: format.slugifyOne
-        }
-      }).then(slug => {
+    return async function (req, res) {
+      try {
+        const slug = await fetchData({
+          url: `${apiUrl}/${req.params[id]}`,
+          attributes: [attr],
+          transform: {
+            [attr]: format.slugifyOne
+          }
+        })
         if (req.params.slug === slug[attr]) {
           handler(req, res)
         } else {
-          res.redirect(`/${path}/${req.params[id]}/${slug[attr]}`)
+          res.redirect(`/${prefix}/${path}/${req.params[id]}/${slug[attr]}`)
         }
-      })
+      } catch (err) {
+        error(req, res, err)
+      }
     }
   }
   const path = route.match(/\/(.+)\//)[1]
