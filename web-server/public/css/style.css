@@ -28,6 +28,20 @@ body {
     color: #fff;
 }
 
+.btn-outline-white {
+  color: #fff;
+  background-image: none;
+  background-color: transparent;
+  border-color: #fff
+}
+
+.btn-outline-white:hover {
+  color: #ec691b;
+  background-color: #fff;
+  border-color: #fff;
+  cursor: pointer;
+}
+
 .nav .nav-link {
     color: rgba(0,0,0,.5);
 }
@@ -107,3 +121,20 @@ img.card-img-top {
 .badge-category {
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+.podcast-carousel {
+  width: 100%;
+}
+
+.podcast-img {
+  width: 100%;
+  height: auto;
+  max-height: 60vh; 
+  object-fit: contain;
+}
+
+.podcast-audio {
+  width: 100%;
+  /*border: 1px solid #292b2c;*/
+}
+
