@@ -1,29 +1,40 @@
-const { R, fetchData, format, error } = require('../../util')
+const R = require('ramda')
+const { fetchData, format, formatters } = require('../../util')
 
-module.exports = async function categoryPosts (req, res) {
+exports.fetch = async function fetch (req, res, next) {
   const categoryid = req.params.categoryid
-  try {
-    const categoryPosts = await fetchData({
-      url: `category_posts/${categoryid}`,
-      attributes: ['name', 'posts'],
-      transform: {
-        posts: R.map(R.pipe(
-          format.addSlugOf('name'),
-          R.dissoc('postCategory'),
-          R.evolve({
-            eventDate: format.prettyDate,
-            categories: format.categoriesOfPost
-          })
-        ))
-      }
-    })
+  const { body, headers } = await fetchData('posts', {
+    qs: {
+      category: categoryid,
+      sort: '-eventDate',
+      count: req.pagination.count,
+      offset: req.pagination.offset
+    },
+    resolveWithFullResponse: true
+  })
+  console.log(headers)
+  const posts = format(body, {
+    attributes: [
+      'id', 'name', 'eventDate',
+      'previewUrl', 'organizerName',
+      'organizerLink', 'brief', 'categories'
+    ],
+    transform: {
+      eventDate: formatters.prettyDate,
+      categories: formatters.categoriesOfPost
+    },
+    transformSelf: R.map(formatters.addSlugOf('name'))
+  })
+  req.posts = posts
+  req.pagination = req.pagination.create(headers['content-range'])
+  next()
+}
 
-    res.render('blog/posts', R.merge(req.layout, {
-      posts: categoryPosts.posts,
-      layout: 'blog',
-      title: 'Belka | ' + categoryPosts.name
-    }))
-  } catch (err) {
-    error(req, res, err)
-  }
+exports.render = async function render (req, res) {
+  res.render('blog/posts', R.merge(req.layout, {
+    posts: req.posts,
+    pagination: req.pagination,
+    layout: 'blog',
+    title: 'Belka | Лента'
+  }))
 }

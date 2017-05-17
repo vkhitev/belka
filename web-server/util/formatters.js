@@ -1,5 +1,6 @@
 const R = require('ramda')
 const slug = require('slug')
+const format = require('./format')
 
 const moment = require('moment')
 moment.locale('ru')

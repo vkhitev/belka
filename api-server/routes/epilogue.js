@@ -60,5 +60,45 @@ module.exports = function (app) {
     })
   }
 
+  resources.Post.use({
+    list: {
+      fetch: {
+        async before (req, res, context) {
+          // console.log(req.query)
+          context.options = context.options || {}
+          context.options.distinct = true
+
+          if (req.query.category) {
+            const ids = await db.sequelize.query(
+              'SELECT DISTINCT postId FROM postCategory WHERE categoryId = ?',
+               { replacements: [req.query.category], type: db.sequelize.QueryTypes.SELECT }
+            )
+
+            context.options.where = {
+              '$post.id$': {
+                $in: ids.map(obj => obj.postId)
+              }
+            }
+          }
+
+          return context.continue
+        }
+      }
+    }
+  })
+
+  // resources.CategoryPost.use({
+  //   list: {
+  //     fetch: {
+  //       async before (req, res, context) {
+  //         console.log(req.query)
+  //         // const count = await db.Post.count()
+  //         // res.set('content-range', count)
+  //         return context.continue
+  //       }
+  //     }
+  //   }
+  // })
+
   return app
 }
