@@ -2,22 +2,42 @@ const { Router } = require('express')
 
 const { blog } = require('../controllers')
 
-// const sluggedBy = require('../middleware/slugged')
-const paginate = require('../middleware/pagination').paginateBy(10)
+const paginate = require('../middleware/pagination').paginateBy(2)
 
 const router = Router()
 
 router.get('/', blog.homepage)
-router.get(['/posts', '/posts/page/:page'],
+router.get([
+  '/posts',
+  '/posts/page/:page'
+],
   blog.layout.fetch,
-  paginate(blog.posts.fetch),
+  paginate(blog.posts.fetch()),
+  blog.posts.transform,
   blog.posts.render
 )
 
-router.get(['/categories/:categoryid', '/categories/:categoryid/page/:page'],
+router.get([
+  '/categories/:categoryid',
+  '/categories/:categoryid/:slug',
+  '/categories/:categoryid/page/:page',
+  '/categories/:categoryid/:slug/page/:page'
+],
   blog.layout.fetch,
-  paginate(blog.categoryPosts.fetch),
-  blog.categoryPosts.render
+  blog.categoryPosts.sluggify,
+  paginate(blog.posts.fetch('category')),
+  blog.posts.transform,
+  blog.posts.render
+)
+
+router.get([
+  '/search',
+  '/search/page/:page'
+],
+  blog.layout.fetch,
+  paginate(blog.posts.fetch('search')),
+  blog.posts.transform,
+  blog.posts.render
 )
 
 // router.get('/search', blogLayout, pagination, blog.search)

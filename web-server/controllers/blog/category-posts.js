@@ -1,40 +1,15 @@
-const R = require('ramda')
-const { fetchData, format, formatters } = require('../../util')
+const { fetchData, formatters } = require('../../util')
 
-exports.fetch = async function fetch (req, res, next) {
+exports.sluggify = async function sluggify (req, res, next) {
   const categoryid = req.params.categoryid
-  const { body, headers } = await fetchData('posts', {
-    qs: {
-      category: categoryid,
-      sort: '-eventDate',
-      count: req.pagination.count,
-      offset: req.pagination.offset
-    },
-    resolveWithFullResponse: true
-  })
-  console.log(headers)
-  const posts = format(body, {
-    attributes: [
-      'id', 'name', 'eventDate',
-      'previewUrl', 'organizerName',
-      'organizerLink', 'brief', 'categories'
-    ],
-    transform: {
-      eventDate: formatters.prettyDate,
-      categories: formatters.categoriesOfPost
-    },
-    transformSelf: R.map(formatters.addSlugOf('name'))
-  })
-  req.posts = posts
-  req.pagination = req.pagination.create(headers['content-range'])
+  if (!req.params.slug) {
+    const category = await fetchData(`categories/${categoryid}`)
+    const slug = formatters.slugifyOne(category.name)
+    if (req.params.page) {
+      return res.redirect(`/categories/${categoryid}/${slug}/page/${req.params.page}`)
+    } else {
+      return res.redirect(`/categories/${categoryid}/${slug}`)
+    }
+  }
   next()
-}
-
-exports.render = async function render (req, res) {
-  res.render('blog/posts', R.merge(req.layout, {
-    posts: req.posts,
-    pagination: req.pagination,
-    layout: 'blog',
-    title: 'Belka | Лента'
-  }))
 }

@@ -8,7 +8,7 @@ exports.fetch = async function fetch (req, res, next) {
       posts: R.map(formatters.addSlugOf('name'))
     }
   })
-  const categories = format(await fetchData('categories'), {
+  const categories = format(await fetchData('categories?sort=name'), {
     attributes: ['id', 'name'],
     transformSelf: R.map(formatters.addSlugOf('name'))
   })
