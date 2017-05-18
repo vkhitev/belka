@@ -18,7 +18,6 @@ exports.paginateBy = function paginateBy (maxItemsOnPage, pattern = /items (\d+-
         const parsedUrl = url.parse(req.originalUrl)
         const qs = parsedUrl.search || ''
         const pathname = parsedUrl.pathname.replace(/\/page.*/, '')
-        console.log(pathname)
 
         return {
           multiPages: pagesCount > 1,

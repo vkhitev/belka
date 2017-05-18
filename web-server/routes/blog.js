@@ -6,7 +6,7 @@ const paginate = require('../middleware/pagination').paginateBy(2)
 
 const router = Router()
 
-router.get('/', blog.homepage)
+router.get('/', (req, res) => res.redirect('/posts'))
 router.get([
   '/posts',
   '/posts/page/:page'
@@ -40,11 +40,15 @@ router.get([
   blog.posts.render
 )
 
-// router.get('/search', blogLayout, pagination, blog.search)
-// router.get()
-// sluggedBy('name', 'posts', router.get, '', '/posts/:postid/', blogLayout, blog.post)
-// sluggedBy('name', 'categories', router.get, '', '/categories/:categoryid', blogLayout, blog.categoryPosts)
-
-// router.get('/posts/page/:pageid', blogLayout, pagination, blog.posts)
+router.get([
+  '/posts/:postid',
+  '/posts/:postid/:slug'
+],
+  blog.layout.fetch,
+  blog.post.sluggify,
+  blog.post.fetch,
+  blog.post.transform,
+  blog.post.render
+)
 
 module.exports = router

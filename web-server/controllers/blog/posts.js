@@ -10,7 +10,7 @@ exports.fetch = function fetch (types = []) {
     if (types.includes('category')) {
       extraQuery.category = req.params.categoryid
     }
-    if (types.includes('search')) {
+    if (types.includes('search') && req.query.q) {
       extraQuery.q = req.query.q
     }
     return R.merge(qs, extraQuery)
