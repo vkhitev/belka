@@ -1,52 +1,10 @@
-<div class="container main-container py-3">
-  {{!--<div class="d-flex flex-row-reverse">--}}
-  <div class="mt-2">
-    <a class="btn btn-success btn-circle btn-lg px-3" href="/admin/create_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
-  </div>
-  {{!--</div>--}}
-
-  {{#if posts}}
-    {{#each posts}}
-      <div class="card my-4">
-        <div class="card-block p-1">
-          <div class="media my-auto">
-            <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
-              <div class="pt-2">
-                <h4 class="card-title mb-0">{{name}}</h4>
-                <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
-                  <i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{organizerLink}}>{{organizerName}}</a>
-                </p>
-                <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
-                  {{#each categories}}
-                    <a class="badge-link" href="/admin/categories/{{id}}/{{nameSlug}}">
-                  <span class="badge badge-default badge-category">{{name}}</span>
-                </a>
-                  {{/each}}
-                </p>
-              </div>
-              <div class="py-2">
-                <img class="hidden-lg-up mb-3" src= {{previewUrl}} alt="Изображение события">
-                <p class="card-text">
-                  {{brief}}
-                </p>
-              </div>
-              <div class="py-2">
-                <a href="/admin/edit_post/{{id}}/{{nameSlug}}" class="btn btn-primary">Редактировать пост</a>
-              </div>
-            </div>
-            <img class="d-flex align-self-center hidden-md-down ml-3" src= {{previewUrl}} alt="Изображение события">
-          </div>
-        </div>
-      </div>
-    {{/each}}
-    {{>shared/pagination}}
-  {{else}}
-    <div class="alert alert-danger my-4" role="alert">
-      <h4 class="alert-heading">Ничего не найдено!</h4>
-      <p>По вашему запросу <strong>"{{searchQuery}}"</strong> не было найдено ни одной записи. Пожалуйста, проверьте правильность
-        введенного параметра поиска (название, автор, категория).</p>
-      <p class="mb-0">Также вы можете вернуться на <a class="alert-link" href="/admin">главную</a> страницу</p>
-    </div>
-  {{/if}}
-
+<div class="mt-2">
+  <a class="btn btn-success btn-circle btn-lg px-3" href="/admin/create_post" role="button" title="Добавить пост"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></a>
 </div>
+
+{{#if posts}}
+  {{>admin/posts}}
+  {{>shared/pagination}}
+{{else}}
+  {{>shared/no-posts}}
+{{/if}}

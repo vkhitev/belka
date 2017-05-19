@@ -37,7 +37,7 @@ router.get([
   blog.layout.fetch,
   paginate(blog.posts.fetch('search')),
   blog.posts.transform,
-  blog.posts.render
+  blog.search.render
 )
 
 router.get([

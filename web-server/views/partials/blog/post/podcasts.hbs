@@ -1,0 +1,42 @@
+{{#each podcasts}}
+  <div class="podcast-player">
+
+    <hr class="my-3">
+    <h4 class="podcast-name">{{name}}</h4>
+    <p class="podcast-descr text-muted">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      Автор: {{speaker}}
+    </p>
+
+    <div class="carousel podcast-carousel slide bg-inverse" id="podcast-{{id}}-slider">
+
+      {{!-- Карусель --}}
+      <div class="carousel-inner" role="listbox">
+        {{#each ../postImages}}
+          <div class="carousel-item {{#if @first}}active{{/if}}">
+            <img class="podcast-img" src= {{url}} alt="{{@index}} slide">
+          </div>
+        {{/each}}
+      </div>
+
+      {{!-- Слайд назад --}}
+      <a class="carousel-control-prev" href="#podcast-{{id}}-slider" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      {{!-- Слайд вперёд --}}
+      <a class="carousel-control-next" href="#podcast-{{id}}-slider" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    {{!-- Аудио --}}
+    <audio class="podcast-audio" controls>
+      <source src="{{audioUrl}}" type="audio/mpeg" id="podcast-{{id}}-audio">
+      Тег audio не поддерживается вашим браузером. Вы можете <a href="{{audioUrl}}">загрузить</a> файл на компьютер
+    </audio>
+
+  </div>
+{{/each}}

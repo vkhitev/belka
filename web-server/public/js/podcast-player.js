@@ -13,11 +13,7 @@ $(document).ready(function () {
 })
 
 function checkitem (identificator) {
-  // console.log(identificator)
-
   var $this = $('#' + identificator)
-
-  // console.log($this)
 
   if ($('#' + identificator + ' .carousel-item:first').hasClass('active')) {
     $this.children('.carousel-control-prev').hide()
@@ -29,6 +25,4 @@ function checkitem (identificator) {
     $this.children('.carousel-control-prev').show()
     $this.children('.carousel-control-next').show()
   }
-
-  // console.log($('#' + identificator + ' .carousel-item:first'))
 }

@@ -42,21 +42,6 @@ module.exports = function (app) {
     Category: epilogue.resource({
       model: db.Category,
       endpoints: ['/categories', '/categories/:id']
-    }),
-
-    CategoryPost: epilogue.resource({
-      model: db.Category,
-      endpoints: ['/category_posts', '/category_posts/:id'],
-      include: [{
-        model: db.Post,
-        include: [db.Category]
-      }]
-    }),
-
-    User: epilogue.resource({
-      model: db.User,
-      endpoints: ['/user_hash/:username'],
-      attributes: ['hash']
     })
   }
 
@@ -64,7 +49,6 @@ module.exports = function (app) {
     list: {
       fetch: {
         async before (req, res, context) {
-          // console.log(req.query)
           context.options = context.options || {}
           context.options.distinct = true
 
@@ -86,19 +70,6 @@ module.exports = function (app) {
       }
     }
   })
-
-  // resources.CategoryPost.use({
-  //   list: {
-  //     fetch: {
-  //       async before (req, res, context) {
-  //         console.log(req.query)
-  //         // const count = await db.Post.count()
-  //         // res.set('content-range', count)
-  //         return context.continue
-  //       }
-  //     }
-  //   }
-  // })
 
   return app
 }

@@ -1,0 +1,33 @@
+{{#each posts}}
+  <div class="card my-4">
+    <div class="card-block p-1">
+      <div class="media my-auto">
+        <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
+          <div class="py-2">
+            <h4 class="card-title mb-1">{{name}}</h4>
+            <p class="text-muted mb-0"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{eventDate}} |
+              <i class="fa fa-user" aria-hidden="true"></i> Организатор: <a href= {{organizerLink}}>{{organizerName}}</a>
+            </p>
+            <p class="text-muted mb-0"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+              {{#each categories}}
+                <a class="badge-link" href="/admin/categories/{{id}}/{{nameSlug}}">
+                  <span class="badge badge-default badge-category">{{name}}</span>
+                </a>
+              {{/each}}
+            </p>
+          </div>
+          <div class="py-2">
+            <img class="hidden-lg-up mb-3" src= {{previewUrl}} alt="Изображение события">
+            <p class="card-text">
+              {{brief}}
+            </p>
+          </div>
+          <div class="py-2">
+            <a href="/admin/edit_post/{{id}}/{{nameSlug}}" class="btn btn-primary">Редактировать пост</a>
+          </div>
+        </div>
+        <img class="d-flex align-self-center hidden-md-down ml-3" src= {{previewUrl}} alt="Изображение события">
+      </div>
+    </div>
+  </div>
+{{/each}}

@@ -40,7 +40,7 @@ router.get([
   blog.layout.fetch,
   paginate(blog.posts.fetch('search')),
   blog.posts.transform,
-  admin.posts.render
+  admin.search.render
 )
 
 router.get('/create_post',

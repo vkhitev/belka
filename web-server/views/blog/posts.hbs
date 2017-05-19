@@ -1,14 +1,6 @@
-<div class="col-xs-12 col-md-9 col-xl-10 flex-first flex-md-unordered pl-md-5" id="posts-container">
-  {{#if posts}}
-    {{>blog/posts}}
-  {{else}}
-    {{#if searchQuery}}
-      {{>blog/no-search-posts}}
-    {{else}}
-      {{>blog/no-posts}}
-    {{/if}}
-  {{/if}}
-
+{{#if posts}}
+  {{>blog/posts}}
   {{>shared/pagination}}
-
-</div>
+{{else}}
+  {{>shared/no-posts}}
+{{/if}}
