@@ -9,23 +9,6 @@
     {{/if}}
   {{/if}}
 
-
-  {{#if pagination.multiPages}}
-    <nav aria-label="Page navigation">
-      <ul class="pagination d-flex justify-content-center">
-
-        {{!-- Для отключения кнопки (тип, отключить "Назад", если первая страница) нужно добавлять в <li> класс disabled и в <a> tabindex="-1" (в admin.js код для disabled кликов) --}}
-        {{!-- Для того, чтобы сделать кнопку активной (тип, текущая страница), нужно добавлять в <li> класс active --}}
-
-        <li class="page-item {{#if pagination.isFirst}}disabled{{/if}}"><a class="page-link" href="{{pagination.previousPage}}" tabindex="-1">Предыдущая</a></li>
-
-        {{#each pagination.pages}}
-          <li class="page-item {{#if isActive}}active{{/if}}"><a class="page-link" href="{{url}}">{{page}}</a></li>
-        {{/each}}
-
-        <li class="page-item {{#if pagination.isLast}}disabled{{/if}}"><a class="page-link" href="{{pagination.nextPage}}">Следующая</a></li>
-      </ul>
-    </nav>
-  {{/if}}
+  {{>shared/pagination}}
 
 </div>

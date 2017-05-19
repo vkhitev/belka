@@ -1,19 +1,22 @@
-const { R, fetchData, error } = require('../../util')
+const { fetchData, format, formatters } = require('../../util')
 
-module.exports = async function posts (req, res) {
-  try {
-    const categories = await fetchData({
-      url: 'categories',
-      attributes: ['id', 'name'],
-      transformSelf: R.sortBy(R.prop('name'))
-    })
-    res.render('admin/edit-post', {
-      categories,
-      layout: 'admin',
-      title: 'Belka | Новый пост',
-      action: 'Создание нового поста'
-    })
-  } catch (err) {
-    error(req, res, err)
-  }
+exports.fetch = async function fetch (req, res, next) {
+  req.categories = await fetchData('categories')
+  next()
+}
+
+exports.transform = function transform (req, res, next) {
+  req.categories = format(req.categories, {
+    transformSelf: formatters.sortBy('name')
+  })
+  next()
+}
+
+exports.render = function render (req, res) {
+  res.render('admin/edit-post', {
+    categories: req.categories,
+    layout: 'admin',
+    title: 'Belka | Новый пост',
+    action: 'Создание нового поста'
+  })
 }

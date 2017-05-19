@@ -46,7 +46,7 @@
 
               <div class="float-left">
                 <p class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i> Дата: {{post.eventDate}}</p>
-                <p class="text-muted"><i class="fa fa-user" aria-hidden="true"></i> Автор: <a href= {{post.organizerLink}}>{{post.organizerName}}</a></p>
+                <p class="text-muted"><i class="fa fa-user" aria-hidden="true"></i> Организатор: <a href= {{post.organizerLink}}>{{post.organizerName}}</a></p>
               </div>
               <div class="float-right">
                 <p class="text-muted"><i class="fa fa-podcast" aria-hidden="true"></i> Подкасты <a href="#">iTunes</a></p>
@@ -74,7 +74,7 @@
                 <div class="podcast-player">
                   <hr class="my-3">
                   <h4 class="podcast-name">{{name}}</h4>
-                  <p class="podcast-descr">{{speaker}}</p>
+                  <p class="podcast-descr text-muted"><i class="fa fa-user" aria-hidden="true"></i> Автор: {{speaker}}</p>
 
                   <div id="podcast-{{id}}-slider" class="carousel podcast-carousel slide bg-inverse">
                     <div class="carousel-inner" role="listbox">

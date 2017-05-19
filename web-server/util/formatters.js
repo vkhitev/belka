@@ -34,10 +34,13 @@ function slugifyOne (str) {
   return slug(str, { lower: true })
 }
 
+const sortBy = (prop) => R.sortBy(R.prop(prop))
+
 module.exports = {
   prettyDate,
   categoriesOfPost,
   addSlugOf,
   dateOnly,
-  slugifyOne
+  slugifyOne,
+  sortBy
 }

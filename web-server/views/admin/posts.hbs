@@ -39,21 +39,7 @@
         </div>
       </div>
     {{/each}}
-    <nav aria-label="Page navigation">
-      <ul class="pagination d-flex justify-content-center">
-
-        {{!-- Для отключения кнопки (тип, отключить "Назад", если первая страница) нужно добавлять в <li> класс disabled и в <a> tabindex="-1" (в admin.js код для disabled кликов) --}}
-        {{!-- Для того, чтобы сделать кнопку активной (тип, текущая страница), нужно добавлять в <li> класс active --}}
-
-        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Предыдущая</a></li>
-
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-
-        <li class="page-item"><a class="page-link" href="#">Следующая</a></li>
-      </ul>
-    </nav>
+    {{>shared/pagination}}
   {{else}}
     <div class="alert alert-danger my-4" role="alert">
       <h4 class="alert-heading">Ничего не найдено!</h4>
