@@ -8,10 +8,10 @@
       Автор: {{speaker}}
     </p>
 
-    <div class="carousel podcast-carousel slide bg-inverse" id="podcast-{{id}}-slider">
+    <div class="carousel podcast-carousel slide bg-inverse" id="podcast-carousel-{{id}}" data-interval="false">
 
-      {{!-- Карусель --}}
-      <div class="carousel-inner" role="listbox">
+      {{!-- Carousel images --}}
+      <div class="carousel-inner slide" role="listbox" id="podcast-slider-{{id}}" data-interval="false">
         {{#each ../postImages}}
           <div class="carousel-item {{#if @first}}active{{/if}}">
             <img class="podcast-img" src= {{url}} alt="{{@index}} slide">
@@ -19,22 +19,22 @@
         {{/each}}
       </div>
 
-      {{!-- Слайд назад --}}
-      <a class="carousel-control-prev" href="#podcast-{{id}}-slider" role="button" data-slide="prev">
+      {{!-- Previous slide --}}
+      <a class="carousel-control-prev" href="#podcast-carousel-{{id}}" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
 
-      {{!-- Слайд вперёд --}}
-      <a class="carousel-control-next" href="#podcast-{{id}}-slider" role="button" data-slide="next">
+      {{!-- Next slide --}}
+      <a class="carousel-control-next" href="#podcast-carousel-{{id}}" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
     </div>
 
-    {{!-- Аудио --}}
-    <audio class="podcast-audio" controls>
-      <source src="{{audioUrl}}" type="audio/mpeg" id="podcast-{{id}}-audio">
+    {{!-- Audio element --}}
+    <audio class="podcast-audio" controls id="podcast-audio-{{id}}">
+      <source src="{{audioUrl}}" type="audio/mpeg">
       Тег audio не поддерживается вашим браузером. Вы можете <a href="{{audioUrl}}">загрузить</a> файл на компьютер
     </audio>
 

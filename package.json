@@ -13,7 +13,8 @@
     "db:drop": "node scripts/db-drop",
     "db:fill": "node scripts/db-fill",
     "db:test": "node scripts/db-test",
-    "db:recreate": "npm run db:drop && npm run db:create && npm run db:fill"
+    "db:recreate": "npm run db:drop && npm run db:create && npm run db:fill",
+    "br": "watchify web-server/public/js/podcast-player.js -o web-server/public/dist/podcast-player.js"
   },
   "keywords": [],
   "author": "Vlad Khitev <vkhitev@gmail.com>",
@@ -22,6 +23,7 @@
     "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
+    "bootstrap": "^4.0.0-alpha.6",
     "cookie-parser": "^1.4.3",
     "debug": "^2.6.3",
     "dotenv": "^4.0.0",
@@ -30,6 +32,9 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.2",
     "glob": "^7.1.1",
+    "interval-tree-1d": "^1.0.3",
+    "interval-tree2": "^1.1.0",
+    "jquery": "^3.2.1",
     "moment": "^2.18.1",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
@@ -42,6 +47,8 @@
     "slug": "^0.9.1"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "browserify": "^14.3.0",
+    "nodemon": "^1.11.0",
+    "watchify": "^3.9.0"
   }
 }

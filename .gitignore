@@ -42,3 +42,4 @@ docs
 .vscode
 **/.DS_Store
 web-server/public/content
+web-server/public/dist
