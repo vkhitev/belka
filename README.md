@@ -21,6 +21,8 @@ Stack of technologies used in project:
   - jQuery
 
 # Installation
+First install `ghostscript` and `graphicmagick`. Add them to your PATH. These libraries convert PDF file to images.
+
 Install packages (requires [node-gyp](https://github.com/nodejs/node-gyp) to be installed)
 ```
 npm install

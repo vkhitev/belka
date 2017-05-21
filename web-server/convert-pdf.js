@@ -3,9 +3,9 @@ const path = require('path')
 const Promise = require('bluebird')
 const { Range } = require('immutable')
 
-function countPages (filename) {
+function countPages (src) {
   return new Promise((resolve, reject) => {
-    gm('./1.pdf').identify('x', (err, data) => {
+    gm(src).identify('x', (err, data) => {
       if (err) {
         return reject(err)
       }

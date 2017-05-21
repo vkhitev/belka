@@ -31,7 +31,10 @@ module.exports = function (app) {
 
     Podcast: epilogue.resource({
       model: db.Podcast,
-      endpoints: ['/podcasts', '/podcasts/:id']
+      endpoints: ['/podcasts', '/podcasts/:id'],
+      include: [{
+        model: db.PodcastSlide
+      }]
     }),
 
     PostImage: epilogue.resource({

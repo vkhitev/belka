@@ -35,12 +35,19 @@ exports.transform = function transform (req, res, next) {
     attributes: ['id', 'url']
   })
   req.podcasts = format(req.podcasts, {
-    attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
+    attributes: [
+      'id', 'name', 'audioUrl',
+      'slidesUrl', 'speaker', 'podcastSlides'
+    ],
+    transform: {
+      podcastSlides: formatters.sortBy('syncTime')
+    }
   })
   next()
 }
 
 exports.render = function render (req, res, next) {
+  console.log(req.podcasts)
   res.render('blog/post', R.merge(req.layout, {
     post: req.post,
     postImages: req.postImages,

@@ -24,7 +24,7 @@ module.exports = function (sequelize, DataTypes) {
     previewUrl: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: 'content/preview/default.svg'
+      defaultValue: '/content/preview/default.svg'
     },
     organizerName: {
       type: DataTypes.STRING,

@@ -1,4 +1,6 @@
-const IntervalTree = require('interval-tree2')
+/* global syncData */
+
+const synchronizeAudio = require('./sync-audio')
 
 function disableLoopControls (carousel) {
   const prev = carousel.children('.carousel-control-prev')
@@ -21,37 +23,12 @@ function disableLoopControls (carousel) {
 }
 
 function initCarousels () {
-  const carousels = Array.from($('[id^=podcast-carousel]')).map($)
-  carousels.forEach(disableLoopControls)
-  carousels.forEach(synchronizeAudio)
-}
-
-function createIntervalTree (root, marks) {
-  const itree = new IntervalTree(root)
-  for (let i = 0; i < marks.length - 1; i += 1) {
-    itree.add(marks[i], marks[i + 1], i)
-  }
-  return itree
-}
-
-function getValue (itree, key) {
-  return itree.search(key)[0].id
-}
-
-function synchronizeAudio (carousel, marks) {
-  const slider = carousel.find('[id^=podcast-slider]')
-  const audio = carousel.siblings('[id^=podcast-audio]')
-  audio.on('loadedmetadata', e => {
-    marks = [0, 2, 4, 200, 400, 600, 800, e.target.duration]
-    const itree = createIntervalTree(e.target.duration / 2, marks)
-
-    audio.on('seeked', onseeked)
-    audio.on('timeupdate', onseeked)
-
-    function onseeked (e) {
-      const slide = getValue(itree, e.target.currentTime)
-      slider.carousel(slide)
-    }
+  $('[id^=podcast-carousel]').each((i, el) => {
+    const id = el.id.match(/(\d+)$/)[1]
+    const marks = syncData[id]
+    const $el = $(el)
+    disableLoopControls($el)
+    synchronizeAudio($el, id, marks)
   })
 }
 
