@@ -23,7 +23,7 @@ app.set('view engine', '.hbs')
 if (process.env.NODE_ENV === 'production') {
   app.enable('view cache')
 }
-app.use(favicon(path.join(config.publicPath, 'favicon.svg')))
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
