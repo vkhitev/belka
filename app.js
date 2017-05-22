@@ -11,8 +11,7 @@ const hbs = require('./handlebars')
 const blogRoutes = require('./web-server/routes/blog')
 const adminRoutes = require('./web-server/routes/admin')
 const feedRoutes = require('./web-server/routes/feed')
-const apiRoutes = require('./api-server/routes')
-const registerRestApi = require('./api-server/routes/epilogue')
+const registerApiRoutes = require('./api-server')
 const config = require('./config')
 
 const app = express()
@@ -39,8 +38,7 @@ app.use(session({
 app.use('/', blogRoutes)
 app.use('/admin', adminRoutes)
 app.use('/feed', feedRoutes)
-app.use('/api', apiRoutes)
-registerRestApi(app)
+registerApiRoutes('/api', app)
 
 app.use((req, res, next) => {
   const err = new Error('Not found')

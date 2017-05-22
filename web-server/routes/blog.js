@@ -2,7 +2,7 @@ const { Router } = require('express')
 
 const { blog } = require('../controllers')
 
-const paginate = require('../middleware/pagination').paginateBy(2)
+const paginate = require('../middleware/pagination').paginateBy(6)
 
 const router = Router()
 

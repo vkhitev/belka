@@ -8,13 +8,13 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
+    "dev:server": "nodemon ./bin/www",
+    "dev:client": "watchify web-server/public/js/podcast-player.js -o web-server/public/dist/podcast-player.js",
     "db:create": "node scripts/db-create",
     "db:drop": "node scripts/db-drop",
     "db:fill": "node scripts/db-fill",
     "db:test": "node scripts/db-test",
-    "db:recreate": "npm run db:drop && npm run db:create && npm run db:fill",
-    "br": "watchify web-server/public/js/podcast-player.js -o web-server/public/dist/podcast-player.js"
+    "db:recreate": "npm run db:drop && npm run db:create && npm run db:fill"
   },
   "keywords": [],
   "author": "Vlad Khitev <vkhitev@gmail.com>",

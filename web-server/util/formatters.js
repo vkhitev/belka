@@ -36,11 +36,19 @@ function slugifyOne (str) {
 
 const sortBy = (prop) => R.sortBy(R.prop(prop))
 
+function groupByYear (posts) {
+  const groupedByYear = R.groupBy(post => new Date(post.eventDate).getFullYear(), posts)
+  return Object.entries(groupedByYear).map(([year, posts]) => ({
+    year, posts
+  }))
+}
+
 module.exports = {
   prettyDate,
   categoriesOfPost,
   addSlugOf,
   dateOnly,
   slugifyOne,
-  sortBy
+  sortBy,
+  groupByYear
 }
