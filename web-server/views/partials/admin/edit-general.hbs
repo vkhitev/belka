@@ -1,72 +1,91 @@
-<form>
+{{#section 'scripts'}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+  <script src="/js/edit-podcasts.js"></script>
+{{/section}}
+
+<form id="general-edit-form">
   
-  <div class="form-group">
-    <label for="inputPostName">Название</label>
-    <input type="text" class="form-control" id="inputPostName" aria-describedby="postNameHelp" placeholder="Название поста" value="{{post.name}}">
+  <div class="form-group w-50">
+    <label for="inputPostName" class="fw-600">Название</label>
+    <input id="g_name" name="name" type="text" class="form-control" id="inputPostName" aria-describedby="postNameHelp" placeholder="Название поста" value="{{post.name}}">
     <small id="postNameHelp" class="form-text text-muted">Введите название для поста с событием</small>
   </div>
 
-  <div class="form-group">
-    <label for="inputAuthorName">Имя организатора</label>
-    <input type="text" class="form-control" id="inputAuthorName" aria-describedby="authorNameHelp" placeholder="Имя организатора"
+  <div class="form-group w-50">
+    <label for="inputAuthorName" class="fw-600">Имя организатора</label>
+    <input id="g_organizerName" name="organizerName" type="text" class="form-control" id="inputAuthorName" aria-describedby="authorNameHelp" placeholder="Имя организатора"
       value="{{post.organizerName}}">
     <small id="authorNameHelp" class="form-text text-muted">Введите ФИО, имя или никнейм автора для поста с событием</small>
   </div>
 
-  <div class="form-group">
-    <label for="inputAuthorUrl">Ссылка на организатора</label>
-    <input type="text" class="form-control" id="inputAuthorUrl" aria-describedby="authorUrlHelp" placeholder="Ссылка на организатора"
-      value="{{organizerLink}}">
-    <small id="authorUrlHelp" class="form-text text-muted">Введите ссылку на блог, страницуорганизатора в одной из соц. сетей</small>
+  <div class="form-group w-50">
+    <label for="inputAuthorUrl" class="fw-600">Ссылка на организатора</label>
+    <input id="g_organizerLink" name="organizerLink" type="text" class="form-control" id="inputAuthorUrl" aria-describedby="authorUrlHelp" placeholder="Ссылка на организатора"
+      value="{{post.organizerLink}}">
+    <small id="authorUrlHelp" class="form-text text-muted">Введите ссылку на блог, страницу организатора в одной из соц. сетей</small>
   </div>
-
-  <div class="form-group">
-    <label for="inputDate">Дата публикации</label>
-    <input type="date" class="form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Дата публикации (01 января)"
+  
+  <div class="form-group w-50">
+    <label for="inputDate" class="fw-600">Дата публикации</label>
+    <input id="g_eventDate" name="eventDate", type="date" class="form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Дата публикации (01 января)"
       value="{{post.eventDate}}">
     <small id="dateHelp" class="form-text text-muted">Введите дату публикации.</small>
   </div>
 
-  <div class="form-group">
-    <label for="textareaAbout">Описание</label>
-    <textarea class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{{post.brief}}</textarea>
+  <div class="form-group w-50">
+    <label for="textareaAbout" class="fw-600">Описание</label>
+    <textarea id="g_brief" name="brief" class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{{post.brief}}</textarea>
     <small id="aboutHelp" class="form-text text-muted">Введите несколько предложений, которые будут представлены в качестве описания для события</small>
   </div>
 
-  <div class="form-group">
-    <label for="selectCat">Категории</label>
-    <select multiple class="form-control" id="selectCat">
-        {{#each categories}}
-          <option value="{{name}}">{{name}}</option>
-        {{/each}}
-      </select>
-    <small id="catHelp" class="form-text text-muted">Выберите одну или несколько категорий, к которым относится пост</small>
+  <div class="container-fluid d-flex justify-content-around">
+    <div class="form-group col-6">
+      <label for="all-categories" class="fw-600">Все категории</label>
+      <select multiple class="form-control" id="all-categories">
+          {{#each categories}}
+            <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+      <small class="form-text text-muted">Выберите категории, к которым относится пост (двойной клик)</small>
+    </div>
+    <div class="form-group col-6">
+      <label for="selected-categories" class="fw-600">Выбранные категории</label>
+      <select name="categories" multiple class="form-control" id="selected-categories">
+          {{#each post.categories}}
+            <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+    </div>
   </div>
 
   <div class="form-group">
-    <label for="inputRss">Прослушивание через RSS</label>
-    <input type="text" class="form-control" id="inputRss" aria-describedby="rssHelp" placeholder="Ссылка на RSS" value="{Ссылка на RSS}">
-    <small id="rssHelp" class="form-text text-muted">Введите ссылку на RSS для прослушивания подкаста</small>
+    <label for="preview-image-file" class="fw-600">Превью события</label>
+    <input name="previewImage" type="file" class="form-control-file" id="preview-image-file" aria-describedby="previewHelp">
+    <small id="previewHelp" class="form-text text-muted">Выберите одно изображение в качестве картинки для поста</small>
+  </div>
+
+  <div class="text-center mb-4" id="preview-image-block">
+    {{#if post.previewUrl}}
+      <img id="preview-image-result" class="img-thumbnail" src="{{post.previewUrl}}" alt="preview">
+    {{/if}}
   </div>
 
   <div class="form-group">
-    <label for="inputItunes">Подкаст в iTunes</label>
-    <input type="text" class="form-control" id="inputItunes" aria-describedby="itunesHelp" placeholder="Ссылка на iTunes" value="{Ссылка на iTunes}">
-    <small id="itunesHelp" class="form-text text-muted">Введите ссылку на iTunes для прослушивания подкаста</small>
-  </div>
-
-  <div class="form-group">
-    <label for="filePreview">Превью для события</label>
-    <input type="file" class="form-control-file" id="filePreview" aria-describedby="previewHelp">
-    <small id="previewHelp" class="form-text text-muted">Выберите одно изображение в качестве превью события</small>
-  </div>
-
-  <div class="form-group">
-    <label for="filePhotos">Галерея</label>
-    <input type="file" class="form-control-file" id="filePhotos" aria-describedby="photosHelp" multiple>
+    <label for="post-images-file" class="fw-600">Галерея</label>
+    <input name="postImages" type="file" class="form-control-file" id="post-images-file" aria-describedby="photosHelp" multiple>
     <small id="photosHelp" class="form-text text-muted">Выберите одну или несколько фотографий для фотогалереи</small>
   </div>
 
-  <button type="submit" class="btn btn-primary">Применить</button>
+  <div class="mb-4">
+    {{>blog/post/post-images}}
+  </div>
+
+  <div class="text-center" id="submit-block">
+    <button type="submit" class="btn btn-primary">Принять изменения</button>
+  </div>
+
+  {{#if post.id}}
+    <button id="delete-post-btn" class="btn btn-danger pull-right" type="button">Удалить пост</button>
+  {{/if}}
 
 </form>

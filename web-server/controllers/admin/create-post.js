@@ -20,3 +20,10 @@ exports.render = function render (req, res) {
     action: 'Создание нового поста'
   })
 }
+
+exports.post = function post (req, res) {
+  console.log(req.body)
+  res.json({
+    id: 3
+  })
+}
