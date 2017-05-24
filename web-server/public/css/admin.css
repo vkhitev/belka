@@ -1,3 +1,9 @@
+.admin-container {
+  min-height: 100vh;
+  max-width: 60%;
+  min-width: 500px;
+}
+
 .btn-circle {
   border-radius: 50%;
 }
@@ -7,10 +13,18 @@ textarea {
 }
 
 .fa.fa-plus.fa-lg {
-    outline: none;
+  outline: none;
 }
 
 .btn.btn-success.btn-circle.btn-lg.px-3 {
-    color: white;
-    box-shadow: none;
+  color: white;
+  box-shadow: none;
+}
+
+.form-invalid {
+  color: crimson;
+}
+
+.fw-600 {
+  font-weight: 600;
 }

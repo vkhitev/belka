@@ -1,28 +1,11 @@
-const { R, fetchData, format, error } = require('../../util')
+const R = require('ramda')
 
-module.exports = async function search (req, res) {
-  const searchQuery = req.query.q
-  try {
-    const posts = await fetchData({
-      url: `posts?q=${encodeURIComponent(searchQuery)}&sort=-eventDate`,
-      attributes: [
-        'id', 'name', 'eventDate',
-        'previewUrl', 'organizerName',
-        'organizerLink', 'brief', 'categories'
-      ],
-      transform: {
-        eventDate: format.prettyDate,
-        categories: format.categoriesOfPost
-      },
-      transformSelf: R.map(format.addSlugOf('name'))
-    })
-    res.render('blog/posts', R.merge(req.layout, {
-      posts,
-      layout: 'blog',
-      title: 'Belka | Лента',
-      searchQuery
-    }))
-  } catch (err) {
-    error(req, res, err)
-  }
+exports.render = function render (req, res) {
+  res.render('blog/posts', R.merge(req.layout, {
+    searchQuery: req.query.q,
+    posts: req.posts,
+    pagination: req.pagination,
+    layout: 'blog',
+    title: 'Belka | Лента'
+  }))
 }

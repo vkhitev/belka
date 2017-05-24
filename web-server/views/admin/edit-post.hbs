@@ -1,94 +1,51 @@
-<div class="container main-container py-3">
+{{#section 'scripts'}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+  <script src="/js/edit-post.js"></script>
+  <script src="/js/edit-podcasts.js"></script>
+{{/section}}
 
-  <div class="card my-4">
+<script>
+  var postId = null
+  {{#if post.id}}
+    postId = {{post.id}}
+  {{/if}}
+</script>
 
-    <div class="card-block p-1">
-      <div class="media my-auto">
-        <div class="media-body px-4 align-self-center d-flex flex-column justify-content-around">
-          <div class="py-2">
-            <h2 class="card-title py-3">{{action}}</h2>
+<div class="card my-4">
 
-            <div class="card-text pb-2">
+  <div class="card-block p-1">
+    <div class="media my-auto">
+      <div class="media-body px-4 py-2 align-self-center d-flex flex-column justify-content-around">
+        <h2 class="card-title py-3">{{action}}</h2>
 
-              <form>
+        <div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#general" role="tab">Общая информация</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#podcasts" role="tab">Подкасты</a>
+            </li>
+          </ul>
 
-                <div class="form-group">
-                  <label for="inputPostName">Название</label>
-                  <input type="text" class="form-control" id="inputPostName" aria-describedby="postNameHelp" placeholder="Название поста" value="{{post.name}}">
-                  <small id="postNameHelp" class="form-text text-muted">Введите название для поста с событием</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputAuthorName">Имя организатора</label>
-                  <input type="text" class="form-control" id="inputAuthorName" aria-describedby="authorNameHelp" placeholder="Имя организатора"
-                    value="{{post.organizerName}}">
-                  <small id="authorNameHelp" class="form-text text-muted">Введите ФИО, имя или никнейм автора для поста с событием</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputAuthorUrl">Ссылка на организатора</label>
-                  <input type="text" class="form-control" id="inputAuthorUrl" aria-describedby="authorUrlHelp" placeholder="Ссылка на организатора"
-                    value="{{organizerLink}}">
-                  <small id="authorUrlHelp" class="form-text text-muted">Введите ссылку на блог, страницуорганизатора в одной из соц. сетей</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputDate">Дата публикации</label>
-                  <input type="date" class="form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Дата публикации (01 января)"
-                    value="{{post.eventDate}}">
-                  <small id="dateHelp" class="form-text text-muted">Введите дату публикации.</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="textareaAbout">Описание</label>
-                  <textarea class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{{post.brief}}</textarea>
-                  <small id="aboutHelp" class="form-text text-muted">Введите несколько предложений, которые будут представлены в качестве описания для события</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="selectCat">Категории</label>
-                  <select multiple class="form-control" id="selectCat">
-                      {{#each categories}}
-                        <option value="{{name}}">{{name}}</option>
-                      {{/each}}
-                    </select>
-                  <small id="catHelp" class="form-text text-muted">Выберите одну или несколько категорий, к которым относится пост</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputRss">Прослушивание через RSS</label>
-                  <input type="text" class="form-control" id="inputRss" aria-describedby="rssHelp" placeholder="Ссылка на RSS" value="{Ссылка на RSS}">
-                  <small id="rssHelp" class="form-text text-muted">Введите ссылку на RSS для прослушивания подкаста</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputItunes">Подкаст в iTunes</label>
-                  <input type="text" class="form-control" id="inputItunes" aria-describedby="itunesHelp" placeholder="Ссылка на iTunes" value="{Ссылка на iTunes}">
-                  <small id="itunesHelp" class="form-text text-muted">Введите ссылку на iTunes для прослушивания подкаста</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="filePreview">Превью для события</label>
-                  <input type="file" class="form-control-file" id="filePreview" aria-describedby="previewHelp">
-                  <small id="previewHelp" class="form-text text-muted">Выберите одно изображение в качестве превью события</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="filePhotos">Галерея</label>
-                  <input type="file" class="form-control-file" id="filePhotos" aria-describedby="photosHelp" multiple>
-                  <small id="photosHelp" class="form-text text-muted">Выберите одну или несколько фотографий для фотогалереи</small>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Применить</button>
-
-              </form>
-
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="general" role="tabpanel">
+              <div class="card-text pb-2 mt-2">
+                {{>admin/edit-general}}
+              </div>
             </div>
-          </div>
+            <div class="tab-pane" id="podcasts" role="tabpanel">
+              <div class="cart-text pb-2 mt-2">
+                {{>admin/edit-podcasts}}
+              </div>
+            </div>
+          </div>         
         </div>
+        
+        
       </div>
     </div>
-
   </div>
-
+  
 </div>

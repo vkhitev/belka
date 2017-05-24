@@ -18,10 +18,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    slidesUrl: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
     speaker: {
       type: DataTypes.STRING,
       allowNull: false
@@ -30,6 +26,13 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate (models) {
         Podcast.belongsTo(models.Post, {
+          onDelete: 'CASCADE',
+          foreignKey: {
+            allowNull: false
+          }
+        })
+
+        Podcast.hasMany(models.PodcastSlide, {
           onDelete: 'CASCADE',
           foreignKey: {
             allowNull: false

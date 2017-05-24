@@ -3,7 +3,6 @@
     "id": 1,
     "name": "Возможности Drupal по работе с контентом",
     "audioUrl": "/content/audio/drupal_1.mp3",
-    "slidesUrl": null,
     "postId": 1,
     "speaker": "Игорь Карпиленко"
   },
@@ -11,7 +10,6 @@
     "id": 2,
     "name": "Drupal сьогодні",
     "audioUrl": "/content/audio/drupal_2.mp3",
-    "slidesUrl": null,
     "postId": 1,
     "speaker": "Андрій Поданенко"
   },
@@ -19,23 +17,20 @@
     "id": 3,
     "name": "Основные функциональные разделы Drupal",
     "audioUrl": "/content/audio/drupal_3.mp3",
-    "slidesUrl": null,
     "postId": 1,
     "speaker": "Александр Щедров"
   },
   {
     "id": 4,
     "name": "Профессия: автоматизатор тестирования",
-    "audioUrl": "/content/audio/automate_test_1.mp3",
-    "slidesUrl": null,
+    "audioUrl": "/content/audio/automated_testing_1.mp3",
     "postId": 2,
     "speaker": "Александр Хотемской"
   },
   {
     "id": 5,
     "name": "Manual, Automation, пятьдесят оттенков QA",
-    "audioUrl": "/content/audio/automate_test_2.mp3",
-    "slidesUrl": null,
+    "audioUrl": "/content/audio/automated_testing_2.mp3",
     "postId": 2,
     "speaker": "Александр Дольник"
   },
@@ -43,7 +38,6 @@
     "id": 6,
     "name": "Как изменение технологии создает новый рынок?",
     "audioUrl": "/content/audio/technology_1.mp3",
-    "slidesUrl": null,
     "postId": 3,
     "speaker": "Максим Плахтий"
   },
@@ -51,7 +45,6 @@
     "id": 7,
     "name": "Google Summer of Code",
     "audioUrl": "/content/audio/google_summer_1.mp3",
-    "slidesUrl": "/content/slides/google_summer_1.pdf",
     "postId": 4,
     "speaker": "Александр Дудинский"
   }

@@ -1,37 +1,77 @@
-const { R, fetchData, format, error } = require('../../util')
+const { fetchData, format, formatters, error } = require('../../util')
 
-module.exports = async function posts (req, res) {
+exports.sluggify = async function sluggify (req, res, next) {
+  const postid = req.params.postid
+  const post = await fetchData(`posts/${postid}`)
+  const slug = formatters.slugifyOne(post.name)
+  if (slug !== req.params.slug) {
+    return res.redirect(`/admin/edit_post/${postid}/${slug}`)
+  }
+  next()
+}
+
+exports.fetch = async function fetch (req, res, next) {
   const postid = req.params.postid
   try {
-    const data = await fetchData([{
-      name: 'post',
-      url: `posts/${postid}`,
-      attributes: [
-        'id', 'name', 'eventDate',
-        'previewUrl', 'organizerName',
-        'organizerLink', 'brief', 'categories'
-      ],
-      transform: {
-        categories: format.categoriesOfPost,
-        eventDate: format.prettyDate
-      }
-    }, {
-      url: `post_images?postId=${postid}`,
-      attributes: ['id', 'url']
-    }, {
-      url: `podcasts?postId=${postid}`,
-      attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
-    }, {
-      url: 'categories',
-      attributes: ['id', 'name'],
-      transformSelf: R.sortBy(R.prop('name'))
-    }])
-    res.render('admin/edit-post', R.merge(data, {
-      layout: 'admin',
-      title: 'Belka | ' + data.post.name,
-      action: 'Редактирование поста | ' + data.post.name
-    }))
+    req.categories = await fetchData('categories')
+    req.post = await fetchData(`posts/${postid}`)
+    req.podcasts = await fetchData(`podcasts?postId=${postid}`)
+    req.images = await fetchData(`post_images?postId=${postid}`)
   } catch (err) {
     error(req, res, err)
   }
+  next()
+}
+
+exports.transform = function transform (req, res, next) {
+  req.categories = format(req.categories, {
+    transformSelf: formatters.sortBy('name')
+  })
+  req.post = format(req.post, {
+    attributes: [
+      'id', 'name', 'eventDate',
+      'previewUrl', 'organizerName',
+      'organizerLink', 'brief', 'categories'
+    ],
+    transform: {
+      categories: formatters.categoriesOfPost,
+      eventDate: formatters.dateOnly
+    }
+  })
+  req.podcasts = format(req.podcasts, {
+    attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
+  })
+
+  const postCategories = req.post.categories.map(c => c.id)
+  req.categories = req.categories.filter(c =>
+    !postCategories.includes(c.id))
+
+  next()
+}
+
+exports.render = function render (req, res) {
+  res.render('admin/edit-post', {
+    postImages: req.images,
+    categories: req.categories,
+    post: req.post,
+    podcasts: req.podcasts,
+    layout: 'admin',
+    title: 'Belka | ' + req.post.name,
+    action: 'Редактирование поста | ' + req.post.name
+  })
+}
+
+exports.put = function put (req, res) {
+  console.log(req.body)
+  console.log(req.params.postid)
+  res.json({
+    ok: 1
+  })
+}
+
+exports.del = function del (req, res) {
+  console.log(req.body)
+  res.json({
+    ok: 1
+  })
 }

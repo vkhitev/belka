@@ -1,21 +1,72 @@
 const { Router } = require('express')
 
-const { admin } = require('../controllers')
+const { blog, admin } = require('../controllers')
 
 const auth = require('../middleware/auth')
-const sluggedBy = require('../middleware/slugged')
+const paginate = require('../middleware/pagination').paginateBy(6)
 
 const router = Router()
-router.get = router.get.bind(router)
 
 router.get('/login', admin.login.get)
 router.post('/login', admin.login.post)
 router.get('/logout', admin.logout)
 
-router.get('/', auth, admin.posts)
-router.get('/create_post', auth, admin.createPost)
-router.get('/search', auth, admin.search)
-sluggedBy('name', 'posts', router.get, 'admin', '/edit_post/:postid', auth, admin.editPost)
-sluggedBy('name', 'categories', router.get, 'admin', '/categories/:categoryid', auth, admin.categoryPosts)
+router.post('/create_post/', [
+  admin.createPost.fetchPost,
+  admin.createPost.post
+])
+router.post('/load_gallery', (req, res) => {
+  console.log(req.body)
+})
+router.put('/edit_post/:postid', admin.editPost.put)
+router.delete('/edit_post/:postid', admin.editPost.del)
+
+router.get('/', (req, res) => res.redirect('/admin/posts'))
+router.get([
+  '/posts',
+  '/posts/page/:page'
+],
+  paginate(blog.posts.fetch()),
+  blog.posts.transform,
+  admin.posts.render
+)
+
+router.get([
+  '/categories/:categoryid',
+  '/categories/:categoryid/:slug',
+  '/categories/:categoryid/page/:page',
+  '/categories/:categoryid/:slug/page/:page'
+],
+  blog.categoryPosts.sluggify,
+  paginate(blog.posts.fetch('category')),
+  blog.posts.transform,
+  admin.posts.render
+)
+
+router.get([
+  '/search',
+  '/search/page/:page'
+],
+  blog.layout.fetch,
+  paginate(blog.posts.fetch('search')),
+  blog.posts.transform,
+  admin.search.render
+)
+
+router.get('/create_post',
+  admin.createPost.fetch,
+  admin.createPost.transform,
+  admin.createPost.render
+)
+
+router.get([
+  '/edit_post/:postid',
+  '/edit_post/:postid/:slug'
+],
+  admin.editPost.sluggify,
+  admin.editPost.fetch,
+  admin.editPost.transform,
+  admin.editPost.render
+)
 
 module.exports = router

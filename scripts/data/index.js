@@ -5,7 +5,8 @@ const sequence = [
   'Post',
   'Podcast',
   'PostImage',
-  'Category'
+  'Category',
+  'PodcastSlide'
 ]
 
 function captialize (str) {

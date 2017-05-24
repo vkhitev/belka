@@ -1,29 +1,20 @@
-const { R, fetchData, format, error } = require('../../util')
+const { fetchData, formatters, error } = require('../../util')
 
-module.exports = async function categoryPosts (req, res) {
+exports.sluggify = async function sluggify (req, res, next) {
   const categoryid = req.params.categoryid
+  let category = null
   try {
-    const categoryPosts = await fetchData({
-      url: `category_posts/${categoryid}`,
-      attributes: ['name', 'posts'],
-      transform: {
-        posts: R.map(R.pipe(
-          format.addSlugOf('name'),
-          R.dissoc('postCategory'),
-          R.evolve({
-            eventDate: format.prettyDate,
-            categories: format.categoriesOfPost
-          })
-        ))
-      }
-    })
-
-    res.render('blog/posts', R.merge(req.layout, {
-      posts: categoryPosts.posts,
-      layout: 'blog',
-      title: 'Belka | ' + categoryPosts.name
-    }))
+    category = await fetchData(`categories/${categoryid}`)
   } catch (err) {
     error(req, res, err)
   }
+  const slug = formatters.slugifyOne(category.name)
+  if (slug !== req.params.slug) {
+    if (req.params.page) {
+      return res.redirect(`/categories/${categoryid}/${slug}/page/${req.params.page}`)
+    } else {
+      return res.redirect(`/categories/${categoryid}/${slug}`)
+    }
+  }
+  next()
 }

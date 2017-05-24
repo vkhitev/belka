@@ -13,6 +13,8 @@ models.sequelize
     const server = app.listen(app.get('port'))
     server.on('listening', onListening(server))
     server.on('error', onError)
+
+    require('../api-server/auth.js')
   })
   .catch(err => {
     console.log('Can not sync database')

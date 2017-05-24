@@ -1,5 +1,6 @@
 const R = require('ramda')
 const slug = require('slug')
+const format = require('./format')
 
 const moment = require('moment')
 moment.locale('ru')
@@ -33,10 +34,21 @@ function slugifyOne (str) {
   return slug(str, { lower: true })
 }
 
+const sortBy = (prop) => R.sortBy(R.prop(prop))
+
+function groupByYear (posts) {
+  const groupedByYear = R.groupBy(post => new Date(post.eventDate).getFullYear(), posts)
+  return Object.entries(groupedByYear).map(([year, posts]) => ({
+    year, posts
+  }))
+}
+
 module.exports = {
   prettyDate,
   categoriesOfPost,
   addSlugOf,
   dateOnly,
-  slugifyOne
+  slugifyOne,
+  sortBy,
+  groupByYear
 }

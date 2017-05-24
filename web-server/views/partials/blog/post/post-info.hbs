@@ -1,0 +1,34 @@
+<h2 class="card-title py-3">{{post.name}}</h2>
+
+<div class="clearfix">
+
+  <div class="float-left">
+    <p class="text-muted">
+      <i class="fa fa-calendar" aria-hidden="true"></i>
+      Дата: {{post.eventDate}}
+    </p>
+    <p class="text-muted">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      Организатор: <a href= {{post.organizerLink}}>{{post.organizerName}}</a>
+    </p>
+  </div>
+
+  {{!-- TODO --}}
+  <div class="float-right">
+    <p class="text-muted"><i class="fa fa-podcast" aria-hidden="true"></i> Подкасты <a href="#">iTunes</a></p>
+    <p class="text-muted"><i class="fa fa-rss" aria-hidden="true"></i> Использовать <a href="#">RSS</a></p>
+  </div>
+
+</div>
+
+<p class="text-muted"><i class="fa fa-tags" aria-hidden="true"></i> Категории:
+  {{#each post.categories}}
+    <a class="badge-link" href="/categories/{{id}}/{{nameSlug}}">
+      <span class="badge badge-default badge-category">{{name}}</span>
+    </a>
+  {{/each}}
+</p>
+
+<p class="about-text card-text py-2">
+  {{post.brief}}
+</p>
