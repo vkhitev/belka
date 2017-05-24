@@ -1,4 +1,4 @@
-const { fetchData, format, formatters } = require('../../util')
+const { fetchData, format, formatters, error } = require('../../util')
 
 exports.sluggify = async function sluggify (req, res, next) {
   const postid = req.params.postid
@@ -12,10 +12,14 @@ exports.sluggify = async function sluggify (req, res, next) {
 
 exports.fetch = async function fetch (req, res, next) {
   const postid = req.params.postid
-  req.categories = await fetchData('categories')
-  req.post = await fetchData(`posts/${postid}`)
-  req.podcasts = await fetchData(`podcasts?postId=${postid}`)
-  req.images = await fetchData(`post_images?postId=${postid}`)
+  try {
+    req.categories = await fetchData('categories')
+    req.post = await fetchData(`posts/${postid}`)
+    req.podcasts = await fetchData(`podcasts?postId=${postid}`)
+    req.images = await fetchData(`post_images?postId=${postid}`)
+  } catch (err) {
+    error(req, res, err)
+  }
   next()
 }
 

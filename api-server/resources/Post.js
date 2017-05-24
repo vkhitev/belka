@@ -1,3 +1,5 @@
+const R = require('ramda')
+
 module.exports = function (db, epilogue) {
   const post = epilogue.resource({
     model: db.Post,
@@ -6,6 +8,23 @@ module.exports = function (db, epilogue) {
   })
 
   post.use({
+    create: {
+      write: {
+        async before (req, res, context) {
+          context.categories = R.clone(req.body.categories)
+          req.body.categories = []
+          return context.continue
+        },
+        async after (req, res, context) {
+          try {
+            await context.instance.setCategories(context.categories)
+          } catch (err) {
+            return context.stop
+          }
+          return context.continue
+        }
+      }
+    },
     list: {
       fetch: {
         async before (req, res, context) {

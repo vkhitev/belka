@@ -1,8 +1,3 @@
-{{#section 'scripts'}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-  <script src="/js/edit-podcasts.js"></script>
-{{/section}}
-
 <form id="general-edit-form">
   
   <div class="form-group w-50">
@@ -66,7 +61,7 @@
 
   <div class="text-center mb-4" id="preview-image-block">
     {{#if post.previewUrl}}
-      <img id="preview-image-result" class="img-thumbnail" src="{{post.previewUrl}}" alt="preview">
+      <img id="preview-image-result" class="img-thumbnail col-5" src="{{post.previewUrl}}" alt="preview">
     {{/if}}
   </div>
 
@@ -85,7 +80,7 @@
   </div>
 
   {{#if post.id}}
-    <button id="delete-post-btn" class="btn btn-danger pull-right" type="button">Удалить пост</button>
+    <button id="delete-post-btn" class="btn btn-danger pull-right mt-2" type="button">Удалить пост</button>
   {{/if}}
 
 </form>

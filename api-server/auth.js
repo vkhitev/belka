@@ -1,11 +1,11 @@
-const db = require('./models')
+// const db = require('./models')
 
-async function isAuthorised (username, password) {
-  const user = await db.User.findOne({ username })
-  // return bcrypt.compare(password, user.hash)
-}
+// async function isAuthorised (username, password) {
+//   const user = await db.User.findOne({ username })
+//   // return bcrypt.compare(password, user.hash)
+// }
 
-isAuthorised('admin')
+// isAuthorised('admin')
 
 // exports.get = async function get (req, res) {
 //   res.render('admin/login')

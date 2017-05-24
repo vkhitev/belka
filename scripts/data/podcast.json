@@ -23,14 +23,14 @@
   {
     "id": 4,
     "name": "Профессия: автоматизатор тестирования",
-    "audioUrl": "/content/audio/automate_test_1.mp3",
+    "audioUrl": "/content/audio/automated_testing_1.mp3",
     "postId": 2,
     "speaker": "Александр Хотемской"
   },
   {
     "id": 5,
     "name": "Manual, Automation, пятьдесят оттенков QA",
-    "audioUrl": "/content/audio/automate_test_2.mp3",
+    "audioUrl": "/content/audio/automated_testing_2.mp3",
     "postId": 2,
     "speaker": "Александр Дольник"
   },

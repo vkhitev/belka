@@ -11,7 +11,13 @@ router.get('/login', admin.login.get)
 router.post('/login', admin.login.post)
 router.get('/logout', admin.logout)
 
-router.post('/create_post/', admin.createPost.post)
+router.post('/create_post/', [
+  admin.createPost.fetchPost,
+  admin.createPost.post
+])
+router.post('/load_gallery', (req, res) => {
+  console.log(req.body)
+})
 router.put('/edit_post/:postid', admin.editPost.put)
 router.delete('/edit_post/:postid', admin.editPost.del)
 

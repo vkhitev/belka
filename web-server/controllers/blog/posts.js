@@ -1,5 +1,5 @@
 const R = require('ramda')
-const { fetchData, format, formatters } = require('../../util')
+const { fetchData, format, formatters, error } = require('../../util')
 
 exports.fetch = function fetch (types = []) {
   if (typeof types === 'string') {
@@ -17,16 +17,20 @@ exports.fetch = function fetch (types = []) {
   }
 
   return async function fetchInner (req, res, next) {
-    const { body: posts, headers } = await fetchData('posts', {
-      qs: transformQuery(req, {
-        sort: '-eventDate',
-        count: req.pagination.count,
-        offset: req.pagination.offset
-      }),
-      resolveWithFullResponse: true
-    })
-    req.posts = posts
-    req.pagination = req.pagination.create(headers['content-range'])
+    try {
+      const { body: posts, headers } = await fetchData('posts', {
+        qs: transformQuery(req, {
+          sort: '-eventDate',
+          count: req.pagination.count,
+          offset: req.pagination.offset
+        }),
+        resolveWithFullResponse: true
+      })
+      req.posts = posts
+      req.pagination = req.pagination.create(headers['content-range'])
+    } catch (err) {
+      error(req, res, err)
+    }
     next()
   }
 }

@@ -1,9 +1,14 @@
 const R = require('ramda')
-const { fetchData, format, formatters } = require('../../util')
+const { fetchData, format, formatters, error } = require('../../util')
 
 exports.sluggify = async function sluggify (req, res, next) {
   const postid = req.params.postid
-  const post = await fetchData(`posts/${postid}`)
+  let post = null
+  try {
+    post = await fetchData(`posts/${postid}`)
+  } catch (err) {
+    error(req, res, err)
+  }
   const slug = formatters.slugifyOne(post.name)
   if (slug !== req.params.slug) {
     return res.redirect(`/posts/${postid}/${slug}`)
@@ -13,9 +18,13 @@ exports.sluggify = async function sluggify (req, res, next) {
 
 exports.fetch = async function fetch (req, res, next) {
   const postid = req.params.postid
-  req.post = await fetchData(`posts/${postid}`)
-  req.postImages = await fetchData(`post_images?postId=${postid}`)
-  req.podcasts = await fetchData(`podcasts?postId=${postid}`)
+  try {
+    req.post = await fetchData(`posts/${postid}`)
+    req.postImages = await fetchData(`post_images?postId=${postid}`)
+    req.podcasts = await fetchData(`podcasts?postId=${postid}`)
+  } catch (err) {
+    error(req, res, err)
+  }
   next()
 }
 

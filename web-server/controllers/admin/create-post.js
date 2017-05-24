@@ -1,7 +1,12 @@
-const { fetchData, format, formatters } = require('../../util')
+const R = require('ramda')
+const { postData, fetchData, format, formatters, error } = require('../../util')
 
 exports.fetch = async function fetch (req, res, next) {
-  req.categories = await fetchData('categories')
+  try {
+    req.categories = await fetchData('categories')
+  } catch (err) {
+    error(req, res, err)
+  }
   next()
 }
 
@@ -21,9 +26,25 @@ exports.render = function render (req, res) {
   })
 }
 
+exports.fetchPost = function fetchPost (req, res, next) {
+  req.post = R.pickAll([
+    'name', 'organizerName', 'organizerLink',
+    'eventDate', 'brief'
+  ], req.body)
+  req.categories = req.body.categories
+  next()
+}
+
 exports.post = function post (req, res) {
-  console.log(req.body)
-  res.json({
-    id: 3
-  })
+  postData(`posts`, req.body)
+    .then(result => {
+      console.log(result, '!!')
+      res.status(200)
+      res.json({ id: result.id })
+    })
+    .catch(err => {
+      console.log(err, '-!_!_!_')
+      res.status(400)
+      res.json({ err })
+    })
 }

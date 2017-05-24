@@ -38,7 +38,7 @@ function initPreviewImage () {
     const img = $('#preview-image-result')
     if (!img.length) {
       resultBlock.append(`
-        <img id="preview-image-result" class="img-thumbnail" src="${src}" alt="preview">
+        <img id="preview-image-result" class="img-thumbnail col-5" src="${src}" alt="preview">
       `)
     } else {
       img.attr('src', src)
@@ -71,20 +71,41 @@ function initPostImages () {
   })
 }
 
-function initSubmit () {
-  const successCreate = '<div id="alert" class="alert alert-success mt-4" role="alert">Пост успешно создан</div>'
-  const successUpdate = '<div id="alert" class="alert alert-success mt-4" role="alert">Пост успешно обновлён</div>'
-  const errorCreate = '<div id="alert" class="alert alert-danger mb-0 mt-4" role="alert">Не удалось создать новый пост</div>'
-  const errorUpdate = '<div id="alert" class="alert alert-danger mb-0 mt-4" role="alert">Не удалось обновить пост</div>'
+const successCreate = '<div id="alert" class="alert alert-success mt-4" role="alert">Пост успешно создан</div>'
+const successUpdate = '<div id="alert" class="alert alert-success mt-4" role="alert">Пост успешно обновлён</div>'
+const errorCreate = '<div id="alert" class="alert alert-danger mb-0 mt-4" role="alert">Не удалось создать новый пост</div>'
+const errorUpdate = '<div id="alert" class="alert alert-danger mb-0 mt-4" role="alert">Не удалось обновить пост</div>'
 
-  function notifyUser (msg) {
-    const block = $('#submit-block').find('#alert')
-    if (block) {
-      block.remove()
-      $('#submit-block').append(msg)
-    }
+function notifyUser (msg) {
+  const block = $('#submit-block').find('#alert')
+  if (block) {
+    block.remove()
+    $('#submit-block').append(msg)
   }
+}
 
+// function uploadGallery () {
+//   const previewImage = $('input[name=previewImage]')
+
+//   var formData = new window.FormData()
+//   if (previewImage.val()) {
+//     var fileList = previewImage.get(0).files
+//     for (var x = 0; x < fileList.length; x++) {
+//       formData.append('file' + x, fileList.item(x))
+//     }
+//   }
+
+//   fetch('/admin/load_gallery/', {
+//     method: 'POST',
+//     body: formData
+//   }).then(function (res) {
+//     console.log('Status', res)
+//   }).catch(function (e) {
+//     console.log('Error', e)
+//   })
+// }
+
+function initSubmit () {
   $('#general-edit-form').validate({
     rules: {
       name: 'required',
@@ -109,10 +130,13 @@ function initSubmit () {
         if (this.name === 'categories') {
           values[this.name] = Array.from($(this).find('option').map((i, el) => el.value))
         } else if (this.name !== 'previewImage' && this.name !== 'postImages') {
-          values[this.name] = $(this).val()
+          values[this.name] = $(this).val() || null
         }
       }
     })
+
+    // const postImages = $('input[name=postImages]')
+    // uploadGallery()
 
     if (!postId) {
       fetch('/admin/create_post', {
@@ -121,11 +145,14 @@ function initSubmit () {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res => res.json())
+      }).then(res => {
+        return res.json()
+      })
       .then(res => {
+        console.log(res)
         notifyUser(successCreate)
         setTimeout(function () {
-          window.location = `/admin/edit_post/${res.id}`
+          // window.location = `/admin/edit_post/${res.id}`
         }, 700)
       })
       .catch(() => notifyUser(errorCreate))
