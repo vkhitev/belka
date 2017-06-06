@@ -12,7 +12,8 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         notEmpty: true,
         max: 255
-      }
+      },
+      unique: true
     }
   }, {
     classMethods: {

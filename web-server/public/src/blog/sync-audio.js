@@ -1,4 +1,4 @@
-const IntervalTree = require('interval-tree2')
+import IntervalTree from 'interval-tree2'
 
 function createIntervalTree (root, marks) {
   const itree = new IntervalTree(root)

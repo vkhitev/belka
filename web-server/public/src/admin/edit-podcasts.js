@@ -63,7 +63,18 @@ function initAddPodcast () {
   })
 }
 
+function initUploadData () {
+  $('#podcasts-edit-form').submit(function (e) {
+    e.preventDefault()
+    const cards = $('#podcasts-edit-form .card')
+    console.log(cards)
+  })
+}
+
 $(document).ready(function () {
   initAddPodcast()
   initAudioSplit()
+  initUploadData()
 })
+
+console.log('!!')

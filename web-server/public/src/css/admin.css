@@ -28,3 +28,11 @@ textarea {
 .fw-600 {
   font-weight: 600;
 }
+
+#btn-delete-category {
+  display: none;
+  position: absolute;
+  top: 37px;
+  left: -21px;
+  cursor: pointer;
+}

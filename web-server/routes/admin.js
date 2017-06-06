@@ -37,7 +37,7 @@ router.get([
   '/categories/:categoryid/page/:page',
   '/categories/:categoryid/:slug/page/:page'
 ],
-  blog.categoryPosts.sluggify,
+  admin.categoryPosts.sluggify,
   paginate(blog.posts.fetch('category')),
   blog.posts.transform,
   admin.posts.render

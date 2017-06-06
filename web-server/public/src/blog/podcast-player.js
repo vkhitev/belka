@@ -1,6 +1,6 @@
 /* global syncData */
 
-const synchronizeAudio = require('./sync-audio')
+import synchronizeAudio from './sync-audio'
 
 function disableLoopControls (carousel) {
   const prev = carousel.children('.carousel-control-prev')

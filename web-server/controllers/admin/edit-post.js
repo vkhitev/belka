@@ -1,4 +1,5 @@
 const { fetchData, format, formatters, error } = require('../../util')
+const deleteRequest = require('../../util/delete-request')
 
 exports.sluggify = async function sluggify (req, res, next) {
   const postid = req.params.postid
@@ -70,8 +71,12 @@ exports.put = function put (req, res) {
 }
 
 exports.del = function del (req, res) {
-  console.log(req.body)
-  res.json({
-    ok: 1
-  })
+  deleteRequest('posts/' + req.params.postid)
+    .then(result => {
+      console.log(result)
+      res.json({ statusCode: 200 })
+    })
+    .catch(() => {
+      res.json({ statusCode: 400 })
+    })
 }

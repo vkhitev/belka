@@ -2,54 +2,62 @@
   
   <div class="form-group w-50">
     <label for="inputPostName" class="fw-600">Название</label>
-    <input id="g_name" name="name" type="text" class="form-control" id="inputPostName" aria-describedby="postNameHelp" placeholder="Название поста" value="{{post.name}}">
+    <input name="name" type="text" class="form-control" id="inputPostName" aria-describedby="postNameHelp" placeholder="Название поста" value="{{post.name}}">
     <small id="postNameHelp" class="form-text text-muted">Введите название для поста с событием</small>
   </div>
 
   <div class="form-group w-50">
     <label for="inputAuthorName" class="fw-600">Имя организатора</label>
-    <input id="g_organizerName" name="organizerName" type="text" class="form-control" id="inputAuthorName" aria-describedby="authorNameHelp" placeholder="Имя организатора"
+    <input name="organizerName" type="text" class="form-control" id="inputAuthorName" aria-describedby="authorNameHelp" placeholder="Имя организатора"
       value="{{post.organizerName}}">
     <small id="authorNameHelp" class="form-text text-muted">Введите ФИО, имя или никнейм автора для поста с событием</small>
   </div>
 
   <div class="form-group w-50">
-    <label for="inputAuthorUrl" class="fw-600">Ссылка на организатора</label>
-    <input id="g_organizerLink" name="organizerLink" type="text" class="form-control" id="inputAuthorUrl" aria-describedby="authorUrlHelp" placeholder="Ссылка на организатора"
+    <label for="organizerLink" class="fw-600">Ссылка на организатора</label>
+    <input name="organizerLink" type="text" class="form-control" id="organizerLink" aria-describedby="organizerLinkHelp" placeholder="Ссылка на организатора"
       value="{{post.organizerLink}}">
-    <small id="authorUrlHelp" class="form-text text-muted">Введите ссылку на блог, страницу организатора в одной из соц. сетей</small>
+    <small id="organizerLinkHelp" class="form-text text-muted">Введите ссылку на блог, страницу организатора в одной из соц. сетей</small>
   </div>
   
   <div class="form-group w-50">
     <label for="inputDate" class="fw-600">Дата публикации</label>
-    <input id="g_eventDate" name="eventDate", type="date" class="form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Дата публикации (01 января)"
+    <input name="eventDate", type="date" class="form-control" id="inputDate" aria-describedby="dateHelp" placeholder="Дата публикации (01 января)"
       value="{{post.eventDate}}">
     <small id="dateHelp" class="form-text text-muted">Введите дату публикации.</small>
   </div>
 
   <div class="form-group w-50">
     <label for="textareaAbout" class="fw-600">Описание</label>
-    <textarea id="g_brief" name="brief" class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{{post.brief}}</textarea>
+    <textarea name="brief" class="form-control" id="textareaAbout" rows="5" placeholder="Описание события">{{post.brief}}</textarea>
     <small id="aboutHelp" class="form-text text-muted">Введите несколько предложений, которые будут представлены в качестве описания для события</small>
   </div>
 
   <div class="container-fluid d-flex justify-content-around">
-    <div class="form-group col-6">
-      <label for="all-categories" class="fw-600">Все категории</label>
-      <select multiple class="form-control" id="all-categories">
+    <div class="form-group col-4">
+      <div id="btn-delete-category">
+        &#10006;
+      </div>
+      <label for="select-all-categories" class="fw-600">Все категории</label>
+      <select multiple class="form-control" id="select-all-categories">
           {{#each categories}}
             <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select>
       <small class="form-text text-muted">Выберите категории, к которым относится пост (двойной клик)</small>
     </div>
-    <div class="form-group col-6">
-      <label for="selected-categories" class="fw-600">Выбранные категории</label>
-      <select name="categories" multiple class="form-control" id="selected-categories">
+    <div class="form-group col-4">
+      <label for="select-selected-categories" class="fw-600">Выбранные категории</label>
+      <select name="categories" multiple class="form-control" id="select-selected-categories">
           {{#each post.categories}}
             <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select>
+    </div>
+    <div class="form-group col-4">
+      <label for="input-new-category" class="fw-600">Создать категорию</label>
+      <input name="organizerLink" type="text" class="form-control" id="input-new-category" aria-describedby="authorUrlHelp" placeholder="Категория">
+      <button class="btn btn-secondary pull-right mt-3" id="btn-create-new-category" type="button">Добавить</button>
     </div>
   </div>
 
@@ -76,7 +84,7 @@
   </div>
 
   <div class="text-center" id="submit-block">
-    <button type="submit" class="btn btn-primary">Принять изменения</button>
+    <button type="button" class="btn btn-primary" id="update-post-btn">Принять изменения</button>
   </div>
 
   {{#if post.id}}
