@@ -4,14 +4,14 @@
     <div class="card my-4 bg-faded">
       <div class="card-block p-4">
 
-        <div class="form-group w-50">
+        <div class="form-group">
           <label for="inputPodcastName-{{id}}" class="fw-600">Название подкаста</label>
           <input type="text" class="form-control" id="inputPodcastName-{{id}}" aria-describedby="podcastNameHelp" placeholder="Название подкаста"
             value="{{name}}">
           <small id="podcastNameHelp" class="form-text text-muted">Введите название подкаста</small>
         </div>
 
-        <div class="form-group w-50">
+        <div class="form-group">
           <label for="inputSpeakerName-{{id}}" class="fw-600">Спикер</label>
           <input type="text" class="form-control" id="inputSpeakerName-{{id}}" aria-describedby="speakerNameHelp" placeholder="Спикер"
             value="{{speaker}}">
@@ -26,25 +26,28 @@
 
         <div class="form-group">
           <label for="audio-stream-{{id}}" class="fw-600">Аудио</label>
-          <input name="audioStream", type="file" class="form-control-file" id="audio-stream-{{id}}" aria-describedby="audioStreamHelp">
+          <input name="audioStream" , type="file" class="form-control-file" id="audio-stream-{{id}}" aria-describedby="audioStreamHelp">
           <small id="audioStreamHelp" class="form-text text-muted">Выберите аудиодорожку</small>
         </div>
 
-        <div id="audio-split-{{id}}" class="form-group disabled w-50">
+        <div id="audio-split-{{id}}" class="form-group disabled podcast-card">
           <label class="fw-600">Отметки времени</label>
           <input type="text" class="form-control">
         </div>
-        
-        <button id="delete-podcast-btn-{{id}}" class="btn btn-danger pull-right mt-2" type="button">Удалить подкаст</button>
+        <div class="d-flex justify-content-center mt-4" id="delete-podcasts-block-{{id}}">
+          <button id="delete-podcast-btn-{{id}}" class="btn btn-danger" type="button">Удалить подкаст</button>
+        </div>
       </div>
     </div>
-  {{/each}}  
+  {{/each}}
 
-  <button type="button" id="add-podcast-btn" class="btn btn-secondary mt-3">Добавить подкаст</button>
+  <div class="d-flex justify-content-center my-3" id="add-podcasts-block">
+    <button type="button" id="add-podcast-btn" class="btn btn-secondary">Добавить подкаст</button>
+  </div>
 
   <hr class="my-4">
 
-  <div class="text-center" id="submit-podcasts-block">
+  <div class="d-flex justify-content-center" id="submit-podcasts-block">
     <button type="submit" class="btn btn-primary">Принять изменения</button>
   </div>
 

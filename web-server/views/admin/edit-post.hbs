@@ -1,45 +1,42 @@
 <script>
   var postId = null
-  {{#if post.id}}
-    postId = {{post.id}}
-  {{/if}}
+  { { #if post.id}}
+  postId = {{post.id }}
+  { { /if}}
+
 </script>
 
-<div class="card my-4">
+<div class="card mx-auto my-4 form-card">
 
-  <div class="card-block p-1">
-    <div class="media my-auto">
-      <div class="media-body px-4 py-2 align-self-center d-flex flex-column justify-content-around">
-        <h2 id="edit-post-title" class="card-title py-3">{{action}}</h2>
+  <div class="card-block p-4">
+    <h2 id="edit-post-title" class="card-title py-3">{{action}}</h2>
 
-        <div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#general" role="tab">Общая информация</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#podcasts" role="tab">Подкасты</a>
-            </li>
-          </ul>
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#general" role="tab">Общая информация</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#podcasts" role="tab">Подкасты</a>
+        </li>
+      </ul>
 
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="general" role="tabpanel">
-              <div class="card-text pb-2 mt-2">
-                {{>admin/edit-general}}
-              </div>
-            </div>
-            <div class="tab-pane" id="podcasts" role="tabpanel">
-              <div class="cart-text pb-2 mt-2">
-                {{>admin/edit-podcasts}}
-              </div>
-            </div>
-          </div>         
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="general" role="tabpanel">
+          <div class="card-text pb-2 mt-2">
+            {{>admin/edit-general}}
+          </div>
         </div>
-        
-        
+        <div class="tab-pane" id="podcasts" role="tabpanel">
+          <div class="cart-text pb-2 mt-2">
+            {{>admin/edit-podcasts}}
+          </div>
+        </div>
       </div>
     </div>
+
+
   </div>
-  
+
 </div>

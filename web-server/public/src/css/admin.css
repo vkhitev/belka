@@ -1,7 +1,5 @@
 .admin-container {
   min-height: 100vh;
-  max-width: 60%;
-  min-width: 500px;
 }
 
 .btn-circle {
@@ -33,6 +31,17 @@ textarea {
   display: none;
   position: absolute;
   top: 37px;
-  left: -21px;
+  left: -4px;
   cursor: pointer;
+}
+
+
+.form-card {
+  max-width: 40rem;
+}
+
+@media screen and (max-width: 576px) {
+  .podcast-card {
+    max-width: 20rem;
+  }
 }
