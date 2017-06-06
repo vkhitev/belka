@@ -40,8 +40,6 @@ textarea {
   max-width: 40rem;
 }
 
-@media screen and (max-width: 576px) {
-  .podcast-card {
-    max-width: 20rem;
-  }
+.slick-prev:before, .slick-next:before { 
+    color: #555;
 }

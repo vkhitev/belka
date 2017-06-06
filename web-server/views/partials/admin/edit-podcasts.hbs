@@ -30,10 +30,29 @@
           <small id="audioStreamHelp" class="form-text text-muted">Выберите аудиодорожку</small>
         </div>
 
-        <div id="audio-split-{{id}}" class="form-group disabled podcast-card">
-          <label class="fw-600">Отметки времени</label>
-          <input type="text" class="form-control">
+        <div class="form-group">
+          <label for="slider-{{id}}" class="fw-600">Отметки времени</label>
+          <div class="podcast-slider mx-4" id="slider-{{id}}">
+            <img class="pod-slide" src="/content/gallery/google_summer/1.jpg">
+            <img class="pod-slide" src="/content/gallery/google_summer/2.jpg">
+            <img class="pod-slide" src="/content/gallery/google_summer/3.jpg">
+            <img class="pod-slide" src="/content/gallery/google_summer/4.jpg">
+            <img class="pod-slide" src="/content/gallery/google_summer/5.jpg">
+            <img class="pod-slide" src="/content/gallery/google_summer/6.jpg">
+          </div>
+          <div class="mx-auto d-flex justify-content-center">
+            <div class="mr-2">
+              <input class="form-control" id="starttime-{{id}}" type="time" step="1" value="00:00:00" aria-describedby="startTimeHelp">
+              <small id="startTimeHelp" class="form-text text-muted text-center">От</small>
+            </div>
+            <div class="ml-2">
+              <input class="form-control" id="endtime-{{id}}" type="time" step="1" value="00:00:00" aria-describedby="endTimeHelp">
+              <small id="endTimeHelp" class="form-text text-muted text-center">До</small>
+            </div>
+          </div>
+
         </div>
+
         <div class="d-flex justify-content-center mt-4" id="delete-podcasts-block-{{id}}">
           <button id="delete-podcast-btn-{{id}}" class="btn btn-danger" type="button">Удалить подкаст</button>
         </div>
