@@ -43,3 +43,38 @@ textarea {
 .slick-prev:before, .slick-next:before { 
     color: #555;
 }
+
+/*для импута файла*/
+.custom-file-control::after {
+    content: "Файл не выбран";
+    overflow: hidden;
+    word-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.custom-file-control::before {
+    content: "Выбрать";
+}
+
+.custom-file-control.selected::after {
+    content: "" !important;
+    overflow: hidden;
+    word-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.custom-file {
+    overflow: hidden;
+    word-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.custom-file-control {
+    overflow: hidden;
+    word-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

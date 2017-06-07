@@ -20,13 +20,19 @@
 
         <div class="form-group">
           <label for="presentation-{{id}}" class="fw-600">Презентация (PDF)</label>
-          <input name="presentation" type="file" class="form-control-file" id="presentation-{{id}}" aria-describedby="presentationHelp">
+          <label class="custom-file w-100">
+            <input type="file" class="custom-file-input" id="presentation-{{id}}" name="presentation" aria-describedby="presentationHelp">
+            <span class="custom-file-control"></span>
+          </label>
           <small id="presentationHelp" class="form-text text-muted">Выберите презентацию</small>
         </div>
 
         <div class="form-group">
           <label for="audio-stream-{{id}}" class="fw-600">Аудио</label>
-          <input name="audioStream" , type="file" class="form-control-file" id="audio-stream-{{id}}" aria-describedby="audioStreamHelp">
+          <label class="custom-file w-100">
+            <input type="file" class="custom-file-input" id="audio-stream-{{id}}" name="audiostream" aria-describedby="audioStreamHelp">
+            <span class="custom-file-control"></span>
+          </label>
           <small id="audioStreamHelp" class="form-text text-muted">Выберите аудиодорожку</small>
         </div>
 

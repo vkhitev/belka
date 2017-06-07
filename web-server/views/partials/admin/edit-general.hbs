@@ -65,7 +65,10 @@
 
   <div class="form-group">
     <label for="preview-image-file" class="fw-600">Превью события</label>
-    <input name="previewImage" type="file" class="form-control-file" id="preview-image-file" aria-describedby="previewHelp">
+    <label class="custom-file w-100">
+      <input type="file" class="custom-file-input" id="preview-images-file" name="previewImage" aria-describedby="previewHelp" multiple>
+      <span class="custom-file-control"></span>
+    </label>
     <small id="previewHelp" class="form-text text-muted">Выберите одно изображение в качестве картинки для поста</small>
   </div>
 
@@ -77,7 +80,10 @@
 
   <div class="form-group">
     <label for="post-images-file" class="fw-600">Галерея</label>
-    <input name="postImages" type="file" class="form-control-file" id="post-images-file" aria-describedby="photosHelp" multiple>
+    <label class="custom-file w-100">
+      <input type="file" class="custom-file-input" id="post-images-file" name="postImages" aria-describedby="photosHelp" multiple>
+      <span class="custom-file-control"></span>
+    </label>
     <small id="photosHelp" class="form-text text-muted">Выберите одну или несколько фотографий для фотогалереи</small>
   </div>
 
