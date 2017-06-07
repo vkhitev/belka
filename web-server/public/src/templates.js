@@ -1,15 +1,64 @@
-/* global postId */
-
-import 'slick-carousel'
-
-function initAudioSplit () {
-  const presentations = $('[id^=presentation-]')
-  const audios = $('[id^=audio-]')
-  const audioSplit = $('[id^=audio-split-')
+function html (literals, ...substs) {
+  return literals.raw.reduce((acc, lit, i) => {
+    let subst = substs[i - 1]
+    if (Array.isArray(subst)) {
+      subst = subst.join('')
+    }
+    if (acc.endsWith('$')) {
+      subst = htmlEscape(subst)
+      acc = acc.slice(0, -1)
+    }
+    return acc + subst + lit.trim()
+  }).trim()
 }
 
-const html = (id) => `
-<div class="card my-4 bg-faded">
+  // src: http://2ality.com/2015/01/template-strings-html.html
+function htmlEscape (str) {
+  return str.replace(/&/g, '&amp;')
+    .replace(/>/g, '&gt;')
+    .replace(/</g, '&lt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/`/g, '&#96;')
+}
+
+  // src: https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro
+function htmlToElement (html) {
+  var template = document.createElement('template')
+  template.innerHTML = html
+  return template.content.firstChild
+}
+
+  // src: https://stackoverflow.com/questions/494143/creating-a-new-dom-element-from-an-html-string-using-built-in-dom-methods-or-pro
+  // Improved by removing extra spaces
+function htmlToElements (html) {
+  var template = document.createElement('template')
+  template.innerHTML = html.replace(/>[\s]+</g, '><')
+  return template.content.childNodes
+}
+
+function element (literals, ...substs) {
+  return htmlToElement(html(literals, ...substs))
+}
+
+function ifExists (value, element, fn = x => x) {
+  if (Array.isArray(value) && value.length === 0) {
+    return ''
+  }
+  if (typeof value === 'object' && Object.keys(value).length === 0) {
+    return ''
+  }
+  if (value == null) {
+    return ''
+  }
+  return fn(element)
+}
+
+const map = (fn) => (arr) => arr.map(fn)
+
+export default {
+  podcastEditor: id => element`
+    <div class="card my-4 bg-faded">
       <div class="card-block p-4">
 
         <div class="form-group">
@@ -64,76 +113,5 @@ const html = (id) => `
         </div>
       </div>
     </div>
-`
-
-function initAddPodcast () {
-  let pendingId = -1
-  $('#add-podcast-btn').on('click', e => {
-    const card = $(e.target).closest('form').find('.card').last()
-    console.log(card)
-    if (card.length > 0) {
-      card.after(html(pendingId--))
-    } else {
-      $(e.target).closest('form').prepend(html(pendingId--))
-    }
-    removeSlider()
-    addSlider()
-  })
-
-  $('[id^=delete-podcast-btn]').on('click', e => {
-    if (window.confirm('Вы точно хотите удалить подкаст?')) {
-      $(e.target).closest('.card').remove()
-    }
-  })
+  `
 }
-
-function initUploadData () {
-  $('#podcasts-edit-form').submit(function (e) {
-    e.preventDefault()
-    const cards = $('#podcasts-edit-form .card')
-    console.log(cards)
-  })
-}
-
-function addSlider () {
-  $('.podcast-slider').slick({
-    dots: true,
-    infinite: false,
-    slidesToShow: 1,
-    adaptiveHeight: true
-  })
-}
-
-function removeSlider () {
-  $('.slick-initialized').slick('unslick')
-}
-
-function setSliderPosition () {
-  $('.podcast-slider').slick('setPosition')
-}
-
-function initSlider () {
-  addSlider()
-
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    setSliderPosition()
-  })
-}
-
-function checkSlider () {
-  let arr = []
-  $('.slick-initialized').each(function (key, item) {
-    console.log(this.id)
-    arr.push(this)
-  })
-  console.log(arr)
-}
-
-$(document).ready(function () {
-  initAddPodcast()
-  initAudioSplit()
-  initUploadData()
-  initSlider()
-})
-
-console.log('!!')

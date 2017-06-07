@@ -10,7 +10,7 @@ import initPreview from './edit-post/preview'
 import initPostImages from './edit-post/post-images'
 import initDeletePost from './edit-post/delete-post'
 import initEditPost from './edit-post/edit-post'
-import './edit-podcasts'
+import initEditPodcast from './edit-post/edit-podcasts'
 
 function toDateInputValue (date) {
   var local = new Date(date)
@@ -24,6 +24,7 @@ $(function () {
   initPostImages()
   initDeletePost()
   initEditPost()
+  initEditPodcast()
 
   $('#inputDate')
     .val(toDateInputValue(new Date()))

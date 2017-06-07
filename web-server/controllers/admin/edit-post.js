@@ -16,7 +16,6 @@ exports.fetch = async function fetch (req, res, next) {
   try {
     req.categories = await fetchData('categories')
     req.post = await fetchData(`posts/${postid}`)
-    req.podcasts = await fetchData(`podcasts?postId=${postid}`)
     req.images = await fetchData(`post_images?postId=${postid}`)
   } catch (err) {
     error(req, res, err)
@@ -39,9 +38,6 @@ exports.transform = function transform (req, res, next) {
       eventDate: formatters.dateOnly
     }
   })
-  req.podcasts = format(req.podcasts, {
-    attributes: ['id', 'name', 'audioUrl', 'slidesUrl', 'speaker']
-  })
 
   const postCategories = req.post.categories.map(c => c.id)
   req.categories = req.categories.filter(c =>
@@ -55,7 +51,6 @@ exports.render = function render (req, res) {
     postImages: req.images,
     categories: req.categories,
     post: req.post,
-    podcasts: req.podcasts,
     layout: 'admin',
     title: 'Belka | ' + req.post.name,
     action: 'Редактирование поста | ' + req.post.name
