@@ -59,7 +59,7 @@
     <div class="form-group col-12 col-md-4">
       <label for="input-new-category" class="fw-600">Создать категорию</label>
       <input name="organizerLink" type="text" class="form-control" id="input-new-category" aria-describedby="authorUrlHelp" placeholder="Категория">
-      <button class="btn btn-secondary pull-right mt-3" id="btn-create-new-category" type="button">Добавить</button>
+      <button class="btn btn-outline-success btn-block mt-3" id="btn-create-new-category" type="button">Добавить</button>
     </div>
   </div>
 
@@ -85,18 +85,34 @@
     {{>blog/post/post-images}}
   </div>
 
-  <div class="d-block mx-auto d-sm-flex mx-sm-0 mt-4">
-    <div class="mr-auto my-2">
+  <div class="clearfix hidden-xs-down mt-4">
+
+    <div class="float-left" id="delete-block">
       {{#if post.id}}
         <button type="button" class="btn btn-danger" id="delete-post-btn">Удалить пост</button>
       {{/if}}
     </div>
 
-    <hr class="hidden-sm-up my-4">
-
-    <div class="mr-auto my-2 mr-sm-0 ml-sm-auto" id="submit-block">
-      <button type="button" class="btn btn-primary" id="update-post-btn">Принять изменения</button>
+    <div class="float-right" id="submit-block">
+      <button type="button" class="btn btn-success" id="update-post-btn">Принять изменения</button>
     </div>
+
+  </div>
+
+  <div class="hidden-sm-up mt-4 d-flex flex-column">
+
+    <div class="align-self-center" id="delete-block">
+      {{#if post.id}}
+        <button type="button" class="btn btn-danger" id="delete-post-btn">Удалить пост</button>
+      {{/if}}
+    </div>
+
+    <hr class="mx-0 my-4">
+
+    <div class="align-self-center" id="submit-block">
+      <button type="button" class="btn btn-success" id="update-post-btn">Принять изменения</button>
+    </div>
+
   </div>
 
 </form>

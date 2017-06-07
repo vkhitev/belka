@@ -60,14 +60,33 @@
     </div>
   {{/each}}
 
-  <div class="d-flex justify-content-center my-3" id="add-podcasts-block">
-    <button type="button" id="add-podcast-btn" class="btn btn-secondary">Добавить подкаст</button>
+  <div class="clearfix hidden-xs-down mt-4">
+
+    <div class="float-left">
+      <button type="button" id="add-podcast-btn" class="btn btn-secondary">Добавить подкаст</button>
+    </div>
+
+    <div class="float-right">
+      <button type="submit" class="btn btn-success">Принять изменения</button>
+    </div>
+
   </div>
 
-  <hr class="my-4">
+  <div class="hidden-sm-up mt-4 d-flex flex-column">
 
-  <div class="d-flex justify-content-center" id="submit-podcasts-block">
-    <button type="submit" class="btn btn-primary">Принять изменения</button>
+    <div class="align-self-center" id="add-podcasts-block">
+      <button type="button" id="add-podcast-btn" class="btn btn-secondary">Добавить подкаст</button>
+    </div>
+
+    <hr class="mx-0 my-4">
+
+    <div class="align-self-center" id="submit-podcasts-block">
+      <button type="submit" class="btn btn-success">Принять изменения</button>
+    </div>
+
   </div>
+
+
+
 
 </form>
