@@ -1,8 +1,8 @@
 const file = $('#preview-image-file')
 const resultBlock = $('#preview-image-block')
 
-function setFileSrc (e) {
-  const src = window.URL.createObjectURL(e.target.files[0])
+function setFileSrc () {
+  const src = window.URL.createObjectURL(this.files[0])
   const img = $('#preview-image-result')
   if (!img.length) {
     resultBlock.append(`
@@ -11,6 +11,8 @@ function setFileSrc (e) {
   } else {
     img.attr('src', src)
   }
+
+  $('#preview-control').html(this.files[0].name)
 }
 
 export default function init () {

@@ -21,6 +21,7 @@ function changeCategory (from, to) {
         clone.on('click', setDeleteButton)
       }
 
+      $('#btn-delete-category').css('display', 'none')
       $(e.target).remove()
     }
   }
@@ -40,7 +41,7 @@ function setDeleteButton () {
 }
 
 // Создаёт категорию в базе данных
-async function createNewCategory () {
+async function createCategory () {
   const categoryName = $('#input-new-category').val()
   if (!categoryName) {
     return false
@@ -99,5 +100,5 @@ export default function init () {
     .on('dblclick', changeCategory(selectedCategories, allCategories))
 
   $('#btn-create-new-category')
-    .on('click', createNewCategory)
+    .on('click', createCategory)
 }

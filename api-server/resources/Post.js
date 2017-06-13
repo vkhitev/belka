@@ -28,6 +28,8 @@ module.exports = function (db, epilogue) {
     list: {
       fetch: {
         async before (req, res, context) {
+          // /api/posts?category=X
+
           context.options = context.options || {}
           context.options.distinct = true
 

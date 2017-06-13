@@ -12,19 +12,17 @@ function getValue (itree, key) {
   return itree.search(key)[0].id
 }
 
-module.exports = function synchronizeAudio (carousel, id, marks) {
-  const slider = $(`#podcast-slider-${id}`)
-  const audio = $(`#podcast-audio-${id}`)
-  audio.on('loadedmetadata', e => {
-    marks = [...marks, e.target.duration]
-    const itree = createIntervalTree(e.target.duration / 2, marks)
+export default function synchronizeAudio ({ slides, audio, marks }) {
+  audio.on('loadedmetadata', function (e) {
+    marks = [...marks, this.duration]
+    const itree = createIntervalTree(this.duration / 2, marks)
 
     audio.on('seeked', onseeked)
     audio.on('timeupdate', onseeked)
 
     function onseeked (e) {
-      const slide = getValue(itree, e.target.currentTime)
-      slider.carousel(slide)
+      const slide = getValue(itree, this.currentTime)
+      slides.carousel(slide)
     }
   })
 }

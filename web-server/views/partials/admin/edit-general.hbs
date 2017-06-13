@@ -66,8 +66,8 @@
   <div class="form-group">
     <label for="preview-image-file" class="fw-600">Превью события</label>
     <label class="custom-file w-100">
-      <input type="file" class="custom-file-input" id="preview-images-file" name="previewImage" aria-describedby="previewHelp" multiple>
-      <span class="custom-file-control"></span>
+      <input accept="image/*" type="file" class="custom-file-input" id="preview-image-file" name="previewImage" aria-describedby="previewHelp" multiple>
+      <span class="custom-file-control" id="preview-control">Файл не выбран</span>
     </label>
     <small id="previewHelp" class="form-text text-muted">Выберите одно изображение в качестве картинки для поста</small>
   </div>
@@ -81,8 +81,8 @@
   <div class="form-group">
     <label for="post-images-file" class="fw-600">Галерея</label>
     <label class="custom-file w-100">
-      <input type="file" class="custom-file-input" id="post-images-file" name="postImages" aria-describedby="photosHelp" multiple>
-      <span class="custom-file-control"></span>
+      <input accept="image/*" type="file" class="custom-file-input" id="post-images-file" name="postImages" aria-describedby="photosHelp" multiple>
+      <span class="custom-file-control" id="photos-control">Файл не выбран</span>
     </label>
     <small id="photosHelp" class="form-text text-muted">Выберите одну или несколько фотографий для фотогалереи</small>
   </div>
@@ -91,32 +91,32 @@
     {{>blog/post/post-images}}
   </div>
 
-  <div class="clearfix hidden-xs-down mt-4">
+  <div class="clearfix hidden-xs-down mt-4 submit-block">
 
-    <div class="float-left" id="delete-block">
+    <div class="float-left delete-block">
       {{#if post.id}}
-        <button type="button" class="btn btn-danger" id="delete-post-btn">Удалить пост</button>
+        <button type="button" class="btn btn-danger delete-post-btn">Удалить пост</button>
       {{/if}}
     </div>
 
-    <div class="float-right" id="submit-block">
-      <button type="button" class="btn btn-success" id="update-post-btn">Принять изменения</button>
+    <div class="float-right">
+      <button type="button" class="btn btn-success update-post-btn">Принять изменения</button>
     </div>
 
   </div>
 
-  <div class="hidden-sm-up mt-4 d-flex flex-column">
+  <div class="hidden-sm-up mt-4 d-flex flex-column submit-block">
 
-    <div class="align-self-center" id="delete-block">
+    <div class="align-self-center delete-block">
       {{#if post.id}}
-        <button type="button" class="btn btn-danger" id="delete-post-btn">Удалить пост</button>
+        <button type="button" class="btn btn-danger delete-post-btn">Удалить пост</button>
       {{/if}}
     </div>
 
     <hr class="mx-0 my-4">
 
-    <div class="align-self-center" id="submit-block">
-      <button type="button" class="btn btn-success" id="update-post-btn">Принять изменения</button>
+    <div class="align-self-center">
+      <button type="button" class="btn btn-success update-post-btn">Принять изменения</button>
     </div>
 
   </div>

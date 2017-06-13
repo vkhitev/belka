@@ -1,15 +1,15 @@
 {{!-- Карусель с фотографиями события --}}
-<div class="carousel slide bg-inverse" data-ride="carousel" id="photos-carousel" data-interval="false">
+<div class="carousel slide bg-inverse" data-ride="carousel" id="photos-carousel">
   <ol class="carousel-indicators">
     {{#each postImages}}
-      <li data-target="#photos-carousel" data-slide-to= {{@index}} class="{{#if @first}}active{{/if}}"></li>
+      <li data-target="#photos-carousel" data-slide-to={{@index}} class="{{#if @first}}active{{/if}}"></li>
     {{/each}}
   </ol>
 
   <div class="carousel-inner" role="listbox">
     {{#each postImages}}
       <div class="carousel-item {{#if @first}}active{{/if}}">
-        <img class="d-block card-img-top mx-auto" src= {{url}} alt="First slide">
+        <img class="d-block card-img-top mx-auto" src={{url}} alt="First slide">
       </div>
     {{/each}}
   </div>

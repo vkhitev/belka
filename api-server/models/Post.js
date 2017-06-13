@@ -40,10 +40,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     brief: {
       type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        notEmpty: true
-      }
+      allowNull: true
     }
   }, {
     classMethods: {

@@ -1,6 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import '../css/style.css'
+import initPlayers from './podcast-player'
 
-import 'bootstrap'
-
-import './podcast-player'
+$(function () {
+  initPlayers()
+})

@@ -1,5 +1,34 @@
 <nav class="nav flex-column sidebar text-center text-md-left">
-  {{>blog/aside/categories}}
+  <div class="semilist py-2">
+    <h5>Категории</h5>
+    <div class="row">
+      <div class="col-xs-3 hidden-sm-up"></div>
+      <div class="py-1 col-xs-6 col-sm-5 offset-sm-4 col-md-12 text-center text-sm-left ml-md-0">
+        {{#each categories}}
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/{{id}}/{{nameSlug}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
 <div class="dropdown-divider my-2"></div>
-  {{>blog/aside/archive}}
+  <div class="semilist py-2">
+    <h5>Архив</h5>
+
+    {{#each annual}}
+      <a class="nav-link" data-toggle="collapse" href="#posts-{{year}}" aria-expanded="false" aria-controls="posts-{{year}}">
+        {{ year }}
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </a>
+      <div class="collapse pl-3" id="posts-{{year}}">
+        {{#each posts}}
+          <li class="nav-item">
+            <a class="nav-link" href="/posts/{{id}}/{{nameSlug}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
 </nav>

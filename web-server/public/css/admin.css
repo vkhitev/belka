@@ -46,7 +46,7 @@ textarea {
 
 /*для импута файла*/
 .custom-file-control::after {
-    content: "Файл не выбран";
+    /*content: "Файл не выбран";*/
     overflow: hidden;
     word-wrap: nowrap;
     white-space: nowrap;

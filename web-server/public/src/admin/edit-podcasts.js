@@ -1,7 +1,7 @@
 /* global postId */
 
-import { podcastEditor } from '../../templates'
-import 'slick-carousel'
+// import { podcastEditor } from '../../templates'
+// import 'slick-carousel'
 
 async function getExistingPosts () {
   if (!postId) {
@@ -12,8 +12,8 @@ async function getExistingPosts () {
 }
 
 export default async function init () {
-  const posts = await getExistingPosts()
-  console.log(posts)
+  // const posts = await getExistingPosts()
+  // console.log(posts)
 }
 
 // await fetchData(`podcasts?postId=${postid}`)
