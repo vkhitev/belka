@@ -6,7 +6,11 @@ module.exports = function (sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    syncTime: {
+    syncFrom: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    syncTo: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

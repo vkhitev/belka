@@ -1,9 +1,10 @@
-{{#section 'head'}}
+{{#section 'pre-head'}}
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css">
 {{/section}}
 
 {{#section 'scripts'}}
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
   <script>
     var postId = null
     {{#if post.id}}
@@ -37,7 +38,7 @@
         </div>
         <div class="tab-pane" id="podcasts" role="tabpanel">
           <div class="cart-text pb-2 mt-2">
-            {{>admin/edit-podcasts}}
+            {{>admin/edit-podcasts}}            
           </div>
         </div>
       </div>

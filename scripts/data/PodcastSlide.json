@@ -2,91 +2,106 @@
   {
     "id": 1,
     "url": "/content/slides/google_summer/1.png",
-    "syncTime": 0,
+    "syncFrom": 0,
+    "syncTo": 20,
     "podcastId": 7
   },
   {
     "id": 2,
     "url": "/content/slides/google_summer/2.png",
-    "syncTime": 20,
+    "syncFrom": 20,
+    "syncTo": 40,
     "podcastId": 7
   },
   {
     "id": 3,
     "url": "/content/slides/google_summer/3.png",
-    "syncTime": 40,
+    "syncFrom": 40,
+    "syncTo": 60,
     "podcastId": 7
   },
   {
     "id": 4,
     "url": "/content/slides/google_summer/4.png",
-    "syncTime": 60,
+    "syncFrom": 60,
+    "syncTo": 80,
     "podcastId": 7
   },
   {
     "id": 5,
     "url": "/content/slides/google_summer/5.png",
-    "syncTime": 80,
+    "syncFrom": 80,
+    "syncTo": 100,
     "podcastId": 7
   },
   {
     "id": 6,
     "url": "/content/slides/google_summer/6.png",
-    "syncTime": 100,
+    "syncFrom": 100,
+    "syncTo": 120,
     "podcastId": 7
   },
   {
     "id": 7,
     "url": "/content/slides/google_summer/7.png",
-    "syncTime": 120,
+    "syncFrom": 120,
+    "syncTo": 140,
     "podcastId": 7
   },
   {
     "id": 8,
     "url": "/content/slides/google_summer/8.png",
-    "syncTime": 140,
+    "syncFrom": 140,
+    "syncTo": 160,
     "podcastId": 7
   },
   {
     "id": 9,
     "url": "/content/slides/google_summer/9.png",
-    "syncTime": 160,
+    "syncFrom": 160,
+    "syncTo": 180,
     "podcastId": 7
   },
   {
     "id": 10,
     "url": "/content/slides/google_summer/10.png",
-    "syncTime": 180,
+    "syncFrom": 180,
+    "syncTo": 200,
     "podcastId": 7
   },
   {
     "id": 11,
     "url": "/content/slides/google_summer/11.png",
-    "syncTime": 200,
+    "syncFrom": 200,
+    "syncTo": 220,
     "podcastId": 7
   },
   {
     "id": 12,
     "url": "/content/slides/google_summer/12.png",
-    "syncTime": 220,
+    "syncFrom": 220,
+    "syncTo": 240,
     "podcastId": 7
   },
   {
     "id": 13,
     "url": "/content/slides/google_summer/13.png",
-    "syncTime": 240,
+    "syncFrom": 240,
+    "syncTo": 260,
     "podcastId": 7
   },
   {
     "id": 14,
     "url": "/content/slides/google_summer/14.png",
-    "syncTime": 260,
+    "syncFrom": 260,
+    "syncTo": 280,
     "podcastId": 7
   },
   {
     "id": 15,
     "url": "/content/slides/google_summer/15.png",
-    "syncTime": 280,
+    "syncFrom": 280,
+    "syncTo": 1000,
     "podcastId": 7
   }
 ]

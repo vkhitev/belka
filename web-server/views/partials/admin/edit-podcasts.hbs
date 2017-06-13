@@ -1,98 +1,28 @@
 <form id="podcasts-edit-form">
 
-  {{#each podcasts}}
-    <div class="card my-4 bg-faded">
-      <div class="card-block p-4">
-
-        <div class="form-group">
-          <label for="inputPodcastName-{{id}}" class="fw-600">Название подкаста</label>
-          <input type="text" class="form-control" id="inputPodcastName-{{id}}" aria-describedby="podcastNameHelp" placeholder="Название подкаста"
-            value="{{name}}">
-          <small id="podcastNameHelp" class="form-text text-muted">Введите название подкаста</small>
-        </div>
-
-        <div class="form-group">
-          <label for="inputSpeakerName-{{id}}" class="fw-600">Спикер</label>
-          <input type="text" class="form-control" id="inputSpeakerName-{{id}}" aria-describedby="speakerNameHelp" placeholder="Спикер"
-            value="{{speaker}}">
-          <small id="speakerNameHelp" class="form-text text-muted">Введите имя спикера</small>
-        </div>
-
-        <div class="form-group">
-          <label for="presentation-{{id}}" class="fw-600">Презентация (PDF)</label>
-          <label class="custom-file w-100">
-            <input type="file" class="custom-file-input" id="presentation-{{id}}" name="presentation" aria-describedby="presentationHelp">
-            <span class="custom-file-control"></span>
-          </label>
-          <small id="presentationHelp" class="form-text text-muted">Выберите презентацию</small>
-        </div>
-
-        <div class="form-group">
-          <label for="audio-stream-{{id}}" class="fw-600">Аудио</label>
-          <label class="custom-file w-100">
-            <input type="file" class="custom-file-input" id="audio-stream-{{id}}" name="audiostream" aria-describedby="audioStreamHelp">
-            <span class="custom-file-control"></span>
-          </label>
-          <small id="audioStreamHelp" class="form-text text-muted">Выберите аудиодорожку</small>
-        </div>
-
-        <div class="form-group">
-          <label for="slider-{{id}}" class="fw-600">Отметки времени</label>
-          <div class="podcast-slider mx-4" id="slider-{{id}}">
-            <img class="pod-slide" src="/content/gallery/google_summer/1.jpg">
-            <img class="pod-slide" src="/content/gallery/google_summer/2.jpg">
-            <img class="pod-slide" src="/content/gallery/google_summer/3.jpg">
-            <img class="pod-slide" src="/content/gallery/google_summer/4.jpg">
-            <img class="pod-slide" src="/content/gallery/google_summer/5.jpg">
-            <img class="pod-slide" src="/content/gallery/google_summer/6.jpg">
-          </div>
-          <div class="mx-auto d-flex justify-content-center">
-            <div class="mr-2">
-              <input class="form-control" id="starttime-{{id}}" type="time" step="1" value="00:00:00" aria-describedby="startTimeHelp">
-              <small id="startTimeHelp" class="form-text text-muted text-center">От</small>
-            </div>
-            <div class="ml-2">
-              <input class="form-control" id="endtime-{{id}}" type="time" step="1" value="00:00:00" aria-describedby="endTimeHelp">
-              <small id="endTimeHelp" class="form-text text-muted text-center">До</small>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="d-flex justify-content-center mt-4" id="delete-podcasts-block-{{id}}">
-          <button id="delete-podcast-btn-{{id}}" class="btn btn-danger" type="button">Удалить подкаст</button>
-        </div>
-      </div>
-    </div>
-  {{/each}}
+  <div id="podcasts-container">
+  </div>
 
   <div class="clearfix hidden-xs-down mt-4">
-
-    <div class="float-left">
-      <button type="button" id="add-podcast-btn" class="btn btn-secondary">Добавить подкаст</button>
+    <div class="float-left add-podcasts-block">
+      <button type="button" class="btn btn-secondary add-podcast-btn">Добавить подкаст</button>
     </div>
 
-    <div class="float-right">
-      <button type="submit" class="btn btn-success">Принять изменения</button>
+    <div class="float-right submit-podcasts-block">
+      <button type="submit" class="btn btn-success submit-podcast-btn">Принять изменения</button>
     </div>
-
   </div>
 
   <div class="hidden-sm-up mt-4 d-flex flex-column">
-
-    <div class="align-self-center" id="add-podcasts-block">
-      <button type="button" id="add-podcast-btn" class="btn btn-secondary">Добавить подкаст</button>
+    <div class="align-self-center add-podcasts-block">
+      <button type="button" class="btn btn-secondary add-podcast-btn">Добавить подкаст</button>
     </div>
 
     <hr class="mx-0 my-4">
 
-    <div class="align-self-center" id="submit-podcasts-block">
-      <button type="submit" class="btn btn-success">Принять изменения</button>
+    <div class="align-self-center submit-podcasts-block">
+      <button type="submit" class="btn btn-success submit-podcast-btn">Принять изменения</button>
     </div>
-
   </div>
-
-
-
 
 </form>

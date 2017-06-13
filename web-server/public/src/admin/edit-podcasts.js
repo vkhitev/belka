@@ -1,9 +1,12 @@
 /* global postId */
 
-// import { podcastEditor } from '../../templates'
-// import 'slick-carousel'
+import podcastTemplate from './podcast.template'
 
-async function getExistingPosts () {
+const container = $('#podcasts-container')
+let nextPodcastId = 1
+let podcasts = null
+
+async function getExistingPodcasts () {
   if (!postId) {
     return []
   }
@@ -11,88 +14,76 @@ async function getExistingPosts () {
   return response.json()
 }
 
-export default async function init () {
-  // const posts = await getExistingPosts()
-  // console.log(posts)
+const slider = {
+  init () {
+    slider.add()
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      slider.setPosition()
+    })
+  },
+
+  add () {
+    $('.podcast-slider').slick({
+      dots: true,
+      infinite: false,
+      slidesToShow: 1,
+      adaptiveHeight: true
+    })
+  },
+
+  remove () {
+    $('.slick-initialized').slick('unslick')
+  },
+
+  setPosition () {
+    $('.podcast-slider').slick('setPosition')
+  }
 }
 
-// await fetchData(`podcasts?postId=${postid}`)
-// const timeStamps
+export default async function init () {
+  podcasts = await getExistingPodcasts()
 
-// function initAddPodcast () {
-//   let pendingId = -1
-//   $('#add-podcast-btn').on('click', e => {
-//     const card = $(e.target).closest('form').find('.card').last()
-//     console.log(card)
-//     if (card.length > 0) {
-//       card.after(html(pendingId--))
-//     } else {
-//       $(e.target).closest('form').prepend(html(pendingId--))
-//     }
-//     removeSlider()
-//     addSlider()
-//     changeSlider()
-//   })
+  podcasts
+    .map(podcastTemplate)
+    .forEach(podcast => {
+      container.append(podcast)
+      $(podcast)
+        .find('button[id^=delete-podcast-btn]')
+        .on('click', function () {
+          if (window.confirm('Вы точно хотите удалить подкаст?')) {
+            podcast.remove()
+          }
+        })
 
-//   $('[id^=delete-podcast-btn]').on('click', e => {
-//     if (window.confirm('Вы точно хотите удалить подкаст?')) {
-//       $(e.target).closest('.card').remove()
-//     }
-//   })
-// }
+      $(podcast)
+        .find('.podcast-slider')
+        .on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+          //
+        })
+    })
 
-// function initUploadData () {
-//   $('#podcasts-edit-form').submit(function (e) {
-//     e.preventDefault()
-//     const cards = $('#podcasts-edit-form .card')
-//     console.log(cards)
-//   })
-// }
+  slider.init()
 
-// function addSlider () {
-//   $('.podcast-slider').slick({
-//     dots: true,
-//     infinite: false,
-//     slidesToShow: 1,
-//     adaptiveHeight: true
-//   })
-// }
+  $('.add-podcast-btn').click(addPodcast)
 
-// function removeSlider () {
-//   $('.slick-initialized').slick('unslick')
-// }
+  $('.submit-podcast-btn').click(function (e) {
+    e.preventDefault()
+    console.log('Форма отправляется')
+  })
+}
 
-// function setSliderPosition () {
-//   $('.podcast-slider').slick('setPosition')
-// }
+function addPodcast () {
+  podcasts[nextPodcastId] = {
+    id: 'new-' + nextPodcastId
+  }
 
-// function initSlider () {
-//   addSlider()
+  container.append(podcastTemplate(podcasts[nextPodcastId]))
 
-//   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//     setSliderPosition()
-//   })
-// }
-
-// function checkSlider () {
-//   let arr = []
-//   $('.slick-initialized').each(function (key, item) {
-//     console.log(this.id)
-//     arr.push(this)
-//   })
-//   console.log(arr)
-// }
+  nextPodcastId += 1
+}
 
 // function changeSlider () {
 //   $('.podcast-slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
 //     console.log(nextSlide)
 //   })
 // }
-
-// $(document).ready(function () {
-//   initAddPodcast()
-//   initAudioSplit()
-//   initUploadData()
-//   initSlider()
-//   changeSlider()
-// })
