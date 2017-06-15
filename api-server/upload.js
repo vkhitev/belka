@@ -3,6 +3,7 @@ const crypto = require('crypto')
 const multer = require('multer')
 const mime = require('mime')
 const db = require('./models')
+const convertPDF = require('./convert-pdf')
 
 function imageFilter (req, file, cb) {
   if (!file.mimetype.startsWith('image')) {
@@ -15,6 +16,9 @@ function imageFilter (req, file, cb) {
 }
 
 function pdfFilter (req, file, cb) {
+  if (!file.mimetype === 'application/pdf') {
+    return cb(new Error('Only pdf files are allowed!'), false)
+  }
   if (!file.originalname.match(/\.(pdf)$/)) {
     return cb(new Error('Only pdf files are allowed!'), false)
   }
@@ -48,9 +52,18 @@ const options = {
       }
     })
   }),
-  slides: multer({
-    dest: path.resolve(__dirname, '../web-server/public/content/slides'),
-    fileFilter: imageFilter
+  presentation: multer({
+    fileFilter: pdfFilter,
+    storage: multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, path.resolve(__dirname, '../web-server/public/tmp'))
+      },
+      filename: function (req, file, cb) {
+        crypto.pseudoRandomBytes(16, function (_, raw) {
+          cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype))
+        })
+      }
+    })
   })
 }
 
@@ -69,7 +82,7 @@ module.exports = function init (router) {
     }
   })
 
-  router.put('/post_image/:postid', options.photos.array('images', 15), async (req, res) => {
+  router.put('/post_image/:postid', options.photos.array('photos', 15), async (req, res) => {
     const id = req.params.postid
     const data = req.files.map(file => ({
       postId: id,
@@ -81,5 +94,21 @@ module.exports = function init (router) {
     } catch (err) {
       res.json({ status: 400, message: 'Can not update post images' })
     }
+  })
+
+  router.post('/split_presentation', options.presentation.single('presentation'), async (req, res) => {
+    await convertPDF(req.file.path, path.resolve(__dirname, '../web-server/public/content/slides'))
+    res.json({ status: 200 })
+    // const id = req.params.postid
+    // const data = req.files.map(file => ({
+    //   postId: id,
+    //   url: '/content/gallery/' + file.filename
+    // }))
+    // try {
+    //   await db.PostImage.bulkCreate(data)
+    //   res.json({ status: 200 })
+    // } catch (err) {
+    //   res.json({ status: 400, message: 'Can not update post images' })
+    // }
   })
 }

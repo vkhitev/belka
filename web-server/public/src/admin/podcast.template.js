@@ -13,6 +13,19 @@ function ifExists (value, element, fn = x => x) {
   return fn(element)
 }
 
+function ifNotExists (value, element, fn = x => x) {
+  if (Array.isArray(value) && value.length === 0) {
+    return fn(element)
+  }
+  if (typeof value === 'object' && Object.keys(value).length === 0) {
+    return fn(element)
+  }
+  if (value == null) {
+    return fn(element)
+  }
+  return ''
+}
+
 function selfOrNothing (value) {
   return ifExists(value, value)
 }
@@ -20,7 +33,7 @@ function selfOrNothing (value) {
 const map = (fn) => (arr) => arr.map(fn)
 
 export default ({ id, name, speaker, audioUrl, podcastSlides = [] }) => create.element`
-<div class="card my-4 bg-faded" id="podcast-${id}" x-id=${id}>
+<div class="card my-4 bg-faded podcast-body" x-id=${id}>
   <div class="card-block p-4">
 
     <div class="form-group">
@@ -47,13 +60,11 @@ export default ({ id, name, speaker, audioUrl, podcastSlides = [] }) => create.e
     <div class="form-group">
       <label for="podcast-audio-${id}" class="fw-600">Аудио</label>
       <label class="custom-file w-100">
-        <input name="podcast-audio-${id}" type="file" class="form-control-file" id="podcast-audio-${id}" aria-describedby="audioStreamHelp">
+        <input accept=".mp3" name="podcast-audio-${id}" type="file" class="form-control-file" id="podcast-audio-${id}" aria-describedby="audioStreamHelp">
         <span class="custom-file-control">Файл не выбран</span>
       </label>
       <small id="audioStreamHelp" class="form-text text-muted">Выберите аудиодорожку</small>
-      ${ifExists(audioUrl, `
-        <audio controls src="${selfOrNothing(audioUrl)}" class="w-100 mt-1" id="podcast-audio-stream-${id}"></audio>
-      `)}    
+      <audio controls src="${audioUrl}" class="w-100 mt-1" id="podcast-audio-stream-${id}" style="display: none;"></audio>
     </div>
 
     <div class="form-group" id="podcast-slides-container-${id}">
@@ -68,11 +79,11 @@ export default ({ id, name, speaker, audioUrl, podcastSlides = [] }) => create.e
 
         <div class="mx-auto d-flex justify-content-center">
           <div class="mr-2">
-            <input class="form-control" id="podcast-slider-start-time" type="time" step="1" value="00:00:${podcastSlides[0].syncFrom}" aria-describedby="startTimeHelp">
+            <input class="form-control" id="podcast-slider-start-time-${id}" type="text" value="${podcastSlides[0].syncFrom}" aria-describedby="startTimeHelp">
             <small id="startTimeHelp" class="form-text text-muted text-center">От</small>
           </div>
           <div class="ml-2">
-            <input class="form-control" id="podcast-slider-end-time" type="time" step="1" value="00:00:${podcastSlides[0].syncTo}" aria-describedby="endTimeHelp">
+            <input class="form-control" id="podcast-slider-end-time-${id}" type="text" value="${podcastSlides[0].syncTo}" aria-describedby="endTimeHelp">
             <small id="endTimeHelp" class="form-text text-muted text-center">До</small>
           </div>
         </div>

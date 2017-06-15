@@ -107,7 +107,7 @@ async function updatePostImages (data, id) {
 
   const formData = new window.FormData()
   files.forEach(file => {
-    formData.append('images', file)
+    formData.append('photos', file)
   })
 
   const url = `/api/post_image/${id}`
